@@ -4,13 +4,13 @@ some random dotfiles that i've collected and manually copied from system to syst
 
 ## operating systems and (some) tools
 
-- Windows 10
+- [Windows 10](docs/win10.md)
   - vs code
   - wsl2
   - git
   - chocolatey
   - docker
-- Mac OS x
+- [Mac OSX](docs/osx.md)
   - vs code
   - neovim
   - git
