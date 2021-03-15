@@ -1,0 +1,40 @@
+{
+	// look & feel
+	"color_scheme": "Packages/Tomorrow Color Schemes/Tomorrow Night.sublime-color-scheme",
+	"theme": "SoDaReloaded Dark.sublime-theme",
+
+	// Caret style
+	"caret_style": "solid",
+	"wide_care": true,
+	"highlight_line": true,
+
+	// whitespace & indentation
+	"draw_white_space": "all",
+	"indent_guide_options":
+	[
+		"draw_active"
+	],
+	"tab_size": 4,
+	"translate_tabs_to_spaces": true,
+	"trim_trailing_white_space_on_save": true,
+	"ensure_newline_at_eof_on_save": true,
+
+	// font rendering
+	"font_face": "Ubuntu Mono",
+	"font_options":
+	[
+		"subpixel_antialias",
+		"directwrite"
+	],
+
+	// disable some visual things
+	"fold_buttons": false,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+
+	// other behaviours
+	"scroll_past_end": true,
+	"shift_tab_unindent": true
+}
