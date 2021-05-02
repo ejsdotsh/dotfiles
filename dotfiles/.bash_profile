@@ -27,3 +27,6 @@ function go_test() {
 
 # aliases
 alias run_conductor='docker run -it --rm -u annar -w /home/annar -v ~/repo/joshuaejs/annar:/home/annar/annar conductor bash'
+alias ansible='docker run -v "${PWD}":/work:ro --rm spy86/ansible:latest'
+alias ansible-playbook='docker run -v "${PWD}":/work:ro -v ~/.ansible/roles:/root/.ansible/roles -v ~/.ssh:/root/.ssh:ro --rm spy86/ansible:latest ansible-playbook'
+alias ansible-vault='docker run -v "${PWD}":/work:ro --rm spy86/ansible:latest ansible-vault'
