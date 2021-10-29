@@ -20,7 +20,19 @@
 - win+x -> powershell (admin)
 
 ```sh
-wsl --install
+PS C:\Users\jejs> wsl --install
+Installing: Virtual Machine Platform
+Virtual Machine Platform has been installed.
+Installing: Windows Subsystem for Linux
+Windows Subsystem for Linux has been installed.
+Downloading: WSL Kernel
+Installing: WSL Kernel
+WSL Kernel has been installed.
+Downloading: GUI App Support
+Installing: GUI App Support
+GUI App Support has been installed.
+Downloading: Ubuntu
+The requested operation is successful. Changes will not be effective until the system is rebooted.
 ```
 
 - reboot
