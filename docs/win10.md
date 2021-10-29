@@ -4,8 +4,8 @@
 
 - enable
   - WSL2
-    - [WSL Install Guide (win10)](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
-    - [update wsl2 kernel](https://docs.microsoft.com/en-us/windows/wsl/wsl2-kernel)
+    - [WSL Install Guide](https://docs.microsoft.com/en-us/windows/wsl/install)
+      - microsoft [best practices](https://docs.microsoft.com/en-us/windows/wsl/setup/environment) for setting up wsl
     - install & enable Ubuntu
   - Hyper-V
   - Docker
@@ -13,25 +13,14 @@
     - [docker desktop wsl 2 backend](https://docs.docker.com/docker-for-windows/wsl-tech-preview/#download)
 - install chocolatey
   - [install](https://chocolatey.org/install)
-  - (<https://www.digitalocean.com/community/tutorials/how-to-install-python-3-and-set-up-a-local-programming-environment-on-windows-10>)
+  - an [example](https://www.digitalocean.com/community/tutorials/how-to-install-python-3-and-set-up-a-local-programming-environment-on-windows-10)
 
 ### WSL2
 
 - win+x -> powershell (admin)
 
 ```sh
-dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
-```
-
-- [update to win10 2004 build 19041 or higher](https://docs.microsoft.com/en-us/windows/wsl/install-win10#update-to-wsl-2)
-- enable Hyper-V
-- enable the 'virtual machine platform' component
-
-```sh
-dism.exe /online /enable-feature /featurename:Microsoft-Hyper-V /all /norestart
-
-dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
-
+wsl --install
 ```
 
 - reboot
