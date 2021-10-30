@@ -7,9 +7,9 @@ then
 fi
 
 
-GOLANG_VERSION=1.16.2
+GOLANG_VERSION=1.16.6
 GOLANG_DOWNLOAD_URL=https://golang.org/dl/go$GOLANG_VERSION.linux-amd64.tar.gz
-GOLANG_DOWNLOAD_SHA256=542e936b19542e62679766194364f45141fde55169db2d8d01046555ca9eb4b8
+GOLANG_DOWNLOAD_SHA256=be333ef18b3016e9d7cb7b1ff1fdb0cac800ca0be4cf2290fe613b3d069dfe0d
 
 apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     g++ \
