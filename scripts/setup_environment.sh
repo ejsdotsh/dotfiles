@@ -8,10 +8,9 @@
 # - report what has/has not been done
 
 # set some variables
-user=$(whoami)
-working_dir=$(pwd)
+WD=$(dirname $(pwd))
 
-for dotbashfile in `ls .bash*`
+for dotbashfile in `ls ${WD}/dotfiles/.bash*`
 do
 	if [ -f ~/${dotbashfile} ]
 	then
@@ -20,21 +19,19 @@ do
 			echo "${dotbashfile} already linked"
 		else
 			mv ~/${dotbashfile} ~/${dotbashfile}.bak
-			ln -s ${working_dir}/${dotbashfile} ~/${dotbashfile}
+			ln -s ${WD}/dotfiles/${dotbashfile} ~/${dotbashfile}
 		fi
 	else
-		ln -s ${working_dir}/${dotbashfile} ~/${dotbashfile}
+		ln -s ${WD}/dotfiles/${dotbashfile} ~/${dotbashfile}
 	fi
 done
 
 # .config directory
 if [ ! -d ~/.config ]
 then
-	mkdir -p ~/.config
-	ln -s ${working_dir}/git ~/.config/git
-	ln -s ${working_dir}/nvim ~/.config/nvim
+	ln -s ${WD}/dotfiles/config/ ~/.config
 else
-	for configdir in `ls config`
+	for configdir in `ls ${WD}/dotfiles/config/`
 	do
 		if [ -d ~/.config/${configdir} ]
 		then
@@ -46,8 +43,7 @@ else
 				ln -s ${working_dir}/config/${configdir}/ ~/.config/${configdir}
 			fi
 		else
-			ln -s ${working_dir}/config/${configdir}/ ~/.config/${configdir}
+			ln -s ${WORKING_DIR}/config/${configdir}/ ~/.config/${configdir}
 		fi
 	done
 fi
-
