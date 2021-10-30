@@ -128,18 +128,41 @@ vcredist2015 14.0.24215.20170201
 vscode 1.61.2
 vscode.install 1.61.2
 WhatsApp 2.2140.12
-
+...
 ```
 
 ### terminal
 
 - set wsl default
 - edit colors, keybindings, etc.
-- ssh key/dotfiles
+  - [onedark](https://windowsterminalthemes.dev/?theme=OneDark) theme
+
+### Ubuntu (WSL2)
+
+- change release to [impish](https://wiki.ubuntu.com/Releases)
 
 ```sh
-ssh-keygen -t ed25519
+$ sudo apt-get update && sudo apt-get dist-upgrade -y --no-install-recommends
+Get:1 http://security.ubuntu.com/ubuntu impish-security InRelease [99.5 kB]
+Get:2 http://archive.canonical.com/ubuntu impish InRelease [11.4 kB]
+Get:3 http://archive.ubuntu.com/ubuntu impish InRelease [270 kB]
+Get:4 http://security.ubuntu.com/ubuntu impish-security/main Sources [8624 B]
+[cut]
+```
 
+- restart wsl
+- generate ssh key
+
+```sh
+$ ssh-keygen -t ed25519
+Generating public/private ed25519 key pair.
+[cut]
+```
+
+- install packages for Python, Go, and C/C++ development in VS Code
+
+```txt
+sudo apt-get update -qq && sudo apt-get install --no-install-recommends golang build-essential gdb g++ gcc make python3-pip python3-setuptools libc6-dev python3-dev neovim
 ```
 
 ### vs code
@@ -182,22 +205,6 @@ ssh-keygen -t ed25519
     - shell default
       - Git/Bash
 
-### Ubuntu (WSL2)
-
-- install packages for Python, Go, and C/C++ development in VS Code
-
-```sh
-
-
-sudo apt-get install build-essential gdb g++ gcc libc5-dev make python3-pip python3-setuptools
-
-```
-
-- packages to install
-  - ALREADY INSTALLED python3 (wsl)
-  - ALREADY INSTALLED git (wsl)
-  - golang (wsl)
-  - neovim (wsl)
 
 ### Python
 
