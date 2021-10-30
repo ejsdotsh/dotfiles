@@ -1,66 +1,47 @@
-# windows 10
+# windows 10 & 11
 
 ## overview
 
-- enable
-  - WSL2
-    - [WSL Install Guide (win10)](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
-    - [update wsl2 kernel](https://docs.microsoft.com/en-us/windows/wsl/wsl2-kernel)
-    - install & enable Ubuntu
-  - Hyper-V
-  - Docker
-    - [using docker with wsl2](https://code.visualstudio.com/blogs/2020/03/02/docker-in-wsl2?ref=codebldr)
-    - [docker desktop wsl 2 backend](https://docs.docker.com/docker-for-windows/wsl-tech-preview/#download)
+- install/update windows terminal from the microsoft store
+- install WSL2
+  - ensure that virtualization is enabled in the bios
+  - [WSL Install Guide](https://docs.microsoft.com/en-us/windows/wsl/install)
+    - microsoft [best practices](https://docs.microsoft.com/en-us/windows/wsl/setup/environment) for setting up wsl
 - install chocolatey
   - [install](https://chocolatey.org/install)
-  - (<https://www.digitalocean.com/community/tutorials/how-to-install-python-3-and-set-up-a-local-programming-environment-on-windows-10>)
+  - an [example](https://www.digitalocean.com/community/tutorials/how-to-install-python-3-and-set-up-a-local-programming-environment-on-windows-10)
+- Docker
+  - [using docker with wsl2](https://code.visualstudio.com/blogs/2020/03/02/docker-in-wsl2?ref=codebldr)
+  - [docker desktop wsl 2 backend](https://docs.docker.com/docker-for-windows/wsl-tech-preview/#download)
 
 ### WSL2
 
 - win+x -> powershell (admin)
+- enter `wsl --install` to install ubuntu, or `wsl --install -d {{distribution}}` for another distribution
 
-```sh
-dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
-```
-
-- [update to win10 2004 build 19041 or higher](https://docs.microsoft.com/en-us/windows/wsl/install-win10#update-to-wsl-2)
-- enable Hyper-V
-- enable the 'virtual machine platform' component
-
-```sh
-dism.exe /online /enable-feature /featurename:Microsoft-Hyper-V /all /norestart
-
-dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
-
+```powershell
+PS C:\Users\jejs> wsl --install
+Installing: Virtual Machine Platform
+Virtual Machine Platform has been installed.
+Installing: Windows Subsystem for Linux
+Windows Subsystem for Linux has been installed.
+Downloading: WSL Kernel
+Installing: WSL Kernel
+WSL Kernel has been installed.
+Downloading: GUI App Support
+Installing: GUI App Support
+GUI App Support has been installed.
+Downloading: Ubuntu
+The requested operation is successful. Changes will not be effective until the system is rebooted.
 ```
 
 - reboot
-- [update wsl2 kernel](https://docs.microsoft.com/en-us/windows/wsl/wsl2-kernel)
-- [config wsl2](https://docs.microsoft.com/en-us/windows/wsl/wsl-config)
-
-```sh
-wsl --set-default-version 2
-```
-
-- install Linux distro of choice
-  - Debian and/or Ubuntu are recommended
-  - [Debian](https://www.microsoft.com/store/apps/9MSVKQC78PK6)
-  - [Ubuntu 20.04 LTS](https://www.microsoft.com/store/apps/9n6svws3rx71)
-- ensure it is using wsl2
-
-```sh
-wsl --list --verbose
-```
-
-- start selected distro's app, and create username and password
-
-```sh
-) debian/ubuntu
-... installing ...
-
-```
-
+- start ubuntu
+  - create username and password
+- remove `nano`
+  - `sudo apt-get --purge remove nano`
 - [fix file permissions](https://docs.microsoft.com/en-us/windows/wsl/wsl-config#configure-per-distro-launch-settings-with-wslconf)
+  - `sudo vi /etc/wsl.conf`
 
 ```ini
 [automount]
@@ -68,26 +49,24 @@ enabled = true
 options = "metadata,umask=22,fmask=11"
 ```
 
+- update and restart wsl
+  - from an admin powershell: `wsl --update` and then `wsl --shutdown`
+
+```powershell
+PS C:\Users\jejs> wsl --update
+Checking for updates...
+Downloading updates...
+Installing updates...
+This change will take effect on the next full restart of WSL. To force a restart, please run 'wsl --shutdown'.
+Kernel version: 5.10.60.1
+PS C:\Users\jejs> wsl --shutdown
+```
+
+- open new terminal
 - update system
-- install packages for Python, Go, and C/C++ development in VS Code
-
-```sh
-sudo apt-get update && sudo apt-get dist-upgrade -y
-
-sudo apt-get install build-essential gdb g++ gcc libc5-dev make python3-pip python3-setuptools
-
-```
-
-- disable windows features
-
-```sh
-dism.exe /online /disable-feature /featurename:smb1protocol /norestart
-dism.exe /online disable-feature /featurename:windowsmediaplayer /norestart
-dism.exe /online disable-feature /featurename:internet-explorer-optional-amd64 /norestart
-
-```
-
-- reboot
+  - `sudo apt-get update && sudo apt-get dist-upgrade -y`
+- restart wsl
+  - from an admin powershell: `wsl --shutdown`
 
 #### issues
 
@@ -103,22 +82,87 @@ dism.exe /online disable-feature /featurename:internet-explorer-optional-amd64 /
   - 7zip
   - vscode
   - spotify
-  - microsoft windows terminal
+  - microsoft windows terminal???
 
 ```powershell
-choco install 7zip vscode microsoft-windows-terminal -y
-
+PS C:\Users\jejs> choco list -l
+Chocolatey v0.11.3
+1password 7.9.825
+7zip 19.0
+7zip.install 19.0
+amd-ryzen-chipset 2021.10.21
+autohotkey 1.1.33.10
+autohotkey.install 1.1.33.10
+calibre 5.30.0
+chocolatey 0.11.3
+chocolatey-core.extension 1.3.5.1
+chocolatey-dotnetfx.extension 1.0.1
+chocolatey-misc-helpers.extension 0.0.4
+chocolatey-windowsupdate.extension 1.0.4
+cpu-z 1.98
+cpu-z.install 1.98
+DotNet4.5.2 4.5.2.20140902
+dotnet4.7.2 4.7.2.20210903
+GoogleChrome 95.0.4638.54
+iTunes 12.12.1.1
+KB2919355 1.0.20160915
+KB2919442 1.0.20160915
+KB2999226 1.0.20181019
+KB3033929 1.0.5
+KB3035131 1.0.3
+logitech-options 9.40.86
+netfx-4.7.2 4.7.2.0
+notepadplusplus 8.1.9
+notepadplusplus.install 8.1.9
+nvidia-display-driver 496.49
+putty 0.76
+putty.portable 0.76
+rufus 3.17
+signal 5.21.0
+slack 4.21.1
+spotify 1.1.70.610
+sumatrapdf 3.3.3
+sumatrapdf.install 3.3.3.20210920
+vcredist140 14.29.30135
+vcredist2015 14.0.24215.20170201
+vscode 1.61.2
+vscode.install 1.61.2
+WhatsApp 2.2140.12
+...
 ```
 
 ### terminal
 
 - set wsl default
 - edit colors, keybindings, etc.
-- ssh key/dotfiles
+  - [onedark](https://windowsterminalthemes.dev/?theme=OneDark) theme
+
+### Ubuntu (WSL2)
+
+- change release to [impish](https://wiki.ubuntu.com/Releases)
 
 ```sh
-ssh-keygen -t ed25519
+$ sudo apt-get update && sudo apt-get dist-upgrade -y --no-install-recommends
+Get:1 http://security.ubuntu.com/ubuntu impish-security InRelease [99.5 kB]
+Get:2 http://archive.canonical.com/ubuntu impish InRelease [11.4 kB]
+Get:3 http://archive.ubuntu.com/ubuntu impish InRelease [270 kB]
+Get:4 http://security.ubuntu.com/ubuntu impish-security/main Sources [8624 B]
+[cut]
+```
 
+- restart wsl
+- generate ssh key
+
+```sh
+$ ssh-keygen -t ed25519
+Generating public/private ed25519 key pair.
+[cut]
+```
+
+- install packages for Python, Go, and C/C++ development in VS Code
+
+```txt
+sudo apt-get update -qq && sudo apt-get install --no-install-recommends golang build-essential gdb g++ gcc make python3-pip python3-setuptools libc6-dev python3-dev neovim
 ```
 
 ### vs code
@@ -161,13 +205,6 @@ ssh-keygen -t ed25519
     - shell default
       - Git/Bash
 
-### Ubuntu (WSL2)
-
-- packages to install
-  - ALREADY INSTALLED python3 (wsl)
-  - ALREADY INSTALLED git (wsl)
-  - golang (wsl)
-  - neovim (wsl)
 
 ### Python
 
