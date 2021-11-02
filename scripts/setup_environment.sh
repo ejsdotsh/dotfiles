@@ -10,28 +10,32 @@
 # set some variables
 WD=$(dirname $(pwd))
 
-for dotbashfile in `ls ${WD}/dotfiles/.bash*`
+for dotbashfile in $(ls ${WD}/dotfiles/.bash*)
 do
-	if [ -f ~/${dotbashfile} ]
+	if [ -f ~/$(basename ${dotbashfile}) ]
 	then
-		if [ -L ~/${dotbashfile} ]
+		if [ -L ~/$(basename ${dotbashfile}) ]
 		then
-			echo "${dotbashfile} already linked"
+			echo "$(basename ${dotbashfile}) already linked"
 		else
-			mv ~/${dotbashfile} ~/${dotbashfile}.bak
-			ln -s ${WD}/dotfiles/${dotbashfile} ~/${dotbashfile}
+			mv ~/$(basename ${dotbashfile}) ~/$(basename ${dotbashfile}).bak
+			ln -s ${dotbashfile} ~/$(basename ${dotbashfile})
 		fi
 	else
-		ln -s ${WD}/dotfiles/${dotbashfile} ~/${dotbashfile}
+		ln -s ${dotbashfile} ~/$(basename ${dotbashfile})
 	fi
 done
 
 # .config directory
 if [ ! -d ~/.config ]
 then
-	ln -s ${WD}/dotfiles/config/ ~/.config
+	if [ ! -L ~/.config ]
+	then
+		ln -s ${WD}/dotfiles/config/ ~/.config
+	fi
 else
-	for configdir in `ls ${WD}/dotfiles/config/`
+	# directory already exists, just add symlinks
+	for configdir in $(ls ${WD}/dotfiles/config/)
 	do
 		if [ -d ~/.config/${configdir} ]
 		then
@@ -40,10 +44,10 @@ else
 				echo "${configdir} is already linked"
 			else
 				mv ~/.config/${configdir} ~/.config/${configdir}.bak
-				ln -s ${working_dir}/config/${configdir}/ ~/.config/${configdir}
+				ln -s ${WD}/dotfiles/config/${configdir}/ ~/.config/${configdir}
 			fi
 		else
-			ln -s ${WORKING_DIR}/config/${configdir}/ ~/.config/${configdir}
+			ln -s ${WD}/dotfiles/config/${configdir}/ ~/.config/${configdir}
 		fi
 	done
 fi
