@@ -18,19 +18,19 @@ if tput setaf 1 &> /dev/null; then
 
   # If the terminal supports at least 256 colors, write out our 256 color based set
   if [[ "$(tput colors)" -ge 256 ]] &> /dev/null; then
-    bash_prompt_user_color="$bash_prompt_bold$(tput setaf 27)" # BOLD BLUE
-    bash_prompt_preposition_color="$bash_prompt_bold$(tput setaf 7)" # BOLD WHITE
-    bash_prompt_device_color="$bash_prompt_bold$(tput setaf 39)" # BOLD CYAN
-    bash_prompt_dir_color="$bash_prompt_bold$(tput setaf 76)" # BOLD GREEN
-    bash_prompt_git_status_color="$bash_prompt_bold$(tput setaf 154)" # BOLD YELLOW
+    bash_prompt_user_color="$bash_prompt_bold$(tput setaf 4)" # BOLD BLUE
+    bash_prompt_preposition_color="$bash_prompt_bold$(tput setaf 15)" # BOLD WHITE
+    bash_prompt_device_color="$bash_prompt_bold$(tput setaf 14)" # BOLD CYAN
+    bash_prompt_dir_color="$bash_prompt_bold$(tput setaf 13)" # purple
+    bash_prompt_git_status_color="$bash_prompt_bold$(tput setaf 11)" # BOLD YELLOW
     bash_prompt_git_progress_color="$bash_prompt_bold$(tput setaf 9)" # BOLD RED
   else
   # Otherwise, use colors from our set of 8
     bash_prompt_user_color="$bash_prompt_bold$(tput setaf 4)" # BOLD BLUE
     bash_prompt_preposition_color="$bash_prompt_bold$(tput setaf 7)" # BOLD WHITE
-    bash_prompt_device_color="$bash_prompt_bold$(tput setaf 6)" # BOLD CYAN
-    bash_prompt_dir_color="$bash_prompt_bold$(tput setaf 2)" # BOLD GREEN
-    bash_prompt_git_status_color="$bash_prompt_bold$(tput setaf 3)" # BOLD YELLOW
+    bash_prompt_device_color="$bash_prompt_bold$(tput setaf 14)" # BOLD CYAN
+    bash_prompt_dir_color="$bash_prompt_bold$(tput setaf 13)" # purple
+    bash_prompt_git_status_color="$bash_prompt_bold$(tput setaf 11)" # BOLD YELLOW
     bash_prompt_git_progress_color="$bash_prompt_bold$(tput setaf 1)" # BOLD RED
   fi
 
@@ -41,17 +41,17 @@ else
   # If you would like to customize your colors, use
   # DEV: 30-39 lines up 0-9 from `tput`
   # for i in $(seq 0 109); do
-  #   echo -n -e "\033[1;${i}mText$(tput sgr0) "
-  #   echo "\033[1;${i}m"
+  #   echo -n -e "\e[1;${i}mText$(tput sgr0) "
+  #   echo "\e[1;${i}m"
   # done
 
-  bash_prompt_reset="\033[m"
-  bash_prompt_user_color="\033[1;34m" # BLUE
-  bash_prompt_preposition_color="\033[1;37m" # WHITE
-  bash_prompt_device_color="\033[1;36m" # CYAN
-  bash_prompt_dir_color="\033[1;32m" # GREEN
-  bash_prompt_git_status_color="\033[1;33m" # YELLOW
-  bash_prompt_git_progress_color="\033[1;31m" # RED
+  bash_prompt_reset="\e[m"
+  bash_prompt_user_color="\e[1;34m" # BLUE
+  bash_prompt_preposition_color="\e[1;37m" # WHITE
+  bash_prompt_device_color="\e[1;36m" # CYAN
+  bash_prompt_dir_color="\e[1;32m" # GREEN
+  bash_prompt_git_status_color="\e[1;33m" # YELLOW
+  bash_prompt_git_progress_color="\e[1;31m" # RED
   bash_prompt_symbol_color="" # NORMAL
 fi
 
