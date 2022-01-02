@@ -58,10 +58,14 @@ opt.expandtab = true      -- use spaces instead of tabs
 opt.shiftwidth = 2        -- shift 4 spaces when tab
 opt.tabstop = 2           -- 1 tab == 4 spaces
 opt.smartindent = true    -- autoindent new lines
+opt.smarttab = on
 opt.filetype = on
 
 -- set line length marker to 120
 cmd [[autocmd FileType text,markdown,html,xhtml,javascript,yaml setlocal cc=120]]
+
+-- Go settings
+cmd [[autocmd FileType go setlocal noexpandtab]]
 
 -- don't auto comment new lines
 -- cmd [[au BufEnter * set fo-=c fo-=r fo-=o]]

@@ -22,7 +22,7 @@ if tput setaf 1 &> /dev/null; then
     bash_prompt_preposition_color="$bash_prompt_bold$(tput setaf 15)" # BOLD WHITE
     bash_prompt_device_color="$bash_prompt_bold$(tput setaf 14)" # BOLD CYAN
     bash_prompt_dir_color="$bash_prompt_bold$(tput setaf 13)" # purple
-    bash_prompt_git_status_color="$bash_prompt_bold$(tput setaf 11)" # BOLD YELLOW
+    bash_prompt_git_status_color="$bash_prompt_bold$(tput setaf 11)" # orange
     bash_prompt_git_progress_color="$bash_prompt_bold$(tput setaf 9)" # BOLD RED
   else
   # Otherwise, use colors from our set of 8
@@ -30,8 +30,8 @@ if tput setaf 1 &> /dev/null; then
     bash_prompt_preposition_color="$bash_prompt_bold$(tput setaf 7)" # BOLD WHITE
     bash_prompt_device_color="$bash_prompt_bold$(tput setaf 14)" # BOLD CYAN
     bash_prompt_dir_color="$bash_prompt_bold$(tput setaf 13)" # purple
-    bash_prompt_git_status_color="$bash_prompt_bold$(tput setaf 11)" # BOLD YELLOW
-    bash_prompt_git_progress_color="$bash_prompt_bold$(tput setaf 1)" # BOLD RED
+    bash_prompt_git_status_color="$bash_prompt_bold$(tput setaf 11)" # orange
+    bash_prompt_git_progress_color="$bash_prompt_bold$(tput setaf 9)" # BOLD RED
   fi
 
   bash_prompt_symbol_color="$bash_prompt_bold" # BOLD
