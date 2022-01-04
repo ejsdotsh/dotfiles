@@ -33,6 +33,9 @@ opt.ignorecase = true         -- ignore case letters when search
 opt.smartcase = true          -- ignore lowercase for the whole pattern
 opt.linebreak = true          -- wrap on word boundary
 
+-- set line length marker to 120
+cmd [[autocmd FileType text,markdown,html,xhtml,javascript,yaml setlocal cc=120]]
+
 -- remove whitespace on save
 cmd [[au BufWritePre * :%s/\s\+$//e]]
 
@@ -55,14 +58,11 @@ require('onedarkpro').load()
 -- Tabs, indent
 -----------------------------------------------------------
 opt.expandtab = true      -- use spaces instead of tabs
-opt.shiftwidth = 2        -- shift 4 spaces when tab
-opt.tabstop = 2           -- 1 tab == 4 spaces
+opt.shiftwidth = 2        -- shift 2 spaces when tab
+opt.tabstop = 2           -- 1 tab == 2 spaces
+opt.softtabstop = 2      -- 1 tab == 2 spaces
 opt.smartindent = true    -- autoindent new lines
-opt.smarttab = on
-opt.filetype = on
-
--- set line length marker to 120
-cmd [[autocmd FileType text,markdown,html,xhtml,javascript,yaml setlocal cc=120]]
+opt.smarttab = true
 
 -- Go settings
 cmd [[autocmd FileType go setlocal noexpandtab]]
