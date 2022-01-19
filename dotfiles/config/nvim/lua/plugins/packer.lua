@@ -4,11 +4,12 @@ if fn.empty(fn.glob(install_path)) > 0 then
   packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
-return require('packer').startup(function(use)
+return require('packer').startup(function()
   -- let packer manage itself
   use 'wbthomason/packer.nvim'
   -- theme
-  use 'olimorris/onedarkpro.nvim'
+  --use 'olimorris/onedarkpro.nvim'
+  use 'ful1e5/onedark.nvim'
   -- vim-go
   --use 'fatih/vim-go'
 
@@ -18,4 +19,3 @@ return require('packer').startup(function(use)
     require('packer').sync()
   end
 end)
-
