@@ -7,6 +7,6 @@ if (vim.g.vscode) then
 
 else
   -- ordinary neovim
-  require('plugins')
+  require('plugins/packer')
   require('settings')
 end
