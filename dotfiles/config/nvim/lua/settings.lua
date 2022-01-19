@@ -34,7 +34,7 @@ opt.smartcase = true          -- ignore lowercase for the whole pattern
 opt.linebreak = true          -- wrap on word boundary
 
 -- set line length marker to 120
-cmd [[autocmd FileType text,markdown,html,xhtml,javascript,yaml setlocal cc=120]]
+cmd [[autocmd FileType text,markdown,html,xhtml,javascript,yaml setlocal cc=120 tw=120]]
 
 -- remove whitespace on save
 cmd [[au BufWritePre * :%s/\s\+$//e]]
@@ -51,11 +51,12 @@ exec([[
 -- Colorscheme
 -----------------------------------------------------------
 opt.termguicolors = true      -- enable 24-bit RGB colors
--- load the color them
-require('onedarkpro').load()
+opt.background = 'dark'
+-- load the color theme
+require('onedark').setup()
 
 -----------------------------------------------------------
--- Tabs, indent
+-- Tabs, indent, wrapping
 -----------------------------------------------------------
 opt.expandtab = true      -- use spaces instead of tabs
 opt.shiftwidth = 2        -- shift 2 spaces when tab
@@ -63,15 +64,16 @@ opt.tabstop = 2           -- 1 tab == 2 spaces
 opt.softtabstop = 2      -- 1 tab == 2 spaces
 opt.smartindent = true    -- autoindent new lines
 opt.smarttab = true
+opt.textwidth = 80
 
 -- Go settings
 cmd [[autocmd FileType go setlocal noexpandtab]]
 
 -- don't auto comment new lines
--- cmd [[au BufEnter * set fo-=c fo-=r fo-=o]]
+cmd [[au BufEnter * set fo-=c fo-=r fo-=o]]
 
 -- this autocommand will run :PackerCompile whenever plugins.lua is updated
-vim.cmd([[
+cmd([[
   augroup packer_user_config
     autocmd!
     autocmd BufWritePost plugins.lua source <afile> | PackerSync
