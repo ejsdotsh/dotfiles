@@ -1,14 +1,13 @@
-# mac osx
+# macOS
 
-## OS X
+## OSX
 
-- MacPorts
-- vs code
-- sublime text 3
-- <https://github.com/geerlingguy/mac-dev-playbook>
-- <https://github.com/geerlingguy/pi-dev-playbook>
+- [macOS Setup](https://sourabhbajaj.com/mac-setup/Homebrew/)
+- generate ssh key: `ssh-keygen -t ed25519`
 
-### MacPorts
+### Homebrew
+
+`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
 
 - installation
 - ports to install
@@ -70,3 +69,8 @@ TODO output goes here
     - initiate download
   - Python
   - Go
+
+### Using Ansible
+
+- <https://github.com/geerlingguy/mac-dev-playbook>
+- <https://github.com/geerlingguy/pi-dev-playbook>
