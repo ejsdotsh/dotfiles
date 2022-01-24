@@ -4,45 +4,47 @@
 
 - [macOS Setup](https://sourabhbajaj.com/mac-setup/Homebrew/)
 - generate ssh key: `ssh-keygen -t ed25519`
+- clone dotfiles
 
 ### Homebrew
 
 `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
 
-- installation
-- ports to install
-  - python38
-  - openssl
-  - pip_select
-  - py38-pip
-  - py38-setuptools
-  - python3_select
-  - python38
-  - python_select
+use homebrew to install:
 
-```sh
-$ sudo port install go python38 neovim tree
+- curl
+- git
+- go
+- gnupg
+- neovim
+- python3
+- wget
 
-TODO output goes here
-...
+`brew install bash-completion curl git go gnupg neovim python3 tree wget`
 
-$ sudo port python_select ...
+casks:
 
-TODO output goes here
-```
+- 1password
+- docker
+- slack
+- vscode
+- iterm2
+- edge
+- quicksilver
+
+`brew install --cask 1password docker slack iterm2 microsoft-edge visual-studio-code dropbox onedrive box-drive spotify google-drive quicksilver`
 
 - create development filesystem
 
-```sh
-$ mkdir -p go/src/github.com/joshuaejs go/pkg go/bin joshuaejs
-
-TODO output goes here
+```txt
+$ mkdir -p go/src/github.com/joshuaejs go/{pkg,bin}
 ```
 
-
-
 - pip install
-  - flake8
+  - setuptools
+  - wheel
+  - black
+
   - jinja2
   - jupyter
   - mypy
@@ -55,6 +57,10 @@ $ sudo -H pip install flake8 jinja2 jupyter mypy ...
 
 TODO output goes here
 ```
+
+#### terminal and iterm colors
+
+- [color schemes](https://github.com/nathanbuchar/atom-one-dark-terminal) for terminal and iterm
 
 ### Docker
 

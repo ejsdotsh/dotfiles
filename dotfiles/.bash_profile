@@ -1,7 +1,11 @@
 # Add stuff to `$PATH`
-export GOPATH="/home/jejs/go"
-export GOROOT="/usr/lib/go"
-export PATH="$HOME/bin:$GOPATH/bin:$GOROOT/bin:$PATH:/usr/local/protobuf/bin"
+export GOPATH="${HOME}/go"
+if [ $(uname -s) == "Darwin" ]; then
+  export GOROOT="$(brew --prefix golang)/libexec"
+else
+  export GOROOT="/usr/lib/go"
+fi
+export PATH="$HOME/bin:${GOPATH}/bin:${GOROOT}/bin:$PATH:/usr/local/protobuf/bin"
 
 # set editor
 export editor=nvim
@@ -30,8 +34,11 @@ function go_test() {
 # aliases
 alias ls='ls --color'
 alias mkpy='python3 -m venv venv'
+alias mkgomod='go mod init github.com/joshuaejs/$(basename $(pwd))'
 alias rebash='source ~/.bashrc'
+alias pipupall='python3 -m pip freeze | awk -F'\''=='\'' '\''{print $1}'\'' | xargs python3 -m pip install -U'
+alias unbrewall='brew uninstall --formula $(brew list)'
 alias run_conductor='docker run -it --rm -u annar -w /home/annar -v ~/repo/joshuaejs/annar:/home/annar/annar conductor bash'
-#alias ansible='docker run -v "${PWD}":/work:ro --rm spy86/ansible:latest'
-#alias ansible-playbook='docker run -v "${PWD}":/work:ro -v ~/.ansible/roles:/root/.ansible/roles -v ~/.ssh:/root/.ssh:ro --rm spy86/ansible:latest ansible-playbook'
-#alias ansible-vault='docker run -v "${PWD}":/work:ro --rm spy86/ansible:latest ansible-vault'
+#alias ansible='docker run -v "${PWD}":/work:ro --rm conductor:latest'
+#alias ansible-playbook='docker run -v "${PWD}":/work:ro -v ~/.ansible/roles:/root/.ansible/roles -v ~/.ssh:/root/.ssh:ro --rm conductor:latest ansible-playbook'
+#alias ansible-vault='docker run -v "${PWD}":/work:ro --rm conductor:latest ansible-vault'
