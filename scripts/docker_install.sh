@@ -2,14 +2,16 @@
 #
 # setup debian/ubuntu wsl envorinment faster
 
+export DEBIAN_FRONTEND=noninteractive
+
 # update and install prequisites
-sudo apt-get update \
-  && DEBIAN_FRONTEND=noninteractive sudo apt-get --purge remove -y \
+sudo apt-get update -qq \
+  && sudo apt-get --purge remove -y \
     docker* \
     container* \
     runc
 
-DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends \
+sudo apt-get install -y --no-install-recommends \
     apt-transport-https \
     ca-certificates \
     curl \
@@ -23,7 +25,7 @@ echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] 
   $(lsb_release -cs) test" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 sudo apt-get update \
-  && DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends \
+  && sudo apt-get install -y --no-install-recommends \
     docker-ce \
     docker-ce-cli \
     docker-ce-rootless-extras \

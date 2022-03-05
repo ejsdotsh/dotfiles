@@ -1,6 +1,7 @@
 # setting up my development environment
 
-some random dotfiles that i've collected and manually copied from system to system to system - keeping them here has improved their consistency. there are also some setup guides and scripts, which could someday turn into a `one-click setup` of my complete environment, independent of os...maybe
+some random dotfiles that i've collected and manually copied from system to system to system - keeping them here has
+somewhat improved their consistency.
 
 ## operating systems and (some) tools
 
@@ -14,7 +15,7 @@ some random dotfiles that i've collected and manually copied from system to syst
   - vs code
   - neovim
   - git
-  - MacPorts
+  - homebrew
   - docker
 - Linux
   - neovim
@@ -23,8 +24,7 @@ some random dotfiles that i've collected and manually copied from system to syst
 
 ## sublimetext 3
 
-my sublimetext [configs](st3/)/package list. (re)place files in:
+my (outdated/unmaintained) sublimetext [configs](st3/)/package list. (re)place files in:
 
 - OSX - ~/Library/Application Support/Sublime Text 3/Packages/User
 - Windows - C:\Users\jejs\AppData\Roaming\Sublime Text 3\Packages\User
-- Linux - ...
