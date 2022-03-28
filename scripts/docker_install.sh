@@ -40,6 +40,14 @@ sudo apt-get update \
     docker-scan-plugin \
     containerd.io
 
+# add nvidia cuda support
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-docker.gpg
+cat <<EOF | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+deb https://nvidia.github.io/libnvidia-container/experimental/ubuntu20.04/\$(ARCH) /
+deb https://nvidia.github.io/nvidia-container-runtime/experimental/ubuntu20.04/\$(ARCH) /
+deb https://nvidia.github.io/nvidia-docker/ubuntu20.04/\$(ARCH) /
+EOF
+
 # clean up
 sudo apt-get --purge autoremove -y \
   && sudo apt-get clean
