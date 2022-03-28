@@ -33,7 +33,7 @@ function go_test() {
 
 # aliases
 alias ls='ls --color'
-alias mkpy='python3 -m venv venv'
+alias mkpy='python3 -m venv venv && venv/bin/python3 -m pip install -U pip setuptools wheel black'
 alias mkgomod='go mod init github.com/joshuaejs/$(basename $(pwd))'
 alias rebash='source ~/.bashrc'
 alias pipupall='python3 -m pip freeze | awk -F'\''=='\'' '\''{print $1}'\'' | xargs python3 -m pip install -U'
