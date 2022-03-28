@@ -3,18 +3,23 @@
 # setup debian/ubuntu wsl envorinment faster
 
 export DEBIAN_FRONTEND=noninteractive
+source /etc/os-release
 
-echo "removing any previous versions..."
-# ensure previous versions are uninstalled
-sudo apt-get --purge remove -y \
+# update and uninstall
+sudo apt-get update -qq \
+  && sudo apt-get --purge remove -y \
     docker* \
     container* \
     runc >/dev/null 2>&1
 
-echo "installing required software..."
-# update and install required software
-sudo apt-get update -qq \
-  && sudo apt-get install -y --no-install-recommends \
+# remove old keyring
+sudo rm -f /usr/share/keyrings/docker-archive-keyring.gpg
+
+# need to use iptables-legacy
+sudo update-alternatives --set iptables /usr/sbin/iptables-legacy
+
+# install prereqs
+sudo apt-get install -y --no-install-recommends \
     apt-transport-https \
     ca-certificates \
     curl \
@@ -22,10 +27,6 @@ sudo apt-get update -qq \
     gnupg \
     lsb-release >/dev/null 2>&1
 
-# load os info
-source /etc/os-release
-
-echo "fetching docker's gpg key and adding sources..."
 # get docker's gpg key and add to the apt keyring
 curl -fsSL https://download.docker.com/linux/${ID}/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/${ID} \
@@ -40,6 +41,14 @@ sudo apt-get update -qq \
     docker-compose \
     docker-scan-plugin \
     containerd.io >/dev/null 2>&1
+
+# add nvidia cuda support
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-docker.gpg
+cat <<EOF | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+deb https://nvidia.github.io/libnvidia-container/experimental/ubuntu20.04/\$(ARCH) /
+deb https://nvidia.github.io/nvidia-container-runtime/experimental/ubuntu20.04/\$(ARCH) /
+deb https://nvidia.github.io/nvidia-docker/ubuntu20.04/\$(ARCH) /
+EOF >/dev/null 2>&1
 
 # clean up
 echo "cleaning up..."
