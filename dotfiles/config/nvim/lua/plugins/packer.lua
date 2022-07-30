@@ -1,21 +1,38 @@
--- local fn = vim.fn
--- local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
--- if fn.empty(fn.glob(install_path)) > 0 then
-  -- packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
--- end
+local execute = vim.api.nvim_command
+local fn = vim.fn
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
-return require('packer').startup(function()
+-- bootstrap packer is not installed
+if fn.empty(fn.glob(install_path)) > 0 then
+  packer_bootstrap = fn.system({
+    "git",
+    "clone",
+    -- "--depth", "1",
+    "https://github.com/wbthomason/packer.nvim",
+    install_path,
+  })
+  execute("packadd packer.nvim")
+end
+
+-- initial and configure packer
+local packer = require("packer")
+
+packer.init({
+  enable = true, -- enables profiling via :PackerCompile profile=true
+  threshold = 0, -- min loadtime in ms
+})
+
+packer.startup(function(use)
   -- let packer manage itself
-  use 'wbthomason/packer.nvim'
+  use "wbthomason/packer.nvim"
   -- theme
-  --use 'olimorris/onedarkpro.nvim'
-  use 'ful1e5/onedark.nvim'
+  use "ful1e5/onedark.nvim"
   -- vim-go
-  --use 'fatih/vim-go'
+  use "fatih/vim-go"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
-    require('packer').sync()
+    require("packer").sync()
   end
 end)
