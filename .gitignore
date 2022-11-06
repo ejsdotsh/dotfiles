@@ -1,0 +1,20 @@
+# modified Allowlisting gitignore template for GO projects
+
+# Ignore everything
+*
+
+# But not these files...
+# ...even if they are in subdirectories
+!*/
+
+!/.gitignore
+!LICENSE
+!Makefile
+!*.md
+
+!dotfiles/.bash*
+!dotfiles/config/nvim/*.lua
+!dotfiles/config/nvim/lua/**/*.lua
+
+# allow archive per-subdirectory
+!archive/st3/*-settings

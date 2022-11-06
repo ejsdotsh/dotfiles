@@ -30,13 +30,25 @@ function go_test() {
 # bash prompt
 . ~/.bash_prompt
 
+# upgrade all the python3 modules in the current venv
+function pipupall() {
+  # make sure we are at the root of the venv
+  if [ ! -f venv/bin/python3 ]; then
+    echo "make sure you are at the root of the venv"
+  else
+    # upgrade pip
+    venv/bin/python3 -m pip install -U pip
+    # upgrade the rest of the modules
+    venv/bin/python3 -m pip freeze | awk -F'==' '{print $1}' | xargs venv/bin/python3 -m pip install -U
+  fi
+}
 
 # aliases
 alias ls='ls --color'
-alias mkpy='python3 -m venv venv && venv/bin/python3 -m pip install -U pip setuptools wheel black'
+alias mkpy='python3 -m venv venv && venv/bin/python3 -m pip install -U pip setuptools wheel black mypy'
 alias mkgomod='go mod init github.com/joshuaejs/$(basename $(pwd))'
 alias rebash='source ~/.bashrc'
-alias pipupall='python3 -m pip freeze | awk -F'\''=='\'' '\''{print $1}'\'' | xargs python3 -m pip install -U'
+# alias pipupall='python3 -m pip freeze | awk -F'\''=='\'' '\''{print $1}'\'' | xargs python3 -m pip install -U'
 alias unbrewall='brew uninstall --formula $(brew list)'
 alias run_conductor='docker run -it --rm -u annar -w /home/annar -v ~/repo/joshuaejs/annar:/home/annar/annar conductor bash'
 #alias ansible='docker run -v "${PWD}":/work:ro --rm conductor:latest'
