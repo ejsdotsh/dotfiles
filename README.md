@@ -5,7 +5,7 @@ somewhat improved their consistency.
 
 ## operating systems and (some) tools
 
-- [Windows 10](docs/win10.md)
+- [Windows 10 & 11](docs/win10-11.md)
   - vs code
   - wsl2
   - git
