@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# add colors to `go test`
+function go_test() {
+    go test $* | sed ''/PASS/s//$(printf "\033[32mPASS\033[0m")/'' | sed ''/SKIP/s//$(printf "\033[34mSKIP\033[0m")/'' | sed ''/FAIL/s//$(printf "\033[31mFAIL\033[0m")/'' | sed ''/FAIL/s//$(printf "\033[31mFAIL\033[0m")/'' | GREP_COLOR="01;33" egrep --color=always '\s*[a-zA-Z0-9\-_.]+[:][0-9]+[:]|^'
+}
+# upgrade all the python3 modules in the current venv
+function pipupall() {
+  # make sure we are at the root of the venv
+  if [ ! -f .venv/bin/python3 ]; then
+    echo "make sure you are at the root of the venv"
+  else
+    # upgrade pip
+    .venv/bin/python3 -m pip install -U pip
+    # upgrade the rest of the modules
+    .venv/bin/python3 -m pip freeze | awk -F'==' '{print $1}' | xargs .venv/bin/python3 -m pip install -U
+  fi
+}

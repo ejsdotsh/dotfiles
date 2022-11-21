@@ -1,30 +1,39 @@
 # setting up my development environment
 
-some random dotfiles that i've collected and manually copied from system to system to system - keeping them here has
-somewhat improved their consistency.
+once upon a time, my dotfiles were clean and consistent, but they were also transferred and synchronized manually
+between the various *nix systems I worked on. over the years, the updates I've made to my work dotfiles haven't been
+well-reflected in my personal versions, resulting in cluttered files and inconsistent environments. this is both an
+automation/cleanup project, and a learning opportunity.
 
-## operating systems and (some) tools
+file structure:
 
-- [Windows 10 & 11](docs/win10-11.md)
-  - vs code
-  - wsl2
-  - git
-  - chocolatey
-  - docker
-- [Mac OSX](docs/osx.md)
-  - vs code
-  - neovim
-  - git
-  - homebrew
-  - docker
-- Linux
-  - neovim
-  - vim
-  - git
+```txt
+.
+├── dotbash
+│   ├── dot.aliases
+│   ├── dot.bash_profile
+│   ├── dot.bash_prompt
+│   ├── dot.bashrc
+│   ├── dot.exports
+│   ├── dot.functions
+│   └── dot.path
+├── dotconfig
+│   ├── git
+│   │   ├── config
+│   │   └── ignore
+│   └── nvim
+│       ├── init.lua
+│       └── lua
+│           ├── plugins
+│           │   └── packer.lua
+│           └── settings.lua
+├── dotssh
+│   └── config
+├── LICENSE
+├── README.md
+└── setup_environment.sh
+```
 
-## sublimetext 3
+## references
 
-my (outdated/unmaintained) sublimetext [configs](st3/)/package list. (re)place files in:
-
-- OSX - ~/Library/Application Support/Sublime Text 3/Packages/User
-- Windows - C:\Users\jejs\AppData\Roaming\Sublime Text 3\Packages\User
+this rewrite is heavily influenced by [daler dotfiles](https://daler.github.io/dotfiles/index.html)

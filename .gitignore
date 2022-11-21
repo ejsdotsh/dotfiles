@@ -12,9 +12,11 @@
 !Makefile
 !*.md
 
-!dotfiles/.bash*
-!dotfiles/config/nvim/*.lua
-!dotfiles/config/nvim/lua/**/*.lua
+!dotbash/dot.*
+!dotconfig/git/*
+!dotconfig/nvim/*.lua
+!dotconfig/nvim/lua/**/*.lua
+!dotssh/config
 
 # allow archive per-subdirectory
-!archive/st3/*-settings
+# !archive/st3/*-settings

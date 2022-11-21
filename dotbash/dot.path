@@ -1,0 +1,8 @@
+# Add stuff to `$PATH`
+export GOPATH="${HOME}/go"
+if [ $(uname -s) == "Darwin" ]; then
+  export GOROOT="$(brew --prefix golang)/libexec"
+else
+  export GOROOT="/usr/lib/go"
+fi
+export PATH="$HOME/bin:${GOPATH}/bin:${GOROOT}/bin:$PATH:/usr/local/protobuf/bin"
