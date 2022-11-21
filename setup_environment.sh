@@ -23,7 +23,6 @@ function dotconfig() {
 	for dc in $(ls $(pwd)/dotconfig); do
 		if [[ ! -L ~/.config/${dc} ]]; then
 			echo "ln -brs $(pwd)/dotconfig/${dc} ~/.config/${dc}"
-		# ln -brs $(pwd)/${dc} ~/.config/${dc}
 		fi
 	done
 }
