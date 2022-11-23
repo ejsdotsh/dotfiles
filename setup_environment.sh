@@ -7,35 +7,54 @@
 #
 # usage: ./setup_environment.sh
 
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+	echo "darwin"
+	# alias ln="ln -s"
+# else
+	# alias ln="ln -sr"
+fi
+
 
 function dotfiles()  {
 	# get list of files
 	for db in $(ls $(pwd)/dotbash/dot.*); do
-		if [[ ! -f ~/${db/*dot/} ]]; then
-
-			echo "ln -brs ${db} ~/${db/*dot/}"
-			# ln -brs ${dotbash} ~/${dotbash/*dot/}
+		if [[ -e ~/"${db/*dot/}" ]]; then
+			echo "~/${db/*dot} ~/${db/*dot}-bak"
+			mv ~/"${db/*dot}" ~/"${db/*dot}"-bak
+		elif [[ -L ~/"${db/*dot/}" ]]; then
+			echo "unlink ~/${db/*dot}"
+			unlink ~/"${db/*dot}"
 		fi
+		echo "ln -s ${db} ~/${db/*dot/}"
+		ln -s "${db}" ~/"${db/*dot/}"
 	done
 }
 
 function dotconfig() {
 	for dc in $(ls $(pwd)/dotconfig); do
-		if [[ ! -L ~/.config/${dc} ]]; then
-			echo "ln -brs $(pwd)/dotconfig/${dc} ~/.config/${dc}"
+		if [[ -d ~/.config/${dc} ]]; then
+			echo "mv ~/.config/${dc} ~/.config/${dc}-bak"
+			mv ~/.config/"${dc}" ~/.config/"${dc}-bak"
+		elif [[ -L ~/.config/${dc} ]]; then
+			echo "unlink ~/.config/${dc}"
+			unlink ~/.config/"${dc}"
 		fi
+		echo "ln -s $(pwd)/dotconfig/${dc} ~/.config/${dc}"
+		ln -s "$(pwd)"/dotconfig/"${dc}" ~/.config/"${dc}"
 	done
 }
 
 function dotssh() {
 	for ds in $(ls $(pwd)/dotssh); do
-		if [[ ! -f ~/.ssh/${ds} ]]; then
-			echo "ln -brs $(pwd)/dotssh/${ds} ~/.ssh/${ds}"
-			# ln -brs $(pwd)/dotssh/${ds} ~/.ssh/${ds}
+		if [[ -f ~/.ssh/"${ds}" ]]; then
+			echo "mv ~/.ssh/${ds} ~/.ssh/${ds}-bak"
+		elif [[ -L ~/.ssh/"${ds}" ]]; then
+			echo "unlink ~/.ssh/${ds}"
 		fi
+		echo "ln -rs $(pwd)/dotssh/${ds} ~/.ssh/${ds}"
 	done
 }
 
 dotfiles
 dotconfig
-dotssh
+# dotssh
