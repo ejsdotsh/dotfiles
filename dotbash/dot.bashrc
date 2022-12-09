@@ -5,15 +5,14 @@
 # - ~/.functions  should probably go into ~/bin
 # - ~/.bash_prompt  make the command-line look nicer
 
-for ff in ~/.{path,exports,aliases,functions,bash_prompt}; do
-  [[ -r "${ff}" ]] && [[ -f "${ff}" ]] && source "${ff}";
-done
-# cleanup
-unset ff;
-
 # exit if not an interactive shell
 [[ -z "$PS1" ]] && return
 
+for bf in ~/.{path,exports,aliases,functions,bash_prompt}; do
+  [[ -r "${bf}" ]] && [[ -f "${bf}" ]] && source "${bf}";
+done
+# cleanup
+unset bf;
 
 
 # load ssh keys

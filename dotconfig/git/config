@@ -1,12 +1,13 @@
 [user]
-	name = jejs
-	email = github@joshuaejs.me
+	name = ejs
+	email = git@ejs.sh
 
 [github]
-	user = joshuaejs
+	user = ejsdotsh
 
 [core]
 	autocrlf = input
+	editor = nvim
 
 [color]
 	ui = auto

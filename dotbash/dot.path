@@ -1,6 +1,7 @@
 # Add stuff to `$PATH`
 export GOPATH="${HOME}/go"
 if [ $(uname -s) == "Darwin" ]; then
+  export PATH="/usr/local/bin:/usr/local/sbin:${PATH}"
   export GOROOT="$(brew --prefix golang)/libexec"
 else
   export GOROOT="/usr/lib/go"
