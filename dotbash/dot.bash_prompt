@@ -1,249 +1,56 @@
 #!/usr/bin/env bash
 
-# If we are on a colored terminal
-if tput setaf 1 &> /dev/null; then
-  # Reset the shell from our `if` check
-  tput sgr0 &> /dev/null
+# adapted from https://ezprompt.net/
 
-  # If you would like to customize your colors, use
-  # # Attribution: http://linuxtidbits.wordpress.com/2008/08/11/output-color-on-bash-scripts/
-  # for i in $(seq 0 $(tput colors)); do
-  #   echo " $(tput setaf $i)Text$(tput sgr0) $(tput bold)$(tput setaf $i)Text$(tput sgr0) $(tput sgr 0 1)$(tput setaf $i)Text$(tput sgr0)  \$(tput setaf $i)"
-  # done
-
-  # Save common color actions
-  bash_prompt_bold="$(tput bold)"
-  bash_prompt_reset="$(tput sgr0)"
-
-  bash_prompt_user_color="$bash_prompt_bold$(tput setaf 4)" # BOLD BLUE
-  bash_prompt_preposition_color="$bash_prompt_bold$(tput setaf 15)" # BOLD WHITE
-  bash_prompt_device_color="$bash_prompt_bold$(tput setaf 14)" # BOLD CYAN
-  bash_prompt_dir_color="$bash_prompt_bold$(tput setaf 13)" # purple
-  bash_prompt_git_status_color="$bash_prompt_bold$(tput setaf 11)" # orange
-  bash_prompt_git_progress_color="$bash_prompt_bold$(tput setaf 9)" # BOLD RED
-
-  bash_prompt_symbol_color="$bash_prompt_bold" # BOLD
-
-else
-# Otherwise, use ANSI escape sequences for coloring
-  # If you would like to customize your colors, use
-  # DEV: 30-39 lines up 0-9 from `tput`
-  # for i in $(seq 0 109); do
-  #   echo -n -e "\e[1;${i}mText$(tput sgr0) "
-  #   echo "\e[1;${i}m"
-  # done
-
-####
-# TODO update this or remove it
-####
-
-  bash_prompt_reset="\e[m"
-  bash_prompt_user_color="\e[1;34m" # BLUE
-  bash_prompt_preposition_color="\e[1;37m" # WHITE
-  bash_prompt_device_color="\e[1;36m" # CYAN
-  bash_prompt_dir_color="\e[1;32m" # GREEN
-  bash_prompt_git_status_color="\e[1;33m" # YELLOW
-  bash_prompt_git_progress_color="\e[1;31m" # RED
-  bash_prompt_symbol_color="" # NORMAL
-fi
-
-# Define the default prompt terminator character '$'
-if [[ "$UID" == 0 ]]; then
-  bash_prompt_symbol="#"
-else
-  bash_prompt_symbol="\$"
-fi
-
-# Apply any color overrides that have been set in the environment
-if [[ -n "$PROMPT_USER_COLOR" ]]; then bash_prompt_user_color="$PROMPT_USER_COLOR"; fi
-if [[ -n "$PROMPT_PREPOSITION_COLOR" ]]; then bash_prompt_preposition_color="$PROMPT_PREPOSITION_COLOR"; fi
-if [[ -n "$PROMPT_DEVICE_COLOR" ]]; then bash_prompt_device_color="$PROMPT_DEVICE_COLOR"; fi
-if [[ -n "$PROMPT_DIR_COLOR" ]]; then bash_prompt_dir_color="$PROMPT_DIR_COLOR"; fi
-if [[ -n "$PROMPT_GIT_STATUS_COLOR" ]]; then bash_prompt_git_status_color="$PROMPT_GIT_STATUS_COLOR"; fi
-if [[ -n "$PROMPT_GIT_PROGRESS_COLOR" ]]; then bash_prompt_git_progress_color="$PROMPT_GIT_PROGRESS_COLOR"; fi
-if [[ -n "$PROMPT_SYMBOL" ]]; then bash_prompt_symbol="$PROMPT_SYMBOL"; fi
-if [[ -n "$PROMPT_SYMBOL_COLOR" ]]; then bash_prompt_symbol_color="$PROMPT_SYMBOL_COLOR"; fi
-
-# Set up symbols
-bash_prompt_synced_symbol=""
-bash_prompt_dirty_synced_symbol="*"
-bash_prompt_unpushed_symbol="△"
-bash_prompt_dirty_unpushed_symbol="▲"
-bash_prompt_unpulled_symbol="▽"
-bash_prompt_dirty_unpulled_symbol="▼"
-bash_prompt_unpushed_unpulled_symbol="⬡"
-bash_prompt_dirty_unpushed_unpulled_symbol="⬢"
-
-function bash_prompt_get_git_branch() {
-  # On branches, this will return the branch name
-  # On non-branches, (no branch)
-  ref="$(git symbolic-ref HEAD 2> /dev/null | sed -e 's/refs\/heads\///')"
-  if [[ "$ref" != "" ]]; then
-    echo "$ref"
-  else
-    echo "(no branch)"
-  fi
+# get current branch in git repo
+function parse_git_branch() {
+	BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
+	if [ ! "${BRANCH}" == "" ]
+	then
+		STAT=`parse_git_dirty`
+		echo "(${BRANCH}${STAT})"
+	else
+		echo ""
+	fi
 }
 
-function bash_prompt_get_git_progress() {
-  # Detect in-progress actions (e.g. merge, rebase)
-  # https://github.com/git/git/blob/v1.9-rc2/wt-status.c#L1199-L1241
-  git_dir="$(git rev-parse --git-dir)"
-
-  # git merge
-  if [[ -f "$git_dir/MERGE_HEAD" ]]; then
-    echo " [merge]"
-  elif [[ -d "$git_dir/rebase-apply" ]]; then
-    # git am
-    if [[ -f "$git_dir/rebase-apply/applying" ]]; then
-      echo " [am]"
-    # git rebase
-    else
-      echo " [rebase]"
-    fi
-  elif [[ -d "$git_dir/rebase-merge" ]]; then
-    # git rebase --interactive/--merge
-    echo " [rebase]"
-  elif [[ -f "$git_dir/CHERRY_PICK_HEAD" ]]; then
-    # git cherry-pick
-    echo " [cherry-pick]"
-  fi
-  if [[ -f "$git_dir/BISECT_LOG" ]]; then
-    # git bisect
-    echo " [bisect]"
-  fi
-  if [[ -f "$git_dir/REVERT_HEAD" ]]; then
-    # git revert --no-commit
-    echo " [revert]"
-  fi
+# get current status of git repo
+function parse_git_dirty {
+	status=`git status 2>&1 | tee`
+	dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
+	untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
+	ahead=`echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
+	newfile=`echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?"`
+	renamed=`echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
+	deleted=`echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
+	bits=''
+	if [ "${renamed}" == "0" ]; then
+		bits=">${bits}"
+	fi
+	if [ "${ahead}" == "0" ]; then
+		bits="*${bits}"
+	fi
+	if [ "${newfile}" == "0" ]; then
+		bits="+${bits}"
+	fi
+	if [ "${untracked}" == "0" ]; then
+		bits="?${bits}"
+	fi
+	if [ "${deleted}" == "0" ]; then
+		bits="x${bits}"
+	fi
+	if [ "${dirty}" == "0" ]; then
+		bits="!${bits}"
+	fi
+	if [ ! "${bits}" == "" ]; then
+		echo " ${bits}"
+	else
+		echo ""
+	fi
 }
 
-bash_prompt_is_branch1_behind_branch2 () {
-  # $ git log origin/master..master -1
-  # commit 4a633f715caf26f6e9495198f89bba20f3402a32
-  # Author: Todd Wolfson <todd@twolfson.com>
-  # Date:   Sun Jul 7 22:12:17 2013 -0700
-  #
-  #     Unsynced commit
+PS1="\n\D{%Y-%m-%d} \A :: \[\e[34m\]\u\[\e[m\] @ \[\e[36m\]\H\[\e[m\] :: "
+PS1+="\[\e[35m\]\w\[\e[m\] \[\e[33m\]\`parse_git_branch\`\[\e[m\]"
+PS1+="\n\\$ "
 
-  # Find the first log (if any) that is in branch1 but not branch2
-  first_log="$(git log $1..$2 -1 2> /dev/null)"
-
-  # Exit with 0 if there is a first log, 1 if there is not
-  [[ -n "$first_log" ]]
-}
-
-bash_prompt_branch_exists () {
-  # List remote branches           | # Find our branch and exit with 0 or 1 if found/not found
-  git branch --remote 2> /dev/null | grep --quiet "$1"
-}
-
-bash_prompt_parse_git_ahead () {
-  # Grab the local and remote branch
-  branch="$(bash_prompt_get_git_branch)"
-  remote="$(git config --get "branch.${branch}.remote" || echo -n "origin")"
-  remote_branch="$remote/$branch"
-
-  # $ git log origin/master..master
-  # commit 4a633f715caf26f6e9495198f89bba20f3402a32
-  # Author: Todd Wolfson <todd@twolfson.com>
-  # Date:   Sun Jul 7 22:12:17 2013 -0700
-  #
-  #     Unsynced commit
-
-  # If the remote branch is behind the local branch
-  # or it has not been merged into origin (remote branch doesn't exist)
-  if (bash_prompt_is_branch1_behind_branch2 "$remote_branch" "$branch" ||
-      ! bash_prompt_branch_exists "$remote_branch"); then
-    # echo our character
-    echo 1
-  fi
-}
-
-bash_prompt_parse_git_behind () {
-  # Grab the branch
-  branch="$(bash_prompt_get_git_branch)"
-  remote="$(git config --get "branch.${branch}.remote" || echo -n "origin")"
-  remote_branch="$remote/$branch"
-
-  # $ git log master..origin/master
-  # commit 4a633f715caf26f6e9495198f89bba20f3402a32
-  # Author: Todd Wolfson <todd@twolfson.com>
-  # Date:   Sun Jul 7 22:12:17 2013 -0700
-  #
-  #     Unsynced commit
-
-  # If the local branch is behind the remote branch
-  if bash_prompt_is_branch1_behind_branch2 "$branch" "$remote_branch"; then
-    # echo our character
-    echo 1
-  fi
-}
-
-function bash_prompt_parse_git_dirty() {
-  # If the git status has *any* changes (e.g. dirty), echo our character
-  if [[ -n "$(git status --porcelain 2> /dev/null)" ]]; then
-    echo 1
-  fi
-}
-
-function bash_prompt_is_on_git() {
-  git rev-parse 2> /dev/null
-}
-
-function bash_prompt_get_git_status() {
-  # Grab the git dirty and git behind
-  dirty_branch="$(bash_prompt_parse_git_dirty)"
-  branch_ahead="$(bash_prompt_parse_git_ahead)"
-  branch_behind="$(bash_prompt_parse_git_behind)"
-
-  # Iterate through all the cases and if it matches, then echo
-  if [[ "$dirty_branch" == 1 && "$branch_ahead" == 1 && "$branch_behind" == 1 ]]; then
-    echo "$bash_prompt_dirty_unpushed_unpulled_symbol"
-  elif [[ "$branch_ahead" == 1 && "$branch_behind" == 1 ]]; then
-    echo "$bash_prompt_unpushed_unpulled_symbol"
-  elif [[ "$dirty_branch" == 1 && "$branch_ahead" == 1 ]]; then
-    echo "$bash_prompt_dirty_unpushed_symbol"
-  elif [[ "$branch_ahead" == 1 ]]; then
-    echo "$bash_prompt_unpushed_symbol"
-  elif [[ "$dirty_branch" == 1 && "$branch_behind" == 1 ]]; then
-    echo "$bash_prompt_dirty_unpulled_symbol"
-  elif [[ "$branch_behind" == 1 ]]; then
-    echo "$bash_prompt_unpulled_symbol"
-  elif [[ "$dirty_branch" == 1 ]]; then
-    echo "$bash_prompt_dirty_synced_symbol"
-  else # clean
-    echo "$bash_prompt_synced_symbol"
-  fi
-}
-
-bash_prompt_get_git_info () {
-  # Grab the branch
-  branch="$(bash_prompt_get_git_branch)"
-
-  # If there are any branches
-  if [[ "$branch" != "" ]]; then
-    # Echo the branch
-    output="$branch"
-
-    # Add on the git status
-    output="$output$(bash_prompt_get_git_status)"
-
-    # Echo our output
-    echo "$output"
-  fi
-}
-
-# Define the bash-prompt
-PS1="\[$bash_prompt_reset\]\
-\[$bash_prompt_user_color\]\u\[$bash_prompt_reset\] \
-\[$bash_prompt_preposition_color\]at\[$bash_prompt_reset\] \
-\[$bash_prompt_device_color\]\H\[$bash_prompt_reset\] \
-\[$bash_prompt_preposition_color\]in\[$bash_prompt_reset\] \
-\[$bash_prompt_dir_color\]\w\[$bash_prompt_reset\]\
-\$( bash_prompt_is_on_git && \
-  echo -n \" \[$bash_prompt_preposition_color\]on\[$bash_prompt_reset\] \" && \
-  echo -n \"\[$bash_prompt_git_status_color\]\$(bash_prompt_get_git_info)\" && \
-  echo -n \"\[$bash_prompt_git_progress_color\]\$(bash_prompt_get_git_progress)\" && \
-  echo -n \"\[$bash_prompt_reset\]\")\n\
-\[$bash_prompt_symbol_color\]$bash_prompt_symbol \[$bash_prompt_reset\]"
+export PS1
