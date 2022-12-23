@@ -50,7 +50,7 @@ exec([[
 opt.termguicolors = true      -- enable 24-bit RGB colors
 opt.background = 'dark'
 -- load the color theme
-require('onedark').setup()
+--require('onedark').setup()
 
 -----------------------------------------------------------
 -- Tabs, indent, wrapping

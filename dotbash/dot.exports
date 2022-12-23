@@ -12,7 +12,7 @@ export HISTCONTROL='ignoreboth';
 
 # add colors
 export CLICOLOR=1
-export LSCOLORS=ExFxBxDxCxegedabagacad
+#export LSCOLORS=ExFxBxDxCxegedabagacad
 
 # in tmux, highlight rather than italicize
 #export LESS_TERMCAP_so=$'\E[30;43m'

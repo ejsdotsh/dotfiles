@@ -26,9 +26,17 @@ packer.startup(function(use)
   -- let packer manage itself
   use "wbthomason/packer.nvim"
   -- theme
-  use "ful1e5/onedark.nvim"
+  -- use "ful1e5/onedark.nvim"
   -- vim-go
-  use "fatih/vim-go"
+  -- use "fatih/vim-go"
+  -- rose pine theme: https://github.com/rose-pine/neovim
+  use({
+    'rose-pine/neovim',
+    as = 'rose-pine',
+    config = function()
+      vim.cmd('colorscheme rose-pine')
+    end
+  })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
