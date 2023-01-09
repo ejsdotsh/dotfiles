@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# By default, Mac uses /bin/sh as the shell
+if [[ $OSTYPE == darwin* ]]; then
+    export SHELL=/bin/bash
+fi
+
 # set editor
 export EDITOR="nvim"
 export LC_ALL="en_US.UTF-8"
@@ -21,7 +26,10 @@ export CLICOLOR=1
 # Don’t clear the screen after quitting a manual page.
 export MANPAGER='less -X';
 
-# By default, Mac uses /bin/sh as the shell
-if [[ $OSTYPE == darwin* ]]; then
-    export SHELL=/bin/bash
-fi
+# exported in /usr/local/bin/sway-run
+# gtk & qt
+#export MOZ_ENABLE_WAYLAND=1
+#export XDG_SESSION_TYPE=wayland
+#export GDK_BACKEND=wayland
+#export QT_QPA_PLATFORM=WAYLAND
+

@@ -14,8 +14,11 @@
 
 !dotbash/dot.*
 !dotconfig/git/*
+!dotconfig/kitty/*
+!dotconfig/neofetch/*
 !dotconfig/nvim/*.lua
 !dotconfig/nvim/lua/**/*.lua
+!dotconfig/sway/*
 !dotssh/config
 
 # allow archive per-subdirectory

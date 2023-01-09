@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # - ~/.path       is used to extend `$PATH`
 # - ~/.exports    centralize all `export`s
@@ -8,6 +9,8 @@
 # exit if not an interactive shell
 [[ -z "$PS1" ]] && return
 
+shopt -s checkwinsize
+
 for bf in ~/.{path,exports,aliases,functions,bash_prompt}; do
   [[ -r "${bf}" ]] && [[ -f "${bf}" ]] && source "${bf}";
 done
@@ -17,3 +20,7 @@ unset bf;
 
 # load ssh keys
 ssh-add -A 2> /dev/null
+
+# start sway automagically if running from tty1
+#[ "$(tty)" = "/dev/tty1" ] && exec sway --unsupported-gpu
+
