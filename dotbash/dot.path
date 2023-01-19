@@ -6,4 +6,4 @@ if [ $(uname -s) == "Darwin" ]; then
 else
   export GOROOT="/usr/lib/go"
 fi
-export PATH="$HOME/bin:${GOPATH}/bin:${GOROOT}/bin:$PATH:/usr/local/protobuf/bin"
+export PATH="$HOME/.local/bin:${GOPATH}/bin:${GOROOT}/bin:$PATH:/usr/local/protobuf/bin"
