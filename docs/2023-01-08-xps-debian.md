@@ -85,49 +85,65 @@ sudo apt-get install openssh-server --no-install-recommends
 ip addr
 ```
 
-### initial packages
+### base packages
 
 ```txt
-sudo apt-get --purge remove nano && \
-sudo apt-get update && \
-sudo apt-get install \
-  apt-transport-https \
-  build-essential \
-  ca-certificates \
-  curl \
-  debian-keyring \
-  fonts-dejavu \
-  git \
-  gnupg2 \
-  golang \
-  kitty \
-  less \
-  libc6-dev \
-  make \
-  neovim
-  software-properties-common \
-  zstd \
-  --no-install-recommends
+sudo apt-get --purge remove nano && sudo apt-get update
 
 sudo visudo
-
-
 ```
 
-```txt
-sudo apt-get install \
-  firmware-iwlwifi \
-  intel-microcode \
-  firmware-misc-nonfree \
-  nvidia-driver \
-  linux-headers-amd64 \
-  firmware-realtek \
-  sway \
-  swayidle \
-  swaylock \
-  lm-sensors \
-  qt6-wayland \
-  xdg-desktop-portal-wlr
+- apt-transport-https
+- bzip2
+- ca-certificates
+- curl
+- debian-keyring
+- git
+- gnupg2
+- gzip
+- software-properties-common
+- unzip
+- zstd
+
+#### development
+
+- build-essential
+- libc6-dev
+- golang
+- kitty
+- fonts-dejavu
+- less
+- make
+- neovim
+- python3
+- python3-pip
+- python3-setuptools
+- python3-wheel
+- python3-venv
+- python3-pynvim
+- npm
+- ripgrep
+
+
+
+
+#### firmware & drivers
+
+- firmware-iwlwifi
+- intel-microcode
+- firmware-misc-nonfree
+- nvidia-driver
+- linux-headers-amd64
+- firmware-realtek
+
+#### sway
+
+- sway
+- swayidle
+- swaylock
+- lm-sensors
+- qt6-wayland
+- xdg-desktop-portal-wlr
 
 
 sudo reboot

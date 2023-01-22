@@ -1,9 +1,0 @@
-// SublimeLinter Settings - User
-{
-	"lint_mode": "load_save",
-	"styles": [
-		{
-		"mark_style": "squiggly_underline"
-		}
-	]
-}

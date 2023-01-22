@@ -1,0 +1,56 @@
+#!/bin/bash
+#
+# script to stop copying dotfiles, and make keeping them in sync between hosts
+# that much easier.
+# - create soft links between /home/${user}/${dotfile} and the versioned files
+# - report what has/has not been done
+#
+# usage: ./setup_environment
+
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+	echo "darwin"
+fi
+
+function dotfiles()  {
+	# get list of files
+	for db in $(ls $(pwd)/dotbash/dot.*); do
+		if [[ -e ~/"${db/*dot/}" ]]; then
+			echo "~/${db/*dot} ~/${db/*dot}-bak"
+			mv ~/"${db/*dot}" ~/"${db/*dot}"-bak
+		elif [[ -L ~/"${db/*dot/}" ]]; then
+			echo "unlink ~/${db/*dot}"
+			unlink ~/"${db/*dot}"
+		fi
+		echo "ln -s ${db} ~/${db/*dot/}"
+		ln -s "${db}" ~/"${db/*dot/}"
+	done
+}
+
+function dotconfig() {
+	for dc in $(find dotconfig/ -mindepth 1 -maxdepth 1 -type d); do
+		if [[ -L ~/.config/$(basename $dc) ]]; then
+			echo "unlink ~/.config/$(basename $dc)"
+			unlink ~/.config/"$(basename $dc)"
+		elif [[ -d ~/.config/$(basename $dc) ]]; then
+			echo "mv ~/.config/$(basename $dc) ~/.config/$(basename $dc)-bak"
+			mv ~/.config/"$(basename $dc)" ~/.config/"$(basename $dc)-bak"
+		fi
+		echo "ln -s $(pwd)/${dc} ~/.config/$(basename $dc)"
+		ln -s "$(pwd)"/"${dc}" ~/.config/"$(basename $dc)" 
+	done
+}
+
+function dotssh() {
+	for ds in $(ls $(pwd)/dotssh); do
+		if [[ -f ~/.ssh/"${ds}" ]]; then
+			echo "mv ~/.ssh/${ds} ~/.ssh/${ds}-bak"
+		elif [[ -L ~/.ssh/"${ds}" ]]; then
+			echo "unlink ~/.ssh/${ds}"
+		fi
+		echo "ln -rs $(pwd)/dotssh/${ds} ~/.ssh/${ds}"
+	done
+}
+
+##dotfiles
+dotconfig
+# dotssh

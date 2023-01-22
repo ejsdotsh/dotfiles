@@ -12,25 +12,27 @@
 !Makefile
 !*.md
 
-!archive/**
+##!archive/**
 !docs/**
 !scripts/*
 
+!setup_environment
+
 !dotbash/dot.*
 
-!dotconfig/git/*
-!dotconfig/kitty/*
-!dotconfig/mako/*
-!dotconfig/neofetch/*
-!dotconfig/nvim/*.lua
-!dotconfig/nvim/lua/**/*.lua
-!dotconfig/sway/*
-!dotconfig/waybar/*
+!dotconfig/**
 
-!dotlocal/bin/**
+##!dotconfig/kitty/*
+##!dotconfig/mako/*
+##!dotconfig/neofetch/*
+##!dotconfig/nvim/*.lua
+##!dotconfig/nvim/lua/**/*.lua
+##!dotconfig/sway/*
+##!dotconfig/waybar/*
+
+!dotlocal/bin/*
 
 !dotssh/config
 
 # ignore everything written to .config by applications
-dotconfig/microsoft*
 
