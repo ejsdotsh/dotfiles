@@ -1,3 +1,8 @@
+####
+## theme
+####
+include catppuccin-mocha
+
 ## fonts
 font pango:"DejaVu Sans" Medium 12
 
