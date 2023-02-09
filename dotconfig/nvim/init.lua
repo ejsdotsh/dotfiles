@@ -1,23 +1,59 @@
---
---
---
---
+--[[
+--init.lua
+
+  there are many like it, but this one is mine...
+    /e.j.
+--]]
+
+-- disable unused/unwanted builtin plugins
+-- see ./lua/ejs/disable.lua
+require("ejs.disable")
 
 -- globals that i expect to be setup
--- see ./lua/ejs/globals.lua"
-require "ejs.globals"
+-- see ./lua/ejs/options.lua
+require("ejs.options")
 
 -- set leader to " "
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- disable unused/unwanted builtin plugins
---[[ insert reference here --]]
--- require "ejs.disable_builtin"
+-- apply additional/personal keymaps
+-- ./lua/ejs/keymaps.lua
+require("ejs.keymaps")
 
+-- plugin manager - install packer
+-- adapted from kickstart.nvim and from https://github.com/wbthomason/packer.nvim#bootstrapping
+-- see ./lua/ejs/plugins.lua
+require("ejs.plugins")
 
+-- mason and LSP configs
+-- specific configurations sourced from ./lua/ejs/lsp/init.lua
+require("ejs.lsp.config")
 
+-- autocompletion
+-- see ./lua/ejs/cmplete.lua
+require("ejs.cmplete")
 
--- plugin manager
--- adapted from https://github.com/wbthomason/packer.nvim#bootstrapping
+-- nvim-tree
+-- load the default configuration
+require("nvim-tree").setup({
+  open_on_setup = true,
+  ignore_buffer_on_setup = true,
+})
 
+-- dap
+require("ejs.dap.config")
+
+-- treesitter
+require("ejs.treesit")
+
+-- lualine
+-- set the theme, everything else is default...for now
+require("lualine").setup{
+  --options = {
+    --theme = "rose-pine"
+  --}
+}
+
+-- modeline
+-- vim: ts=2 sts=2 sw=2 et
