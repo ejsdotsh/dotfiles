@@ -10,9 +10,8 @@
 !/.gitignore
 !LICENSE
 !Makefile
-!*.md
+!README.md
 
-##!archive/**
 !docs/**
 !scripts/*
 
@@ -20,15 +19,13 @@
 
 !dotbash/dot.*
 
-!dotconfig/**
-
-##!dotconfig/kitty/*
-##!dotconfig/mako/*
-##!dotconfig/neofetch/*
-##!dotconfig/nvim/*.lua
-##!dotconfig/nvim/lua/**/*.lua
-##!dotconfig/sway/*
-##!dotconfig/waybar/*
+!dotconfig/kitty/*
+!dotconfig/mako/*
+!dotconfig/neofetch/*
+!dotconfig/nvim/init.lua
+!dotconfig/nvim/lua/ejs/**
+!dotconfig/sway/*
+!dotconfig/waybar/*
 
 !dotlocal/bin/*
 
