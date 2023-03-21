@@ -1,5 +1,6 @@
 vim.g.loaded_matchparen = 1
 
+local api = vim.api
 local opt = vim.opt
 local cmd = vim.api.nvim_command
 
@@ -91,7 +92,7 @@ opt.linebreak = true          -- wrap on word boundary
 
 opt.textwidth = 80
 opt.colorcolumn = '80,120'    -- line length marker at 80 & 120 characters
-
+-- TODO automagically set textwidth to 120
 opt.foldmethod = "marker"
 opt.foldlevel = 0
 opt.modelines = 1

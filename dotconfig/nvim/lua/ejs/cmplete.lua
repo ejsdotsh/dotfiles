@@ -12,10 +12,10 @@ require("luasnip.loaders.from_vscode").lazy_load()
 local cmp = require("cmp")
 cmp.setup({ 
 
- -- used by vsnip
+ -- define the snippet engine
   snippet = {
     expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body)
+      require("luasnip").lsp_expand(args.body)
     end,
   },
 
@@ -42,12 +42,12 @@ cmp.setup({
 
   -- sources are the installed sources that can be used for code suggestions
   sources = {
+    { name = 'luasnip', option = { show_autosnippets = true } },
     { name = 'path' },
     { name = 'nvim_lsp', keyword_length = 3 },
     { name = 'nvim_lsp_signature_help'}, 
     { name = 'nvim_lua', keyword_length = 2},
     { name = 'buffer', keyword_length = 2 },
-    { name = 'vsnip', keyword_length = 2 },
  },
 
   -- add borders to the windows
@@ -62,7 +62,7 @@ cmp.setup({
     format = function(entry, item)
       local menu_icon ={
         nvim_lsp = 'λ',
-        vsnip = '⋗',
+        luasnip = '⋗',
         buffer = 'b',
         path = 'p'
       }

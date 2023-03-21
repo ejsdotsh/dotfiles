@@ -13,3 +13,8 @@ alias mkgomod='go mod init github.com/ejsdotsh/$(basename $(pwd))'
 alias rebash='source ~/.bashrc'
 alias unbrewall='brew uninstall --formula $(brew list)'
 
+# ansible in a container
+alias ansible='docker run -v "${PWD}":/srv/ansible -v ~/.ssh/annar:/root/.ssh:ro --rm ejsdotsh/ansible ansible'
+alias ansible-galaxy='docker run -v "${PWD}":/srv/ansible --rm ejsdotsh/ansible ansible-galaxy'
+alias ansible-playbook='docker run -v "${PWD}":/srv/ansible -v ~/.ssh/annar:/root/.ssh:ro --rm ejsdotsh/ansible ansible-playbook'
+alias ansible-vault='docker run -v "${PWD}":/srv/ansible --rm ejsdotsh/ansible ansible-vault'

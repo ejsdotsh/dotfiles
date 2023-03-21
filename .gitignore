@@ -25,6 +25,7 @@
 !dotconfig/nvim/init.lua
 !dotconfig/nvim/lua/ejs/**
 !dotconfig/sway/*
+!dotconfig/task/**
 !dotconfig/waybar/*
 
 !dotlocal/bin/*

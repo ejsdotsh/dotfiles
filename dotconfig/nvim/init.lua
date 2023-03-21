@@ -35,9 +35,9 @@ require("ejs.lsp.config")
 require("ejs.cmplete")
 
 -- nvim-tree
--- load the default configuration
+-- load the default configuration, but don't open automagically
 require("nvim-tree").setup({
-  open_on_setup = true,
+  open_on_setup = false,
   ignore_buffer_on_setup = true,
 })
 
