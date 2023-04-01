@@ -26,6 +26,7 @@
 !dotconfig/nvim/lua/ejs/**
 !dotconfig/sway/*
 !dotconfig/task/**
+!timew/**
 !dotconfig/waybar/*
 
 !dotlocal/bin/*

@@ -22,6 +22,8 @@
 
 data.location=~/.local/share/task
 hooks.location=~/.config/task/hooks
+#data.location=$XDG_DATA_HOME/task
+#hooks.location=$XDG_CONFIG_HOME/task/hooks
 
 # Color theme (uncomment one to use)
 #include light-16.theme
@@ -39,5 +41,9 @@ include dark-gray-256.theme
 #include solarized-light-256.theme
 #include no-color.theme
 
+# don't ask for confirmations
+bulk=0
 confirmation=off
+
 news.version=2.6.0
+
