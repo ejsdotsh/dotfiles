@@ -70,7 +70,7 @@ set_cursorline("FileType", false, "TelescopePrompt")
 -----------------------------------------------------------
 opt.syntax = "ON"
 opt.termguicolors = true      -- enable 24-bit RGB colors
-cmd "colorscheme catppuccin-macchiato"
+-- cmd "colorscheme catppuccin-macchiato"
 
 -----------------------------------------------------------
 -- Tabs, indent, wrapping

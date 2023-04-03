@@ -36,16 +36,16 @@ require("ejs.cmplete")
 
 -- nvim-tree
 -- load the default configuration, but don't open automagically
-require("nvim-tree").setup({
-  open_on_setup = false,
-  ignore_buffer_on_setup = true,
-})
+require("nvim-tree").setup()
 
 -- dap
 require("ejs.dap.config")
 
 -- treesitter
 require("ejs.treesit")
+
+local cmd = vim.api.nvim_command
+cmd "colorscheme catppuccin-macchiato"
 
 -- lualine
 -- set the theme, everything else is default...for now
