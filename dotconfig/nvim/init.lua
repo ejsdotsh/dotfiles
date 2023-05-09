@@ -47,13 +47,14 @@ require("ejs.treesit")
 local cmd = vim.api.nvim_command
 cmd "colorscheme catppuccin-macchiato"
 
+require("nvim-web-devicons").setup{
+  color_icons = true;
+  default = true;
+}
+
 -- lualine
 -- set the theme, everything else is default...for now
-require("lualine").setup{
-  --options = {
-    --theme = "rose-pine"
-  --}
-}
+require("lualine").setup{}
 
 -- modeline
 -- vim: ts=2 sts=2 sw=2 et

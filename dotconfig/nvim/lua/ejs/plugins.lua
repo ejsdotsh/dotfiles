@@ -110,7 +110,8 @@ return require("packer").startup(function(use)
   -- fancy statusline
   use({
     "nvim-lualine/lualine.nvim",
-    requires = { "nvim-tree/nvim-web-devicons", opt = true }
+    requires = { "nvim-tree/nvim-web-devicons"}
+    -- requires = { "nvim-tree/nvim-web-devicons", opt = true }
   })
 
   if packer_bootstrap then

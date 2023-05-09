@@ -37,8 +37,8 @@ opt.updatetime = 1000 -- Make updates happen faster
 opt.hlsearch = true -- I wouldn't use this without my DoNoHL function
 opt.scrolloff = 10 -- Make it so there are always ten lines below my cursor
 
---opt.mouse = 'a'               -- enable mouse support
-opt.clipboard = 'unnamedplus' -- copy/paste to system clipboard
+-- opt.mouse = 'a'               -- enable mouse support
+opt.clipboard = 'unnamed' -- copy/paste to system clipboard
 opt.swapfile = false          -- don't use swapfile
 
 opt.number = true             -- show number of the line we're on
@@ -87,7 +87,7 @@ opt.autoindent = true
 opt.cindent = true
 opt.wrap = true
 opt.breakindent = true
-opt.showbreak = string.rep(" ", 3)    -- wrap long-lines more smartly
+opt.showbreak = string.rep(" ", 4)    -- wrap long-lines more smartly
 opt.linebreak = true          -- wrap on word boundary
 
 opt.textwidth = 80

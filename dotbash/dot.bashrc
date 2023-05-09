@@ -21,6 +21,3 @@ unset bf;
 # load ssh keys
 ssh-add -A 2> /dev/null
 
-# start sway automagically if running from tty1
-#[ "$(tty)" = "/dev/tty1" ] && exec sway --unsupported-gpu
-
