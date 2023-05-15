@@ -1,13 +1,29 @@
+### Variables
+#
+set $laptop eDP-1
+set $4kmon DP-1
+set $unergokeyboard 1:1:AT_Translated_Set_2_keyboard
+set $ergomouse 1133:49290:Logitech_MX_Vertical_Advanced_Ergonomic_Mouse
+set $ergokeyboard 10730:258:Kinesis_Advantage2_Keyboard
+
+#set $mplaypause cmus-remote -u
+#set $mnext cmus-remote -n
+#set $mprev cmus-remote -r
+
+set $brightdown doas brightnessctl set 5%-
+set $brightup doas brightnessctl set 5%+
+set $sndup amixer -q sset Master 5%+
+set $snddown amixer -q sset Master 5%-
+set $sndtoggle amixer -q sset Master toggle
+
 ####
 ## theme
 ####
 include catppuccin-mocha
 
 ## fonts
-font pango:"DejaVu Sans" Medium 12
+font pango:"Fira Code Regular Nerd Font Complete" Medium 11
 
-### Variables
-#
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 # Home row direction keys, like vim
@@ -25,28 +41,36 @@ exec mako --config ~/.config/mako/config
 # application launcher
 set $menu tofi-run | xargs swaymsg exec --
 
-# include /etc/sway/config-vars.d/*
+# load systemd & dbus
+include /etc/sway/config.d/*
 
 ### Output configuration
-#
-output * background #14141f solid_color
-
-# don't scale the output
-output eDP-1 scale 1
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
 # You can get the names of your outputs by running: swaymsg -t get_outputs
+
+output * background $base solid_color
+# don't scale the output
+output * scale 1
+
+## output $laptop scale 1
+## output $4kmon scale 1
+output $4kmon mode 3840x2160
+
+# "clamshell" mode
+bindswitch --reload --locked lid:on output $laptop disable
+bindswitch --reload --locked lid:off output $laptop enable
+# make sure that reloading the sway config doesn't re-enable $laptop
+#exec_always ~/.config/sway/scripts/clamshell.sh
 
 ### idle configuration
 #
 exec swayidle -w \
-         timeout 600 'swaylock -f -c 000000' \
-         timeout 1200 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+         timeout 300 'swaylock -f -c 000000' \
+         timeout 3600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
          before-sleep 'swaylock -f -c 000000'
 
 ### input configuration
 #
-input "1267:12572:DELL097D:00_04F3:311C_Touchpad" {
+input "type:touchpad" {
   dwt enabled
   pointer_accel 0.3
   accel_profile adaptive
@@ -54,8 +78,23 @@ input "1267:12572:DELL097D:00_04F3:311C_Touchpad" {
   middle_emulation enabled
   scroll_factor 0.5
 }
-input "type:keyboard" {
+
+input $unergokeyboard {
   xkb_options caps:swapescape
+}
+
+input $ergokeyboard {
+  xkb_options ctrl:swap_lalt_lctl,ctrl:rctrl_ralt
+  #xkb_options ctrl:swap_rctl_ralt
+}
+
+input $ergomouse {
+  dwt enabled
+  pointer_accel 0.3
+  accel_profile adaptive
+  natural_scroll enabled
+  middle_emulation enabled
+  scroll_factor 0.5
 }
 
 ### Key bindings
@@ -63,7 +102,7 @@ input "type:keyboard" {
 # Basics:
 #
 # Start a terminal
-bindsym $mod+Return exec $term
+bindsym $mod+Shift+Return exec $term
 
 # Kill focused window
 bindsym $mod+Shift+q kill
@@ -82,8 +121,9 @@ bindsym $mod+Space exec $menu
     bindsym $mod+Shift+c reload
 
 # exit dialogue
-set $mode_system system (e)xit, (s)leep, (r)eboot, (p)oweroff
+set $mode_system system (e)xit, (l)ock, (s)leep, (r)eboot, (p)oweroff
 mode "$mode_system" {
+  bindsym l exec swaylock -f -c 000000, mode "default"
   bindsym e exec swaymsg exit, mode "default"
   bindsym r exec systemctl reboot, mode "default"
   bindsym p exec systemctl poweroff, mode "default"
@@ -145,19 +185,33 @@ bindsym $mod+Shift+x mode "$mode_system"
     bindsym $mod+Shift+0 move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
+
+#--------------------------mediakeys keybind
+    bindsym Print exec $scwhole
+    bindsym Shift+Print exec $scselect
+    bindsym Mod4+Print exec $scshare
+
+    bindsym --locked XF86MonBrightnessDown exec $brightdown
+    bindsym --locked XF86MonBrightnessUp exec $brightup
+
+    bindsym --locked XF86AudioRaiseVolume exec $sndup
+    bindsym --locked XF86AudioLowerVolume exec $snddown
+    bindsym --locked XF86AudioMute exec $sndtoggle
+
+#bindsym --locked XF86AudioPlay exec $mplaypause
+#bindsym --locked XF86AudioNext exec $mnext
+#bindsym --locked XF86AudioPrev exec $mprev
+
 #
 # Layout stuff:
 #
-    # You can "split" the current object of your focus with
-    # $mod+b or $mod+v, for horizontal and vertical splits
-    # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
+    bindsym $mod+Ctrl+b splith
+    bindsym $mod+Ctrl+v splitv
 
     # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
+#    bindsym $mod+s layout stacking
+#    bindsym $mod+w layout tabbed
+#    bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
@@ -207,25 +261,20 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+# workspace 8 output $laptop
+# workspace 9 output $laptop
+
 #
 # Status Bar:
 #
 bar {
   swaybar_command waybar
 }
-# Read `man 5 sway-bar` for more information about this section.
-#bar {
-#    position top
-#
-#    # When the status_command prints a new line to stdout, swaybar updates.
-#    # The default just shows the current date and time.
-#    status_command while date +'%Y-%m-%d %H:%M:%S'; do sleep 1; done
-#
-#    colors {
-#        statusline #ffffff
-#        background #323232
-#        inactive_workspace #32323200 #32323200 #5c5c5c
-#    }
-#}
 
-include /etc/sway/config.d/*
+# WAYLAND DEFAULT FLOATING WINDOWS:
+# for_window [app_id="org.pwmt.zathura"] floating enable, inhibit_idle focus
+for_window [app_id="monitor"] floating enable
+
+# ASSIGN PROGRAMS TO WORKSPACE:
+assign [app_id="musicplayer"] → number 9
+

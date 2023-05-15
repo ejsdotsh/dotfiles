@@ -31,7 +31,7 @@
         "keyboard-state",
         // "sway/language",
         "battery",
-        "battery#bat2",
+        //"battery#bat2",
         "clock",
       ],
       "sway/window": {
@@ -149,9 +149,9 @@
           // "format-full": "",
           "format-icons": ["", "", "", "", ""]
       },
-      "battery#bat2": {
-          "bat": "BAT2"
-      },
+      // "battery#bat2": {
+          // "bat": "BAT2"
+      // },
       "network": {
           // "interface": "wlp2*", // (Optional) To force the use of this interface
           "format-wifi": "{essid} ({signalStrength}%) ",
@@ -189,7 +189,7 @@
               "default": "🎜"
           },
           "escape": true,
-          "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+          // "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
           // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
       }
   },
