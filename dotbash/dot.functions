@@ -48,7 +48,7 @@ function mkdraft() {
   if [ "$#" -eq 1 ]; then
     DRAFT="$(date +%Y-%m-%d)-$1.md"
     #
-    cd ~/repo/ejsdotsh/wip
+    cd ~/Documents/wip
     if [ ! -f "$DRAFT" ]; then
       touch "$DRAFT"
       vi "$DRAFT"

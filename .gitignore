@@ -24,6 +24,7 @@
 !dotconfig/neofetch/*
 !dotconfig/nvim/init.lua
 !dotconfig/nvim/lua/ejs/**
+!dotconfig/pypoetry/*
 !dotconfig/sway/*
 !dotconfig/task/**
 !timew/**
