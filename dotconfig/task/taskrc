@@ -29,13 +29,13 @@ hooks.location=~/.config/task/hooks
 #include light-16.theme
 #include light-256.theme
 #include dark-16.theme
-#include dark-256.theme
+include dark-256.theme
 #include dark-red-256.theme
 #include dark-green-256.theme
 #include dark-blue-256.theme
 #include dark-violets-256.theme
 #include dark-yellow-green.theme
-include dark-gray-256.theme
+#include dark-gray-256.theme
 #include dark-gray-blue-256.theme
 #include solarized-dark-256.theme
 #include solarized-light-256.theme
@@ -47,3 +47,7 @@ confirmation=off
 
 news.version=2.6.0
 
+# exclude time when we are most-likely sleeping
+
+# start the week on monday
+weekstart=Monday
