@@ -34,5 +34,7 @@
 
 !dotssh/config
 
+!templates/**
+
 # ignore everything written to .config by applications
 

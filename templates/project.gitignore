@@ -1,0 +1,30 @@
+# modified Allowlisting gitignore
+# Ignore everything
+*
+
+!/.dockerignore
+!/.gitignore
+!/.gitkeep
+
+!LICENSE
+!VERSION
+!Makefile
+
+!README.md
+
+# go modules
+!go.sum
+!go.mod
+
+# npm & webpack
+!package*.json
+
+# one document directory to consolidate them all
+!docs/**/*.md
+
+# allow the above files in (sub)directories
+!*/
+
+# explicitly ignore experimentation and in-progress development
+exp/**
+

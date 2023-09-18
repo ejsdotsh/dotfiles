@@ -70,3 +70,23 @@ function mkdb() {
   IMAGENAME="bitnami/postgresql:latest"
 
 }
+
+function mkedit() {
+  TD=$(date +%Y%m%d)
+  if [ -d .git ]; then
+    if [[ $(git branch --list ${TD}) ]]; then
+      git checkout ${TD}
+    else
+      git checkout -b ${TD}
+    fi
+    if [ -e "*.code-workspace" ]; then
+      CW="*.code-workspace"
+      code ${CW}
+    else
+      code .
+    fi
+  else
+    echo "no .git directory"
+  fi
+}
+
