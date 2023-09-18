@@ -62,3 +62,11 @@ function mkdraft() {
   fi
 }
 
+function mkdb() {
+  NAME="pgdb"
+  APP_DIR=$(dirname $(readlink -f $0))
+  mkdir -p ${APP_DIR}/data/$NAME
+
+  IMAGENAME="bitnami/postgresql:latest"
+
+}

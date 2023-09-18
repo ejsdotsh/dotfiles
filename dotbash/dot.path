@@ -3,7 +3,7 @@ export GOPATH="${HOME}/go"
 if [ $(uname -s) == "Darwin" ]; then
   export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/opt/curl/bin:${PATH}"
   export GOROOT="$(brew --prefix golang)/libexec"
-elif [[ $(uname -r) =~ .*fc38.* ]]; then
+elif [[ $(uname -r) =~ .*fc3.* ]]; then
   export GOROOT="/usr/lib/golang"
 else
   export GOROOT="/usr/lib/go"

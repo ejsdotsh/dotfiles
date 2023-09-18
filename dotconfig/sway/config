@@ -39,7 +39,8 @@ set $term kitty
 exec mako --config ~/.config/mako/config
 
 # application launcher
-set $menu tofi-run | xargs swaymsg exec --
+# set $menu tofi-run | xargs swaymsg exec --
+set $menu wofi --show run
 
 # load systemd & dbus
 include /etc/sway/config.d/*
