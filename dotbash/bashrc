@@ -17,7 +17,5 @@ done
 # cleanup
 unset bf;
 
-
 # load ssh keys
 ssh-add -A 2> /dev/null
-

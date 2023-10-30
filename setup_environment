@@ -7,24 +7,28 @@
 #
 # usage: ./setup_environment
 
-if [[ "$OSTYPE" =~ ^darwin ]]; then
-	echo "darwin"
+set -x
+
+if [ $(id -u) -eq 0 ]
+then
+    echo "you must NOT be root"
+    exit 1
 fi
 
-function dotfiles()  {
-	# get list of files
-	for db in $(ls $(pwd)/dotbash/dot.*); do
-		if [[ -e ~/"${db/*dot/}" ]]; then
-			echo "~/${db/*dot} ~/${db/*dot}-bak"
-			mv ~/"${db/*dot}" ~/"${db/*dot}"-bak
-		elif [[ -L ~/"${db/*dot/}" ]]; then
-			echo "unlink ~/${db/*dot}"
-			unlink ~/"${db/*dot}"
-		fi
-		echo "ln -s ${db} ~/${db/*dot/}"
-		ln -s "${db}" ~/"${db/*dot/}"
-	done
-}
+WORK_DIR=$(dirname $(pwd))
+
+# bash
+for dbf in dotbash/*; do
+	if [[ -f ~/"${dbf/*\//.}" ]]; then
+		# echo "~/${dbf/*\//.} ~/${dbf/*\//}-bak"
+		mv "~/${dbf/*\//.}" "~/${dbf/*\//}-bak"
+	elif [[ -L ~/"${dbf/*\//.}" ]]; then
+		# echo "unlink ~/${dbf/*\//.}"
+		unlink ~/"${dbf/*\//.}"
+	fi
+	# echo "ln -s ${dbf} ~/${dbf/*\//.}"
+	ln -s "$WORK_DIR/dotfiles/${dbf}" ~/"${dbf/*\//.}"
+done
 
 function dotconfig() {
 	for dc in $(find dotconfig/ -mindepth 1 -maxdepth 1 -type d); do
@@ -40,17 +44,21 @@ function dotconfig() {
 	done
 }
 
-function dotssh() {
-	for ds in $(ls $(pwd)/dotssh); do
-		if [[ -f ~/.ssh/"${ds}" ]]; then
-			echo "mv ~/.ssh/${ds} ~/.ssh/${ds}-bak"
-		elif [[ -L ~/.ssh/"${ds}" ]]; then
-			echo "unlink ~/.ssh/${ds}"
-		fi
-		echo "ln -rs $(pwd)/dotssh/${ds} ~/.ssh/${ds}"
-	done
-}
+# function dotssh() {
+# 	for ds in $(ls $(pwd)/dotssh); do
+# 		if [[ -f ~/.ssh/"${ds}" ]]; then
+# 			echo "mv ~/.ssh/${ds} ~/.ssh/${ds}-bak"
+# 		elif [[ -L ~/.ssh/"${ds}" ]]; then
+# 			echo "unlink ~/.ssh/${ds}"
+# 		fi
+# 		echo "ln -rs $(pwd)/dotssh/${ds} ~/.ssh/${ds}"
+# 	done
+# }
 
-##dotfiles
-dotconfig
+# dotfiles
+# dotconfig
 # dotssh
+
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+	echo "darwin"
+fi

@@ -8,4 +8,4 @@ elif [[ $(uname -r) =~ .*fc3.* ]]; then
 else
   export GOROOT="/usr/lib/go"
 fi
-export PATH="$HOME/.local/bin:${GOPATH}/bin:${GOROOT}/bin:$PATH:/usr/local/protobuf/bin"
+export PATH="$HOME/.local/bin:${GOPATH}/bin:${GOROOT}/bin:.cargo/bin:$PATH:/usr/local/protobuf/bin"
