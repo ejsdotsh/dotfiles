@@ -82,8 +82,8 @@ function mkedit() {
     if [ -e "*.code-workspace" ]; then
       CW="*.code-workspace"
       code ${CW}
-    else
-      code .
+#    else
+#      code .
     fi
   else
     echo "no .git directory"

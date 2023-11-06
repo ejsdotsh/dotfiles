@@ -11,54 +11,58 @@ set -x
 
 if [ $(id -u) -eq 0 ]
 then
-    echo "you must NOT be root"
-    exit 1
+  echo "you must NOT be root"
+  exit 1
 fi
 
-WORK_DIR=$(dirname $(pwd))
+WORK_DIR=$(pwd)
 
 # bash
-for dbf in dotbash/*; do
-	if [[ -f ~/"${dbf/*\//.}" ]]; then
-		# echo "~/${dbf/*\//.} ~/${dbf/*\//}-bak"
-		mv "~/${dbf/*\//.}" "~/${dbf/*\//}-bak"
-	elif [[ -L ~/"${dbf/*\//.}" ]]; then
-		# echo "unlink ~/${dbf/*\//.}"
-		unlink ~/"${dbf/*\//.}"
-	fi
-	# echo "ln -s ${dbf} ~/${dbf/*\//.}"
-	ln -s "$WORK_DIR/dotfiles/${dbf}" ~/"${dbf/*\//.}"
-done
-
-function dotconfig() {
-	for dc in $(find dotconfig/ -mindepth 1 -maxdepth 1 -type d); do
-		if [[ -L ~/.config/$(basename $dc) ]]; then
-			echo "unlink ~/.config/$(basename $dc)"
-			unlink ~/.config/"$(basename $dc)"
-		elif [[ -d ~/.config/$(basename $dc) ]]; then
-			echo "mv ~/.config/$(basename $dc) ~/.config/$(basename $dc)-bak"
-			mv ~/.config/"$(basename $dc)" ~/.config/"$(basename $dc)-bak"
-		fi
-		echo "ln -s $(pwd)/${dc} ~/.config/$(basename $dc)"
-		ln -s "$(pwd)"/"${dc}" ~/.config/"$(basename $dc)" 
-	done
+function dotbash() {
+  for dbf in dotbash/*; do
+    echo "~/${dbf/*\//.}"
+    if [[ -f "~/${dbf/*\//.}" ]]; then
+      # echo 'mv "~/${dbf/*\//.}" "~/${dbf/*\//}-bak"'
+      mv "~/${dbf/*\//.}" "~/${dbf/*\//}-bak"
+    fi
+    if [[ -L "~/${dbf/*\//.}" ]]; then
+      # echo 'unlink "~/${dbf/*\//.}"'
+      unlink "~/${dbf/*\//.}"
+    fi
+    # echo 'ln -s "$WORK_DIR/${dbf}" ~/"${dbf/*\//.}"'
+    ln -s "$WORK_DIR/${dbf}" ~/"${dbf/*\//.}"
+  done
 }
 
-# function dotssh() {
-# 	for ds in $(ls $(pwd)/dotssh); do
-# 		if [[ -f ~/.ssh/"${ds}" ]]; then
-# 			echo "mv ~/.ssh/${ds} ~/.ssh/${ds}-bak"
-# 		elif [[ -L ~/.ssh/"${ds}" ]]; then
-# 			echo "unlink ~/.ssh/${ds}"
-# 		fi
-# 		echo "ln -rs $(pwd)/dotssh/${ds} ~/.ssh/${ds}"
-# 	done
+# function dotconfig() {
+#   for dc in $(find dotconfig/ -mindepth 1 -maxdepth 1 -type d); do
+#     if [[ -L ~/.config/$(basename $dc) ]]; then
+#       echo "unlink ~/.config/$(basename $dc)"
+#       unlink ~/.config/"$(basename $dc)"
+#     elif [[ -d ~/.config/$(basename $dc) ]]; then
+#       echo "mv ~/.config/$(basename $dc) ~/.config/$(basename $dc)-bak"
+#       mv ~/.config/"$(basename $dc)" ~/.config/"$(basename $dc)-bak"
+#     fi
+#     echo "ln -s $(pwd)/${dc} ~/.config/$(basename $dc)"
+#     ln -s "$(pwd)"/"${dc}" ~/.config/"$(basename $dc)" 
+#   done
 # }
 
-# dotfiles
+# function dotssh() {
+#   for ds in $(ls $(pwd)/dotssh); do
+#     if [[ -f ~/.ssh/"${ds}" ]]; then
+#       echo "mv ~/.ssh/${ds} ~/.ssh/${ds}-bak"
+#     elif [[ -L ~/.ssh/"${ds}" ]]; then
+#       echo "unlink ~/.ssh/${ds}"
+#     fi
+#     echo "ln -rs $(pwd)/dotssh/${ds} ~/.ssh/${ds}"
+#   done
+# }
+
+# dotbash
 # dotconfig
 # dotssh
 
 if [[ "$OSTYPE" =~ ^darwin ]]; then
-	echo "darwin"
+  echo "darwin"
 fi
