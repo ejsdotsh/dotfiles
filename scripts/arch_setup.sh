@@ -19,3 +19,13 @@ sudo pacman -S --noconfirm \
   swaylock swayidle \
   qt5-wayland qt6-wayland \
   pipewire wireplumber
+
+# font and LaTeX installation
+sudo pacman -S --noconfirm \
+  tectonic \
+  ttf-dejavu-nerd \
+  ttf-firacode-nerd \
+  ttf-font-awesome \
+  ttf-inconsolata-nerd \
+  ttf-nerd-fonts-symbols ttf-nerd-fonts-symbols-mono \
+  ttf-ubuntu-nerd ttf-ubuntu-mono-nerd
