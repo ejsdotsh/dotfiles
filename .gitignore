@@ -19,6 +19,7 @@
 
 !dotbash/dot.*
 
+!dotconfig/hypr/*
 !dotconfig/kitty/*
 !dotconfig/mako/*
 !dotconfig/neofetch/*
@@ -29,6 +30,7 @@
 !dotconfig/task/**
 !timew/**
 !dotconfig/waybar/*
+dotconfig/waybar/config
 
 !dotlocal/bin/*
 
