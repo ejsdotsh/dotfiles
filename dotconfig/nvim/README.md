@@ -9,5 +9,5 @@ Refer to the [documentation](https://lazyvim.github.io/installation) to get star
 - removed `colorscheme` from `init.lua`
 - remove `.gitignore` and `.git/'
 - added `lua/plugins/colorscheme.lua`
-- added `lua/plugins/neo-tree.lue`
+- added `lua/plugins/neo-tree.lua`
 
