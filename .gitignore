@@ -24,7 +24,7 @@
 !dotconfig/mako/*
 !dotconfig/neofetch/*
 !dotconfig/nvim/init.lua
-!dotconfig/nvim/lua/ejs/**
+!dotconfig/nvim/**
 !dotconfig/pypoetry/*
 !dotconfig/sway/*
 !dotconfig/swaylock/*
