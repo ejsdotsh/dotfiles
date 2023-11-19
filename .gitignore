@@ -27,6 +27,7 @@
 !dotconfig/nvim/lua/ejs/**
 !dotconfig/pypoetry/*
 !dotconfig/sway/*
+!dotconfig/swaylock/*
 !dotconfig/task/**
 !timew/**
 !dotconfig/waybar/*
