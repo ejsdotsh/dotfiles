@@ -17,6 +17,12 @@ fi
 
 WORK_DIR=$(pwd)
 
+# ensure that some directories exist
+mkdir -p ~/.config
+mkdir -p ~/bin
+mkdir -p ~/Pictures/screenshots
+mkdir -p ~/logs
+
 # bash
 function dotbash() {
   for dbf in dotbash/*; do
