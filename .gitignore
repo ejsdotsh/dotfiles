@@ -41,3 +41,4 @@ dotconfig/waybar/config
 
 # ignore everything written to .config by applications
 
+dotconfig/nvim/lazy-lock.json
