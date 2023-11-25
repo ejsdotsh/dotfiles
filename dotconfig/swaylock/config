@@ -7,6 +7,7 @@ font=Ubuntu
 # catppuccin-base
 color=1e1e2e
 scaling=solid_color
+# tiling
 
 # indicator
 indicator-radius=240
