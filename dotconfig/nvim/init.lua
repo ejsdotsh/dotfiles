@@ -5,27 +5,51 @@
     /e.j.
 --]]
 
-if vim.g.vscode then
-  -- VSCode extension
-else
-  -- modified LazyVim starter
-
-  local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-  if not vim.loop.fs_stat(lazypath) then
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
   -- bootstrap lazy.nvim
   -- stylua: ignore
   vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
-  end
-  vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
+end
+vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
+
+if vim.g.vscode then
+  -- VSCode extension
+  require("lazy").setup({
+    spec = {
+      { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+      { import = "lazyvim.plugins.extras.vscode" },
+      { import = "plugins" },
+    },
+  })
+else
+  -- modified LazyVim starter
 
   require("lazy").setup({
     spec = {
       -- add LazyVim and import its plugins
       { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-      -- import any extras modules here
-      -- { import = "lazyvim.plugins.extras.lang.typescript" },
-      -- { import = "lazyvim.plugins.extras.lang.json" },
+      -- languages
+      { import = "lazyvim.plugins.extras.lang.clangd" },
+      { import = "lazyvim.plugins.extras.lang.docker" },
+      { import = "lazyvim.plugins.extras.lang.go" },
+      { import = "lazyvim.plugins.extras.lang.json" },
+      { import = "lazyvim.plugins.extras.lang.markdown" },
+      { import = "lazyvim.plugins.extras.lang.python" },
+      -- { import = "lazyvim.plugins.extras.lang.rust" },
+      { import = "lazyvim.plugins.extras.lang.tailwind" },
+      { import = "lazyvim.plugins.extras.lang.terraform" },
+      { import = "lazyvim.plugins.extras.lang.tex" },
+      { import = "lazyvim.plugins.extras.lang.yaml" },
+      -- dap
+      { import = "lazyvim.plugins.extras.dap.core" },
+      { import = "lazyvim.plugins.extras.dap.nlua" },
+      -- formatting
+      { import = "lazyvim.plugins.extras.formatting.black" },
+      -- lsp
+      { import = "lazyvim.plugins.extras.lsp.none-ls" },
       -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
+
       -- import/override with your plugins
       { import = "plugins" },
     },
