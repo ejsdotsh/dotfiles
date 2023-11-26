@@ -28,7 +28,7 @@ sudo pacman -S --needed --noconfirm \
 	hyprland xdg-desktop-portal-hyprland \
 	xdg-utils xdg-desktop-portal-gtk \
 	polkit-kde-agent polkit-qt6 gnome-keyring \
-	swaybg swaylock swayidle \
+	swaybg swayidle \
 	wl-clipboard wayland-utils \
 	qt5-wayland qt6-wayland \
 	pipewire wireplumber \
@@ -36,7 +36,7 @@ sudo pacman -S --needed --noconfirm \
 
 yay -Syua --noconfirm --sudoloop
 yay -S --needed --noconfirm --sudoloop \
-	waybar-hyprland
+	waybar-hyprland swaylock-effects
 
 # font and LaTeX installation
 sudo pacman -S --needed --noconfirm \
@@ -58,6 +58,8 @@ sudo pacman -S --needed --noconfirm \
 yay -S --needed --noconfirm --sudoloop \
 	podman-desktop \
 	opentofu
+
+sudo ln -s /usr/bin/tofu /usr/bin/terraform
 
 # security stuff
 yay -S --needed --noconfirm --sudoloop \

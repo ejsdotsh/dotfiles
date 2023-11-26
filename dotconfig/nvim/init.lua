@@ -24,11 +24,14 @@ if vim.g.vscode then
   })
 else
   -- modified LazyVim starter
-
   require("lazy").setup({
     spec = {
       -- add LazyVim and import its plugins
       { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+
+      -- editors
+      { import = "lazyvim.plugins.extras.editor.symbols-outline" },
+
       -- languages
       { import = "lazyvim.plugins.extras.lang.clangd" },
       { import = "lazyvim.plugins.extras.lang.docker" },
@@ -41,15 +44,18 @@ else
       { import = "lazyvim.plugins.extras.lang.terraform" },
       { import = "lazyvim.plugins.extras.lang.tex" },
       { import = "lazyvim.plugins.extras.lang.yaml" },
+
       -- dap
       { import = "lazyvim.plugins.extras.dap.core" },
       { import = "lazyvim.plugins.extras.dap.nlua" },
+
       -- formatting
       { import = "lazyvim.plugins.extras.formatting.black" },
+
       -- lsp
       { import = "lazyvim.plugins.extras.lsp.none-ls" },
-      -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
 
+      -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
       -- import/override with your plugins
       { import = "plugins" },
     },
