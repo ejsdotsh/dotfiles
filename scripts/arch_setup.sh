@@ -17,8 +17,9 @@ sudo pacman -S --needed --noconfirm \
 	openssh curl wget ripgrep fd lazygit \
 	nnn atool libarchive zip unzip trash-cli sshfs rclone fuse2 \
 	iwd wireless_tools wpa_supplicant \
-	neovim neovim-plugins python-pynvim \
-	kitty kitty-terminfo tree yay apparmor \
+	neovim neovim-plugins python-pynvim
+
+kitty kitty-terminfo tree yay apparmor \
 	mtr
 
 # hyprland and wayland apps
