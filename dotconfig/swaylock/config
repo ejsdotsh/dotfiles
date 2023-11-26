@@ -4,17 +4,17 @@ daemonize
 ignore-empty-password
 font=Ubuntu
 
-# catppuccin-base
+## catppuccin-base
 color=1e1e2e
 scaling=solid_color
 # tiling
 
-# indicator
+## indicator
 indicator-radius=240
 indicator-thickness=20
 indicator-caps-lock
 
-# catppuccin-text
+## catppuccin-text
 text-color=cdd6f4
 key-hl-color=cdd6f4
 bs-hl-color=cdd6f4
@@ -25,23 +25,23 @@ text-caps-lock-color=cdd6f4
 
 disable-caps-lock-text
 
-# catppuccin-blue
+## catppuccin-blue
 text-ver-color=89b4fa
 ring-ver-color=89b4fa
 
-# catppuccin-overlay0
+## catppuccin-overlay0
 inside-color=6c7086
 inside-clear-color=6c7086
 inside-caps-lock-color=6c7086
 inside-ver-color=6c7086
 
-# catppuccin-red
+## catppuccin-red
 # inside-wrong-color=f38ba8
 ring-wrong-color=f38ba8
 line-wrong-color=f38ba8
 text-wrong-color=f38ba8
 
-# catppuccin-overlay1
+## catppuccin-overlay1
 ring-color=7f849c
 ring-clear-color=7f849c
 line-uses-ring
