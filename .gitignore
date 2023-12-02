@@ -17,7 +17,7 @@
 
 !setup_environment
 
-!dotbash/dot.*
+!dotbash/*
 
 !dotconfig/hypr/*
 !dotconfig/kitty/*
