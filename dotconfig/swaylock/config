@@ -6,13 +6,6 @@ font=Ubuntu
 
 ## catppuccin-base
 color=1e1e2e
-scaling=solid_color
-# tiling
-
-## indicator
-indicator-radius=240
-indicator-thickness=20
-indicator-caps-lock
 
 ## catppuccin-text
 text-color=cdd6f4
@@ -52,3 +45,10 @@ line-uses-ring
 
 separator-color=00000000
 
+# scaling=tile
+tiling
+
+## indicator
+indicator-radius=240
+indicator-thickness=20
+indicator-caps-lock
