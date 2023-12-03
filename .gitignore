@@ -21,7 +21,7 @@
 
 !dotconfig/btop/*
 !dotconfig/git/*
-!dotconfig/gtk-*/*
+!dotconfig/gtk-*/settings.ini
 !dotconfig/hypr/*
 !dotconfig/kitty/*
 !dotconfig/lazygit/config.yml
