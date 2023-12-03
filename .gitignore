@@ -19,8 +19,12 @@
 
 !dotbash/*
 
+!dotconfig/btop/*
+!dotconfig/git/*
+!dotconfig/gtk-*/*
 !dotconfig/hypr/*
 !dotconfig/kitty/*
+!dotconfig/lazygit/config.yml
 !dotconfig/mako/*
 !dotconfig/neofetch/*
 !dotconfig/nvim/init.lua
@@ -29,9 +33,11 @@
 !dotconfig/sway/*
 !dotconfig/swaylock/*
 !dotconfig/task/**
-!timew/**
 !dotconfig/waybar/*
 dotconfig/waybar/config
+!dotconfig/xsettingsd/*
+
+!timew/**
 
 !dotlocal/bin/*
 

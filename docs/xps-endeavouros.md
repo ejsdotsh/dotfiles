@@ -1,5 +1,26 @@
 # endeavouros on my xps
 
+hardware:
+
+- `XPS 15 9500/0RDX6T, BIOS 1.24.1 08/15/2023`
+
+## configuration
+
+## customization
+
+### catppuccin
+
+- btop
+
+  ```sh
+  git clone https://github.com/catppuccin/btop.git /tmp/btop
+  mv /tmp/btop/themes/* ~/.config/btop/themes/
+  rm -rf /tmp/btop
+
+  ```
+
+## automation
+
 ```bash
 #!/bin/bash
 
