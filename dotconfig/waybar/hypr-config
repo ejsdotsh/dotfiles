@@ -4,55 +4,64 @@
     "name": "topbar",
       "layer": "top",     // Waybar at top layer
       "position": "top",  // Waybar position (top|bottom|left|right)
-      "height": 32,       // Waybar height (to be removed for auto height)
+      "height": 48,       // Waybar height (to be removed for auto height)
       // "width": 1280,   // Waybar width
       "spacing": 4,       // Gaps between modules (4px)
 
       // the order of the modules
       "modules-left": [
+        "custom/launcher",
         "hyprland/window",
         "hyprland/mode",
       ],
       "modules-center": [
         "hyprland/workspaces",
-        "hyprland/scratchpad",
         "custom/media"
       ],
       "modules-right": [
         // "mpd",
         "idle_inhibitor",
         "tray",
-        // "pulseaudio",
+        "pulseaudio",
         "network",
         "cpu",
         "memory",
         "temperature",
-        "backlight",
+        // "backlight",
         "keyboard-state",
         // "hyprland/language",
         "battery",
         //"battery#bat2",
         "clock",
       ],
+      "wlr/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "on-click": "activate",
+        // "on-scroll-up": "hyprctl dispatch workspace e+1",
+        // "on-scroll-down": "hyprctl dispatch workspace e-1",
+        "persistent_workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            // "5": [],
+            // "6": [],
+            // "7": [],
+            // "8": [],
+            // "9": [],
+            // "10": []
+        }
+    },
+    "custom/launcher": {
+        "interval": "once",
+        "format": "",
+        "on-click": "wofi --show drun --columns 2 -I -s ~/.config/wofi/style.css",
+        "tooltip": false
+      },
       "hyprland/window": {
         "format": "{}",
       },
-      // Modules configuration
-      // "hyprland/workspaces": {
-      //     "disable-scroll": true,
-      //     "all-outputs": true,
-      //     "format": "{name}: {icon}",
-      //     "format-icons": {
-      //         "1": "",
-      //         "2": "",
-      //         "3": "",
-      //         "4": "",
-      //         "5": "",
-      //         "urgent": "",
-      //         "focused": "",
-      //         "default": ""
-      //     }
-      // },
       "keyboard-state": {
           "numlock": true,
           "capslock": true,
@@ -65,13 +74,13 @@
       "hyprland/mode": {
           "format": "<span style=\"italic\">{}</span>"
       },
-      "hyprland/scratchpad": {
-          "format": "{icon} {count}",
-          "show-empty": false,
-          "format-icons": ["", ""],
-          "tooltip": true,
-          "tooltip-format": "{app}: {title}"
-      },
+      // "hyprland/scratchpad": {
+      //     "format": "{icon} {count}",
+      //     "show-empty": false,
+      //     "format-icons": ["", ""],
+      //     "tooltip": true,
+      //     "tooltip-format": "{app}: {title}"
+      // },
       "mpd": {
           "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
           "format-disconnected": "Disconnected ",
@@ -110,8 +119,8 @@
           "spacing": 10
       },
       "clock": {
-          // "timezone": "America/New_York",
-          // "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+          // "timezone": "America/Los_Angeles",
+          "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
           "format": "<b>{:%Y-%m-%d -- %H:%M:%S}</b>",
           //"format-alt": "{:%Y-%m-%d}"
       },

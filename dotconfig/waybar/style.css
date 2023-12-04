@@ -5,7 +5,7 @@
     border-radius: 0;
     /* `otf-font-awesome` is required to be installed for icons */
     font-family: FontAwesome, Roboto, DejaVu, Arial, sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     min-height: 0;
 }
 
@@ -179,17 +179,17 @@ label:focus {
 
 #pulseaudio {
     /* background-color: #f1c40f; */
-    color: #000000;
+    /* color: #000000; */
 }
 
 #pulseaudio.muted {
     /* background-color: #90b1b1; */
-    color: #2a5c45;
+    /* color: #2a5c45; */
 }
 
 #wireplumber {
     /* background-color: #fff0f5; */
-    color: #000000;
+    /* color: #000000; */
 }
 
 #wireplumber.muted {
@@ -200,6 +200,12 @@ label:focus {
     /* background-color: #66cc99; */
     color: #2a5c45;
     min-width: 100px;
+}
+
+#custom-launcher {
+  padding: 0px 25px 0px 20;
+  margin: 7px 0px 10px 20px;
+  background-color: @overlay0;
 }
 
 #custom-media.custom-spotify {
