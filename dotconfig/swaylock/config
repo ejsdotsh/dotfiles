@@ -49,6 +49,6 @@ separator-color=00000000
 tiling
 
 ## indicator
-indicator-radius=240
-indicator-thickness=20
+indicator-radius=96
+indicator-thickness=10
 indicator-caps-lock

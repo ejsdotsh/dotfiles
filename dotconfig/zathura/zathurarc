@@ -1,4 +1,4 @@
-set font                    "monospace 12"
+set font                    "FiraCode Nerd Font 12"
 set selection-notification	"true"
 set selection-clipboard		"clipboard"
 set guioptions			    "sv"
