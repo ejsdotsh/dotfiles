@@ -38,7 +38,7 @@ dotconfig/waybar/config
 !dotconfig/xsettingsd/*
 !dotconfig/zathura/*
 
-!timew/**
+!dotconfig/timewarrior/**
 
 !dotlocal/bin/*
 

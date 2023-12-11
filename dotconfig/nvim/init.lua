@@ -51,6 +51,7 @@ else
 
       -- formatting
       { import = "lazyvim.plugins.extras.formatting.black" },
+      { import = "lazyvim.plugins.extras.formatting.prettier" },
 
       -- lsp
       { import = "lazyvim.plugins.extras.lsp.none-ls" },

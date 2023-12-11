@@ -1,6 +1,6 @@
-if true then
-  return {}
-end
+-- if true then
+--   return {}
+-- end
 
 return {
   {
@@ -11,10 +11,10 @@ return {
         "cpp",
         "dockerfile",
         "json",
+        -- "json5",
         "json5",
-        "json5",
-        "markdown",
-        "markdown_inline",
+        -- "markdown",
+        -- "markdown_inline",
         "ninja",
         "python",
         "rst",
