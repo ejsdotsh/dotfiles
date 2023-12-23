@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -eo pipefail
+
+deadline=$1
+shift
+in +tickle wait:$deadline $@
+
+exit 0

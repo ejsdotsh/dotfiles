@@ -1,21 +1,75 @@
 #!/bin/bash
 #
-# - ~/.path       is used to extend `$PATH`
-# - ~/.exports    centralize all `export`s
-# - ~/.aliases    centralize all aliases
 # - ~/.functions  should probably go into ~/bin
-# - ~/.bash_prompt  make the command-line look nicer
 
 # exit if not an interactive shell
 [[ -z "$PS1" ]] && return
 
 shopt -s checkwinsize
 
-for bf in ~/.{path,exports,aliases,functions,bash_prompt}; do
-  [[ -r "${bf}" ]] && [[ -f "${bf}" ]] && source "${bf}";
-done
-# cleanup
-unset bf;
+# - ~/.bash_prompt  make the command-line look nicer
+if [[ -r ".bash_prompt" ]] && [[ -f ".bash_prompt" ]]; then
+	source ".bash_prompt"
+fi
+
+# By default, Mac uses /bin/sh as the shell
+if [[ $OSTYPE == darwin* ]]; then
+	export SHELL=/bin/bash
+fi
+
+# set editor
+export EDITOR="nvim"
+export VISUAL="nvim"
+export LC_ALL="en_US.UTF-8"
+export LANG="en_US.UTF-8"
+export LANGUAGE="en_US.UTF-8"
+export HISTSIZE='32768'
+export HISTFILESIZE="${HISTSIZE}"
+export HISTCONTROL='ignoreboth'
+# add colors
+export CLICOLOR=1
+#export LSCOLORS=ExFxBxDxCxegedabagacad
+
+# in tmux, highlight rather than italicize
+#export LESS_TERMCAP_so=$'\E[30;43m'
+#export LESS_TERMCAP_se=$'\E[39;49m'
+# Don’t clear the screen after quitting a manual page.
+export MANPAGER='less -X'
+
+# Add stuff to `$PATH`
+export GOPATH="${HOME}/go"
+export SB="${HOME}/SB"
+export DOTFILES="${HOME}/repo/ejsdotsh/dotfiles"
+
+## path
+if [ $(uname -s) == "Darwin" ]; then
+	export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/opt/curl/bin:${PATH}"
+	export GOROOT="$(brew --prefix golang)/libexec"
+elif [[ $(uname -r) =~ .*fc3.* ]]; then
+	export GOROOT="/usr/lib/golang"
+else
+	export GOROOT="/usr/lib/go"
+fi
+export PATH="$DOTFILES/scripts:$HOME/.local/bin:${GOPATH}/bin:${GOROOT}/bin:.cargo/bin:$PATH:/usr/local/protobuf/bin"
+
+# if nvim exists
+if type nvim >/dev/null 2>&1; then
+	alias vim='nvim'
+	alias vi='nvim'
+fi
+
+## aliases
+alias ls='ls --color'
+#### alias mkpy='python3 -m venv .venv && .venv/bin/python3 -m pip install -U pip setuptools wheel black mypy'
+alias mkgomod='go mod init github.com/ejsdotsh/$(basename $(pwd))'
+alias rebash='source ~/.bashrc'
+alias unbrewall='brew uninstall --formula $(brew list)'
+alias terraform='tofu'
+
+### taskw & gtd
+alias in='task add +in'
+alias tick=tickle
+alias think='tickle +1d'
 
 # load ssh keys
-ssh-add -A 2> /dev/null
+ssh-add -A 2>/dev/null

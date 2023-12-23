@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -eo pipefail
+
+NAME="pgdb"
+APP_DIR=$(dirname $(readlink -f $0))
+
+mkdir -p ${APP_DIR}/data/$NAME
+
+IMAGENAME="bitnami/postgresql:latest"
+
+exit 0
