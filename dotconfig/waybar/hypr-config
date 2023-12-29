@@ -14,8 +14,7 @@
       "hyprland/mode"
     ],
     "modules-center": [
-      "hyprland/workspaces",
-      "clock"
+      "hyprland/workspaces"
       // "custom/media",
     ],
     "modules-right": [
@@ -30,8 +29,9 @@
       "backlight",
       "keyboard-state",
       // "hyprland/language",
-      "battery"
+      "battery",
       //"battery#bat2",
+      "clock"
     ],
     "wlr/workspaces": {
       "disable-scroll": true,

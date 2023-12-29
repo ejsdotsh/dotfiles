@@ -30,6 +30,7 @@
 !dotconfig/nvim/init.lua
 !dotconfig/nvim/**
 !dotconfig/pypoetry/*
+!dotconfig/qt*/qt*
 !dotconfig/sway/*
 !dotconfig/swaylock/*
 !dotconfig/task/**

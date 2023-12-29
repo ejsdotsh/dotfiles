@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# meant to run after packages and dotfiles are setup
+#
+# clones the various catppuccin repos -> ~/repo/gh/catppuccin/
+# creates symlinks to ~/.config/*/ subdirectories
+# ... more tbd
+
+set -exo pipefail
+
+mkdir -p ~/repo/gh/catppuccin
+cd ~/repo/gh/catppuccin/ || exit 1
+
+# list of repos to clone
+REPOS=("hyprland" "lazygit" "qt5ct" "thunderbird" "zathura")
+for repo in ${REPO[@]}; do
+  git clone https://github.com/catppuccin/"$repo/$repo".git
+done
+

@@ -38,8 +38,8 @@ export MANPAGER='less -X'
 
 # Add stuff to `$PATH`
 export GOPATH="${HOME}/go"
-export SB="${HOME}/SB"
-export DOTFILES="${HOME}/repo/ejsdotsh/dotfiles"
+export SB="${HOME}/repo/SB"
+export DTFS="${HOME}/repo/ejsdotsh/dotfiles"
 
 ## path
 if [ $(uname -s) == "Darwin" ]; then
@@ -67,7 +67,7 @@ alias unbrewall='brew uninstall --formula $(brew list)'
 alias terraform='tofu'
 
 ### taskw & gtd
-alias in='task add +in'
+alias in='task add +@inbox pro:inbox'
 alias tick=tickle
 alias think='tickle +1d'
 
