@@ -39,7 +39,7 @@ export MANPAGER='less -X'
 # Add stuff to `$PATH`
 export GOPATH="${HOME}/go"
 export SB="${HOME}/repo/SB"
-export DTFS="${HOME}/repo/ejsdotsh/dotfiles"
+export DTFS="${SB}/ejsdotsh/dotfiles"
 
 ## path
 if [ $(uname -s) == "Darwin" ]; then
@@ -50,7 +50,7 @@ elif [[ $(uname -r) =~ .*fc3.* ]]; then
 else
 	export GOROOT="/usr/lib/go"
 fi
-export PATH="$DOTFILES/scripts:$HOME/.local/bin:${GOPATH}/bin:${GOROOT}/bin:.cargo/bin:$PATH:/usr/local/protobuf/bin"
+export PATH="$DTFS/scripts:$HOME/.local/bin:${GOPATH}/bin:${GOROOT}/bin:.cargo/bin:$PATH:/usr/local/protobuf/bin"
 
 # if nvim exists
 if type nvim >/dev/null 2>&1; then
