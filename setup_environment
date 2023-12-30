@@ -18,7 +18,7 @@ fi
 WORK_DIR=$(pwd)
 
 # ensure that some directories exist
-mkdir -p ~/.config
+ln -s "$WORK_DIR" ~/.config
 mkdir -p ~/bin
 mkdir -p ~/Pictures/screenshots
 mkdir -p ~/logs
@@ -65,7 +65,7 @@ function dotbash() {
 #   done
 # }
 
-# dotbash
+dotbash
 # dotconfig
 # dotssh
 
