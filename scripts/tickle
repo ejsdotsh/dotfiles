@@ -1,8 +1,0 @@
-#!/bin/bash
-
-set -eo pipefail
-
-deadline=$1
-task $2 mod +tickle wait:$deadline
-
-exit 0

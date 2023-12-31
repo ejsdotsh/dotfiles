@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# bash wrappers for docker run commands
+
+export ASB="$SB/ejsdotsh/ejsb/repo"
+export LCR="localhost/ejsdotsh"
+
+ansible() {
+	podman run -it --rm \
+		--volume "$ASB"/asb:/srv/ansible:rw \
+		--name ansible \
+		"$LCR"/ansible \
+		ansible "$@"
+}
+
+ansible-playbook() {
+	podman run -it --rm \
+		--volume "$ASB"/asb:/srv/ansible:rw \
+		--name ansible-playbook \
+		"$LCR"/ansible \
+		ansible-playbook "$@"
+}
+alias ap='ansible-playbook'

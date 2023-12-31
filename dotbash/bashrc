@@ -1,6 +1,5 @@
 #!/bin/bash
 #
-# - ~/.functions  should probably go into ~/bin
 
 # exit if not an interactive shell
 [[ -z "$PS1" ]] && return
@@ -52,6 +51,14 @@ else
 fi
 export PATH="$DTFS/scripts:$HOME/.local/bin:${GOPATH}/bin:${GOROOT}/bin:.cargo/bin:$PATH:/usr/local/protobuf/bin"
 
+# source functions
+for FF in "$DTFS"/scripts/{bash_functions,docker_functions}; do
+	if [[ -r "$FF" ]] && [[ -f "$FF" ]]; then
+		source "$FF"
+	fi
+done
+unset FF
+
 # if nvim exists
 if type nvim >/dev/null 2>&1; then
 	alias vim='nvim'
@@ -59,7 +66,9 @@ if type nvim >/dev/null 2>&1; then
 fi
 
 ## aliases
-alias ls='ls --color'
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+
 #### alias mkpy='python3 -m venv .venv && .venv/bin/python3 -m pip install -U pip setuptools wheel black mypy'
 alias mkgomod='go mod init github.com/ejsdotsh/$(basename $(pwd))'
 alias rebash='source ~/.bashrc'
