@@ -52,7 +52,7 @@ fi
 export PATH="$DTFS/scripts:$HOME/.local/bin:${GOPATH}/bin:${GOROOT}/bin:.cargo/bin:$PATH:/usr/local/protobuf/bin"
 
 # source functions
-for FF in "$DTFS"/scripts/{bash_functions,docker_functions}; do
+for FF in "$DTFS"/scripts/{bash_functions,container_functions}; do
 	if [[ -r "$FF" ]] && [[ -f "$FF" ]]; then
 		source "$FF"
 	fi

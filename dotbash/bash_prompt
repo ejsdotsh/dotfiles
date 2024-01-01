@@ -68,10 +68,8 @@ function parse_git_dirty() {
 
 function task_inbox() {
 	INB=$(task +@inbox +PENDING count)
-	if [ $INB ] >0; then
+	if [[ $INB != 0 ]]; then
 		echo -e "\nthere are ${INB} items in the INBOX"
-	else
-		echo -n ""
 	fi
 }
 
