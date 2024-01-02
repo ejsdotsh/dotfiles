@@ -2,7 +2,8 @@
 
 # bash wrappers for container run commands
 
-export ASB="$SB/ejsdotsh/ejsb/repo/asb"
+export EJSB="$SB/ejsdotsh/ejsb"
+export ASB="$EJSB/repo/asb"
 export LCR="localhost/ejsdotsh"
 
 ansible() {
@@ -20,6 +21,7 @@ ansible-playbook() {
 		--userns keep-id:uid=1000,gid=1000 \
 		--volume "$HOME"/.ssh/asb:/home/annar/.ssh:U \
 		--volume "$ASB":/srv/ansible:U \
+		--volume "$EJSB"/RESOURCES/img:/srv/ansible/img:U \
 		--name ansible-playbook \
 		"$LCR"/ansible \
 		ansible-playbook "$@"
@@ -31,6 +33,7 @@ ansible-shell() {
 		--userns keep-id:uid=1000,gid=1000 \
 		--volume "$HOME"/.ssh/asb:/home/annar/.ssh:U \
 		--volume "$ASB":/srv/ansible:U \
+		--volume "$EJSB"/RESOURCES/img:/srv/ansible/img:U \
 		--name ansible \
 		"$LCR"/ansible \
 		bash
