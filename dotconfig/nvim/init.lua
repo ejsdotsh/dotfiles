@@ -30,17 +30,18 @@ else
       { "LazyVim/LazyVim", import = "lazyvim.plugins" },
 
       -- editors
-      { import = "lazyvim.plugins.extras.editor.symbols-outline" },
+      -- { import = "lazyvim.plugins.extras.editor.symbols-outline" },
 
       -- languages
       { import = "lazyvim.plugins.extras.lang.clangd" },
-      -- { import = "lazyvim.plugins.extras.lang.docker" },
+      { import = "lazyvim.plugins.extras.lang.docker" },
       { import = "lazyvim.plugins.extras.lang.go" },
       { import = "lazyvim.plugins.extras.lang.json" },
       { import = "lazyvim.plugins.extras.lang.markdown" },
       { import = "lazyvim.plugins.extras.lang.python" },
-      -- { import = "lazyvim.plugins.extras.lang.rust" },
-      -- { import = "lazyvim.plugins.extras.lang.tailwind" },
+      { import = "lazyvim.plugins.extras.lang.python-semshi" },
+      { import = "lazyvim.plugins.extras.lang.rust" },
+      { import = "lazyvim.plugins.extras.lang.tailwind" },
       { import = "lazyvim.plugins.extras.lang.terraform" },
       { import = "lazyvim.plugins.extras.lang.tex" },
       { import = "lazyvim.plugins.extras.lang.yaml" },

@@ -28,6 +28,7 @@ export HISTCONTROL='ignoreboth'
 # add colors
 export CLICOLOR=1
 #export LSCOLORS=ExFxBxDxCxegedabagacad
+export LS_COLORS="$(vivid generate catppuccin-mocha)"
 
 # in tmux, highlight rather than italicize
 #export LESS_TERMCAP_so=$'\E[30;43m'
@@ -82,3 +83,12 @@ alias think='tickle +1d'
 
 # load ssh keys
 ssh-add -A 2>/dev/null
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/ejs/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/home/ejs/Downloads/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/ejs/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/home/ejs/Downloads/google-cloud-sdk/completion.bash.inc'; fi
+
+# added by travis gem
+[ ! -s /home/ejs/.travis/travis.sh ] || source /home/ejs/.travis/travis.sh
