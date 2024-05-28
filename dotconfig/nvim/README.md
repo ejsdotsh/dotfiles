@@ -1,9 +1,10 @@
-# 💤 LazyVim
+# a modified LazyVim
 
-A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
-Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
+Based upon the [starter template](https://github.com/LazyVim/starter) for [LazyVim](https://github.com/LazyVim/LazyVim).
 
 ## modifications from the starter template
+
+A non-exhaustive list of modifications:
 
 - renamed `lua/config/lazy.lua` to `init.lua`
 - removed `colorscheme` from `init.lua`
