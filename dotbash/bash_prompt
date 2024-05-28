@@ -66,16 +66,16 @@ function parse_git_dirty() {
 	fi
 }
 
-function task_inbox() {
-	INB=$(task +@inbox +PENDING count)
-	if [[ $INB != 0 ]]; then
-		echo -e "\nthere are ${INB} items in the INBOX"
-	fi
-}
+# function task_inbox() {
+# 	INB=$(task +@inbox +PENDING count)
+# 	if [[ $INB != 0 ]]; then
+# 		echo -e "\nthere are ${INB} items in the INBOX"
+# 	fi
+# }
 
 PS1="\n\D{%Y-%m-%d} \A :: \[\e[34m\]\u\[\e[m\] @ \[\e[36m\]\H\[\e[m\] :: "
 PS1+="\[\e[35m\]\w\[\e[m\] \[\e[33m\]\`parse_git_branch\`\[\e[m\]"
-PS1+="$(task_inbox)"
+# PS1+="$(task_inbox)"
 PS1+="\n\\$ "
 
 export PS1

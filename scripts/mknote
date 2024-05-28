@@ -13,8 +13,8 @@ WEEK_PATH="$SB/11-weekly"
 TODAY=$(date +%Y-%m-%d)
 TIMESTAMP=$(date +%Y%m%d%H%M)
 WN=$(date +%Y-%V)
-YESTERDAY=$(date -V-1d +%Y-%m-%d)
-TOMORROW=$(date -V+1d +%Y-%m-%d)
+YESTERDAY=$(date --date='yesterday' +%F)
+TOMORROW=$(date --date='tomorrow' +%F)
 
 mk_file() {
 
@@ -36,16 +36,14 @@ mk_file() {
 [[$YESTERDAY]] - [[$TOMORROW]]
 
 ## intentions and goals
- 
+
 ## tasks
 
-- [ ] text
-- [ ] text
 - [ ] text
 
 ## log
 
-- started with daily review
+- logs
 
 EEE
 
@@ -57,9 +55,6 @@ EEE
 		echo "## weekly review" >>"$FN"
 		echo -en "\n" >>"$FN"
 		echo "- [ ] text" >>"$FN"
-		echo "- [ ] text" >>"$FN"
-		echo "- [ ] text" >>"$FN"
-		echo "- [ ] text" >>"$FN"
 		echo -en "\n" >>"$FN"
 	fi
 
@@ -67,13 +62,11 @@ EEE
 		echo "## subject" >>"$FN"
 		echo -en "\n" >>"$FN"
 		echo "- [ ] text" >>"$FN"
-		echo "- [ ] text" >>"$FN"
-		echo "- [ ] text" >>"$FN"
-		echo "- [ ] text" >>"$FN"
 		echo -en "\n" >>"$FN"
 	fi
 
-	nvim "+ normal Go" "$FN"
+	# nvim "+ normal Go" "$FN"
+	nvim "$FN"
 }
 
 case "$1" in
