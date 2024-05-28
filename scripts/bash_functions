@@ -1,0 +1,92 @@
+#!/bin/bash
+
+tickle() {
+	deadline=$1
+	task $2 mod +tickle wait:$deadline
+}
+
+mkdraft() {
+	if [ "$#" -eq 1 ]; then
+		DRAFT="$(date +%Y-%m-%d)-$1.md"
+		#
+		cd "$SB/creativity/drafts" || exit 1
+		if [ ! -f "$DRAFT" ]; then
+			touch "$DRAFT"
+			# echo "created $DRAFT"
+		fi
+		nvim "$DRAFT"
+	else
+		echo "this function requires one argument"
+		echo "usage: mkdraft name"
+	fi
+}
+
+mkedit() {
+	TD=$(date +%Y%m%d)
+	if [ -d .git ]; then
+		if [[ $(git branch --list ${TD}) ]]; then
+			git checkout ${TD}
+		else
+			git checkout -b ${TD}
+		fi
+		if [ -e "*.code-workspace" ]; then
+			CW="*.code-workspace"
+			code ${CW}
+		fi
+	else
+		echo "no .git directory"
+	fi
+}
+
+mksite() {
+	if [ "$#" -eq 1 ]; then
+		SITE="$1"
+		#
+		cd ~/repo/ejsdotsh/web
+		if [ ! -d "$SITE" ]; then
+			echo "creating site"
+			hugo new site "$SITE"
+			cd "$SITE"
+			git init .
+			hugo mod init github.com/ejsdotsh/$SITE
+		else
+			echo "that directory already exists"
+		fi
+	else
+		echo "this function requires one argument"
+		echo "usage: mksite site.name"
+	fi
+}
+
+pipupall() {
+	# upgrade all the python3 modules in the current venv
+	# make sure we are at the root of the venv
+	if [ ! -f .venv/bin/python3 ]; then
+		echo "make sure you are at the root of the venv"
+	else
+		# upgrade pip
+		.venv/bin/python3 -m pip install -U pip
+		# upgrade the rest of the modules
+		.venv/bin/python3 -m pip freeze | awk -F'==' '{print $1}' | xargs .venv/bin/python3 -m pip install -U
+	fi
+}
+
+tgo() {
+	# add colors to `go test`
+	# TODO update colors to match shell colors
+	go test $* |
+		sed ''/PASS/s//$(printf "\033[32mPASS\033[0m")/'' |
+		sed ''/SKIP/s//$(printf "\033[34mSKIP\033[0m")/'' |
+		sed ''/FAIL/s//$(printf "\033[31mFAIL\033[0m")/'' |
+		sed ''/FAIL/s//$(printf "\033[31mFAIL\033[0m")/'' |
+		GREP_COLOR="01;33" egrep --color=always '\s*[a-zA-Z0-9\-_.]+[:][0-9]+[:]|^'
+}
+
+mkpgdb() {
+	NAME="pgdb"
+	APP_DIR=$(dirname $(readlink -f $0))
+
+	mkdir -p ${APP_DIR}/data/$NAME
+
+	IMAGENAME="bitnami/postgresql:latest"
+}

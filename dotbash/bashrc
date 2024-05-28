@@ -1,0 +1,94 @@
+#!/bin/bash
+#
+
+# exit if not an interactive shell
+[[ -z "$PS1" ]] && return
+
+shopt -s checkwinsize
+
+# - ~/.bash_prompt  make the command-line look nicer
+if [[ -r ".bash_prompt" ]] && [[ -f ".bash_prompt" ]]; then
+	source ".bash_prompt"
+fi
+
+# By default, Mac uses /bin/sh as the shell
+if [[ $OSTYPE == darwin* ]]; then
+	export SHELL=/bin/bash
+fi
+
+# set editor
+export EDITOR="nvim"
+export VISUAL="nvim"
+export LC_ALL="en_US.UTF-8"
+export LANG="en_US.UTF-8"
+export LANGUAGE="en_US.UTF-8"
+export HISTSIZE='32768'
+export HISTFILESIZE="${HISTSIZE}"
+export HISTCONTROL='ignoreboth'
+# add colors
+export CLICOLOR=1
+#export LSCOLORS=ExFxBxDxCxegedabagacad
+export LS_COLORS="$(vivid generate catppuccin-mocha)"
+
+# in tmux, highlight rather than italicize
+#export LESS_TERMCAP_so=$'\E[30;43m'
+#export LESS_TERMCAP_se=$'\E[39;49m'
+# Don’t clear the screen after quitting a manual page.
+export MANPAGER='less -X'
+
+# Add stuff to `$PATH`
+export GOPATH="${HOME}/go"
+export SB="${HOME}/repo/SB"
+export DTFS="${SB}/ejsdotsh/dotfiles"
+
+## path
+if [ $(uname -s) == "Darwin" ]; then
+	export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/opt/curl/bin:${PATH}"
+	export GOROOT="$(brew --prefix golang)/libexec"
+elif [[ $(uname -r) =~ .*fc3.* ]]; then
+	export GOROOT="/usr/lib/golang"
+else
+	export GOROOT="/usr/lib/go"
+fi
+export PATH="$DTFS/scripts:$HOME/.local/bin:${GOPATH}/bin:${GOROOT}/bin:.cargo/bin:$PATH:/usr/local/protobuf/bin"
+
+# source functions
+for FF in "$DTFS"/scripts/{bash_functions,container_functions}; do
+	if [[ -r "$FF" ]] && [[ -f "$FF" ]]; then
+		source "$FF"
+	fi
+done
+unset FF
+
+# if nvim exists
+if type nvim >/dev/null 2>&1; then
+	alias vim='nvim'
+	alias vi='nvim'
+fi
+
+## aliases
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+
+#### alias mkpy='python3 -m venv .venv && .venv/bin/python3 -m pip install -U pip setuptools wheel black mypy'
+alias mkgomod='go mod init github.com/ejsdotsh/$(basename $(pwd))'
+alias rebash='source ~/.bashrc'
+alias unbrewall='brew uninstall --formula $(brew list)'
+alias terraform='tofu'
+
+### taskw & gtd
+alias in='task add +@inbox pro:inbox'
+alias tick=tickle
+alias think='tickle +1d'
+
+# load ssh keys
+ssh-add -A 2>/dev/null
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/ejs/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/home/ejs/Downloads/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/ejs/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/home/ejs/Downloads/google-cloud-sdk/completion.bash.inc'; fi
+
+# added by travis gem
+[ ! -s /home/ejs/.travis/travis.sh ] || source /home/ejs/.travis/travis.sh

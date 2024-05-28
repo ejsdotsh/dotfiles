@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# bash wrappers for container run commands
+
+export EJSB="$SB/ejsdotsh/ejsb"
+export ASB="$EJSB/repo/asb"
+export LCR="localhost/ejsdotsh"
+
+ansible() {
+	podman run -it --rm \
+		--userns keep-id:uid=1000,gid=1000 \
+		--volume "$HOME"/.ssh/asb:/home/annar/.ssh:U \
+		--volume "$ASB":/srv/ansible:U \
+		--name ansible \
+		"$LCR"/ansible \
+		ansible "$@"
+}
+
+ansible-playbook() {
+	podman run -it --rm \
+		--userns keep-id:uid=1000,gid=1000 \
+		--volume "$HOME"/.ssh/asb:/home/annar/.ssh:U \
+		--volume "$ASB":/srv/ansible:U \
+		--volume "$EJSB"/RESOURCES/img:/srv/ansible/img:U \
+		--name ansible_playbook \
+		"$LCR"/ansible \
+		ansible-playbook "$@"
+}
+alias ansp='ansible-playbook'
+
+ansible-shell() {
+	podman run -it --rm \
+		--userns keep-id:uid=1000,gid=1000 \
+		--volume "$HOME"/.ssh/asb:/home/annar/.ssh:U \
+		--volume "$ASB":/srv/ansible:U \
+		--volume "$EJSB"/RESOURCES/img:/srv/ansible/img:U \
+		--name ansible_shell \
+		"$LCR"/ansible \
+		bash
+}
+alias ansh='ansible-shell'
+
+ansible-vault() {
+	podman run -it --rm \
+		--userns keep-id:uid=1000,gid=1000 \
+		--volume "$HOME"/.ssh/asb:/home/annar/.ssh:U \
+		--volume "$ASB":/srv/ansible:U \
+		--name ansible_vault \
+		"$LCR"/ansible \
+		ansible-vault "$@"
+}
+alias ansv='ansible-vault'
