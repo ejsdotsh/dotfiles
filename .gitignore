@@ -20,9 +20,11 @@
 !dotbash/*
 
 !dotconfig/btop/*
+dotconfig/btop/*.log
+
 !dotconfig/git/*
 !dotconfig/gtk-*/settings.ini
-!dotconfig/hypr/*
+!dotconfig/hypr/**
 !dotconfig/kitty/*
 !dotconfig/lazygit/config.yml
 !dotconfig/mako/*
