@@ -24,6 +24,11 @@ dotconfig/btop/*.log
 
 !dotconfig/git/*
 !dotconfig/gtk-*/settings.ini
+
+# electron...stuff
+!dotconfig/code-flags.conf
+!dotconfig/electron-flags.conf
+
 !dotconfig/hypr/**
 !dotconfig/kitty/*
 !dotconfig/lazygit/config.yml
