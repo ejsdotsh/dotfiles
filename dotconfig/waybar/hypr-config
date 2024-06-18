@@ -1,4 +1,4 @@
-// -*- mode: json -*-
+// -*- mode: jsonc -*-
 [
   {
     "name": "topbar",
@@ -10,15 +10,12 @@
     // the order of the modules
     "modules-left": [
       "custom/launcher",
-      "hyprland/window",
-      "hyprland/mode"
+      "hyprland/window"
     ],
     "modules-center": [
       "hyprland/workspaces"
-      // "custom/media",
     ],
     "modules-right": [
-      // "mpd",
       "idle_inhibitor",
       "tray",
       "pulseaudio",
@@ -33,17 +30,18 @@
       //"battery#bat2",
       "clock"
     ],
-    "wlr/workspaces": {
+    "hyprland/workspaces": {
       "disable-scroll": true,
-      "all-outputs": true,
       "on-click": "activate",
-      // "on-scroll-up": "hyprctl dispatch workspace e+1",
-      // "on-scroll-down": "hyprctl dispatch workspace e-1",
-      "persistent_workspaces": {
-        "1": [],
-        "2": [],
-        "3": [],
-        "4": []
+      "format": "{name}: {icon}",
+      "format-icons": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "5": "",
+        "active": "",
+        "default": ""
       }
     },
     "custom/launcher": {
@@ -236,15 +234,16 @@
   },
   {
     "name": "leftbar",
+    "output": [ "eDP-1", "DP-1" ],
     "layer": "top",
     "position": "left",
     // "height": 35,
     "width": 64,
-    "modules-left": [],
+    "modules-left": [ ],
     "modules-center": [
       "wlr/taskbar"
     ],
-    "modules-right": [],
+    "modules-right": [ ],
     "wlr/taskbar": {
       "format": "{icon}",
       "icon-size": 32,
