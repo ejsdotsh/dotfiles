@@ -29,6 +29,9 @@ dotconfig/btop/*.log
 !dotconfig/code-flags.conf
 !dotconfig/electron-flags.conf
 
+!dotconfig/helix/**
+dotconfig/helix/runtime/**
+
 !dotconfig/hypr/**
 !dotconfig/kitty/*
 !dotconfig/lazygit/config.yml

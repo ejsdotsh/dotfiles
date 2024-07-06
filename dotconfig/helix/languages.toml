@@ -1,0 +1,91 @@
+[[language]]
+name = "awk"
+
+[[language]]
+name = "bash"
+
+[[language]]
+name = "env"
+
+[[language]]
+name = "python"
+language-servers = ["pyright", "ruff"]
+
+[language-server.pyright.config.python.analysis]
+typeCheckingMode = "basic"
+
+[language-server.ruff]
+command = "ruff-lsp"
+
+# [language-server.ruff.config.settings]
+# args = ["--ignore", "E501"]
+
+[language.formatter]
+command = "black"
+args = ["--quiet", "-"]
+
+[[language]]
+name = "go"
+auto-format = true
+formatter = { command = "goimports" }
+
+[language-server.yaml-language-server.config.yaml]
+format = { enable = true }
+validation = true
+
+[language-server.yaml-language-server.config.yaml.schemas]
+"https://json.schemastore.org/github-workflow.json" = ".github/workflows/*.{yml,yaml}"
+"https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-tasks.json" = "roles/{tasks,handlers}/*.{yml,yaml}"
+
+[[language]]
+name = "markdown"
+language-servers = ["marksman", "ltex-ls"]
+
+[language-server.ltex-ls.config]
+ltex.disabledRules = { "en-US" = ["PROFANITY"] }
+ltex.dictionary = { "en-US" = ["builtin"] }
+
+[language-server.sqls]
+command = "sqls"
+
+[[language]]
+name = "sql"
+language-servers = ["sqls"]
+
+[[language]]
+name = "toml"
+auto-format = true
+formatter = { command = "taplo", args = ["fmt", "-"] }
+
+[[language]]
+name = "hcl"
+language-servers = ["terraform-ls"]
+language-id = "terraform"
+
+[[language]]
+name = "tfvars"
+language-servers = ["terraform-ls"]
+language-id = "terraform-vars"
+
+[language-server.terraform-ls]
+command = "terraform-ls"
+args = ["serve"]
+
+[language-server.texlab.config.texlab.build]
+onSave = true
+
+[[language]]
+name = "html"
+language-servers = ["vscode-html-language-server", "tailwindcss-ls"]
+
+[[language]]
+name = "css"
+language-servers = ["vscode-css-language-server", "tailwindcss-ls"]
+
+[[language]]
+name = "jsx"
+language-servers = ["typescript-language-server", "tailwindcss-ls"]
+
+[[language]]
+name = "tsx"
+language-servers = ["typescript-language-server", "tailwindcss-ls"]

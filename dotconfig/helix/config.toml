@@ -1,0 +1,62 @@
+theme = "catppuccin_mocha"
+
+[editor]
+auto-save = true
+auto-format = true
+bufferline = "multiple"
+color-modes = true
+completion-replace = true
+cursorcolumn = false
+cursorline = true
+line-number = "relative"
+mouse = false
+rulers = [79]
+true-color = true
+
+[editor.whitespace.render]
+space = "none"
+nbsp = "none"
+tab = "none"
+newline = "none"
+
+[editor.whitespace.characters]
+space = "·"
+nbsp = "⍽"
+tab = "→"
+newline = "⏎"
+tabpad = "·" # Tabs will look like "→···" (depending on tab width)
+
+[editor.file-picker]
+hidden = false
+git-ignore = false
+
+[editor.statusline]
+left = [
+  "mode",
+  "spacer",
+  "version-control",
+  "spacer",
+  "separator",
+  "file-name",
+  "file-modification-indicator"
+]
+right = [
+  "spinner",
+  "spacer",
+  "workspace-diagnostics",
+  "separator",
+  "spacer",
+  "diagnostics",
+  "position",
+  "file-encoding",
+  "file-line-ending",
+  "file-type"
+]
+separator = "╎"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.lsp]
+display-messages = true
+
