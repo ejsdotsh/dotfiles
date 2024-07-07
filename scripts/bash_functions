@@ -14,7 +14,7 @@ mkdraft() {
 			touch "$DRAFT"
 			# echo "created $DRAFT"
 		fi
-		nvim "$DRAFT"
+		helix "$DRAFT"
 	else
 		echo "this function requires one argument"
 		echo "usage: mkdraft name"
@@ -38,25 +38,26 @@ mkedit() {
 	fi
 }
 
-mksite() {
-	if [ "$#" -eq 1 ]; then
-		SITE="$1"
-		#
-		cd ~/repo/ejsdotsh/web
-		if [ ! -d "$SITE" ]; then
-			echo "creating site"
-			hugo new site "$SITE"
-			cd "$SITE"
-			git init .
-			hugo mod init github.com/ejsdotsh/$SITE
-		else
-			echo "that directory already exists"
-		fi
-	else
-		echo "this function requires one argument"
-		echo "usage: mksite site.name"
-	fi
-}
+# mksite() {
+# 	if [ "$#" -eq 1 ]; then
+# 		SITE="$1"
+# 		#
+# 		cd ~/repo/ejsdotsh/web
+# 		if [ ! -d "$SITE" ]; then
+# 			echo "creating site"
+# 			hugo new site "$SITE"
+# 			cd "$SITE"
+# 			git init .
+# 			hugo mod init github.com/ejsdotsh/$SITE
+# 		else
+# 			echo "that directory already exists"
+# 			cd "$SITE"
+# 		fi
+# 	else
+# 		echo "this function requires one argument"
+# 		echo "usage: mksite site.name"
+# 	fi
+# }
 
 pipupall() {
 	# upgrade all the python3 modules in the current venv
