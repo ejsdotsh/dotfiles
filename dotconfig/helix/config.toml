@@ -9,8 +9,8 @@ completion-replace = true
 cursorcolumn = false
 cursorline = true
 line-number = "relative"
-mouse = false
-rulers = [79]
+mouse = true
+rulers = [80, 120]
 true-color = true
 
 [editor.whitespace.render]
@@ -24,7 +24,7 @@ space = "·"
 nbsp = "⍽"
 tab = "→"
 newline = "⏎"
-tabpad = "·" # Tabs will look like "→···" (depending on tab width)
+tabpad = "·"  # Tabs will look like "→···" (depending on tab width)
 
 [editor.file-picker]
 hidden = false
@@ -38,7 +38,7 @@ left = [
   "spacer",
   "separator",
   "file-name",
-  "file-modification-indicator"
+  "file-modification-indicator",
 ]
 right = [
   "spinner",
@@ -50,7 +50,7 @@ right = [
   "position",
   "file-encoding",
   "file-line-ending",
-  "file-type"
+  "file-type",
 ]
 separator = "╎"
 mode.normal = "NORMAL"
@@ -59,4 +59,3 @@ mode.select = "SELECT"
 
 [editor.lsp]
 display-messages = true
-
