@@ -40,6 +40,7 @@ validation = true
 [[language]]
 name = "markdown"
 language-servers = ["marksman", "ltex-ls"]
+formatter = { command = "dprint", args = ["fmt", "--stdin", "md"] }
 
 [language-server.ltex-ls.config]
 ltex.disabledRules = { "en-US" = ["PROFANITY"] }
@@ -55,7 +56,8 @@ language-servers = ["sqls"]
 [[language]]
 name = "toml"
 auto-format = true
-formatter = { command = "taplo", args = ["fmt", "-"] }
+formatter = { command = "dprint", args = ["fmt", "--stdin", "toml"] }
+# formatter = { command = "taplo", args = ["fmt", "-"] }
 
 [[language]]
 name = "hcl"
@@ -89,3 +91,13 @@ language-servers = ["typescript-language-server", "tailwindcss-ls"]
 [[language]]
 name = "tsx"
 language-servers = ["typescript-language-server", "tailwindcss-ls"]
+
+[[language]]
+name = "typescript"
+language-servers = ["typescript-language-server", "tailwindcss-ls"]
+formatter = { command = "dprint", args = ["fmt", "--stdin", "typescript"] }
+
+[[language]]
+name = "json"
+auto-format = true
+formatter = { command = "dprint", args = ["fmt", "--stdin", "json"] }
