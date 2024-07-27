@@ -41,6 +41,7 @@ dotconfig/helix/runtime/**
 !dotconfig/nvim/**
 !dotconfig/pypoetry/*
 !dotconfig/qt*/qt*
+!dotconfig/river/init
 !dotconfig/sway/*
 !dotconfig/swaylock/*
 !dotconfig/task/**
