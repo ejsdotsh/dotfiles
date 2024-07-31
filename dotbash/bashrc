@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 
 # exit if not an interactive shell
@@ -11,14 +11,14 @@ if [[ -r ".bash_prompt" ]] && [[ -f ".bash_prompt" ]]; then
 	source ".bash_prompt"
 fi
 
-# By default, Mac uses /bin/sh as the shell
+# By default, Mac uses /bin/zsh as the shell
 if [[ $OSTYPE == darwin* ]]; then
 	export SHELL=/bin/bash
 fi
 
 # set editor
-export EDITOR="nvim"
-export VISUAL="nvim"
+export EDITOR="helix"
+export VISUAL="helix"
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
 export LANGUAGE="en_US.UTF-8"
@@ -66,6 +66,11 @@ if type nvim >/dev/null 2>&1; then
 	alias vi='nvim'
 fi
 
+# using helix from `extra` instead of `AUR`
+if type helix >/dev/null 2>&1; then
+  alias hx='helix'
+fi
+
 ## aliases
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
@@ -89,6 +94,3 @@ if [ -f '/home/ejs/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/home/ej
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/ejs/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/home/ejs/Downloads/google-cloud-sdk/completion.bash.inc'; fi
-
-# added by travis gem
-[ ! -s /home/ejs/.travis/travis.sh ] || source /home/ejs/.travis/travis.sh
