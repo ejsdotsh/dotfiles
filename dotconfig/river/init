@@ -5,6 +5,7 @@
 riverctl input pointer-* natural-scroll enabled
 riverctl focus-follows-cursor normal
 riverctl set-cursor-warp on-focus-change
+
 # Super + Left Mouse Button to move views
 riverctl map-pointer normal Super BTN_LEFT move-view
 # Super + Right Mouse Button to resize views
@@ -12,7 +13,7 @@ riverctl map-pointer normal Super BTN_RIGHT resize-view
 # Super + Middle Mouse Button to toggle float
 riverctl map-pointer normal Super BTN_MIDDLE toggle-float
 
-# application keybindings
+# keybindings to spawn stuff
 riverctl map normal Super Return spawn kitty
 riverctl map normal Super+Shift F spawn firefox
 riverctl map normal Super Space spawn fuzzel
@@ -157,6 +158,7 @@ riverctl spawn mako
 
 # Make all views with an app-id that starts with "float" and title "foo" start floating.
 # riverctl rule-add -app-id 'float*' -title 'foo' float
+riverctl rule-add -app-id '1password' float
 
 # Make all views with app-id "bar" and any title use client-side decorations
 # riverctl rule-add -app-id "bar" csd
