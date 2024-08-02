@@ -24,6 +24,9 @@ riverctl map normal Super Q close
 # Super+Shift+E to exit river
 riverctl map normal Super+Shift E exit
 
+# lock and sleep
+riverctl map normal Super+Shift S spawn "swaylock && sleep 1; systemctl suspend"
+
 riverctl map normal Super H focus-view left
 riverctl map normal Super J focus-view down
 riverctl map normal Super K focus-view up
@@ -95,8 +98,8 @@ done
 # Super+0 to focus all tags
 # Super+Shift+0 to tag focused view with all tags
 all_tags=$(((1 << 32) - 1))
-riverctl map normal Super 0 set-focused-tags $all_tags
-riverctl map normal Super+Shift 0 set-view-tags $all_tags
+# riverctl map normal Super 0 set-focused-tags $all_tags
+# riverctl map normal Super+Shift 0 set-view-tags $all_tags
 
 # Super+F to toggle fullscreen
 # riverctl map normal Super F toggle-fullscreen
