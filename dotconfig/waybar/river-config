@@ -5,6 +5,7 @@
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
     "height": 48, // Waybar height (to be removed for auto height)
+    "margin": "0 0 0 0",
     // "width": 1280,   // Waybar width
     "spacing": 4, // Gaps between modules (4px)
     // the order of the modules
@@ -13,7 +14,7 @@
       "river/window"
     ],
     "modules-center": [
-      "river/workspaces"
+      "river/tags"
     ],
     "modules-right": [
       "idle_inhibitor",
@@ -30,11 +31,11 @@
       //"battery#bat2",
       "clock"
     ],
-    "river/workspaces": {
-      "disable-scroll": true,
-      "on-click": "activate",
+    "river/tags": {
+      // "disable-scroll": true,
+      // "on-click": "activate",
       "format": "{name}: {icon}",
-      "format-icons": {
+      "tag-labels": {
         "1": "",
         "2": "",
         "3": "",

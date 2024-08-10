@@ -156,12 +156,12 @@ riverctl spawn kanshi
 riverctl spawn mako
 
 # status bar and screen lock
-# riverctl spawn waybar
+riverctl spawn waybar
 # exec-once = swayidle -w timeout 300 '$lock' timeout 305 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' before-sleep '$lock'
 
 # Make all views with an app-id that starts with "float" and title "foo" start floating.
 # riverctl rule-add -app-id 'float*' -title 'foo' float
-riverctl rule-add -app-id '1password' float
+riverctl rule-add -title 1password float
 
 # Make all views with app-id "bar" and any title use client-side decorations
 # riverctl rule-add -app-id "bar" csd
@@ -169,5 +169,5 @@ riverctl rule-add -app-id '1password' float
 # Set the default layout generator to be rivertile and start it.
 # River will send the process group of the init executable SIGTERM on exit.
 riverctl default-layout rivertile
-rivertile -view-padding 6 -outer-padding 6 &
+rivertile -view-padding 2 -outer-padding 2 &
 
