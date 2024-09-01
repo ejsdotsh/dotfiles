@@ -101,3 +101,8 @@ formatter = { command = "dprint", args = ["fmt", "--stdin", "typescript"] }
 name = "json"
 auto-format = true
 formatter = { command = "dprint", args = ["fmt", "--stdin", "json"] }
+
+[[language]]
+name = "jsonnet"
+auto-format = true
+formatter = { command = "jsonnetfmt", args = ["-i", "-"] }

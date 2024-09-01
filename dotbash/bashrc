@@ -86,6 +86,10 @@ alias in='task add +@inbox pro:inbox'
 alias tick=tickle
 alias think='tickle +1d'
 
+### kubernetes
+alias kc='kubectl'
+alias cic='cilium-cli'
+
 # load ssh keys
 ssh-add -A 2>/dev/null
 

@@ -25,6 +25,7 @@ riverctl map normal Super Q close
 riverctl map normal Super+Shift E exit
 
 # lock and sleep
+# riverctl map normal Super+Shift L spawn "swaylock && sleep 1; wlopm  "
 riverctl map normal Super+Shift S spawn "swaylock && sleep 1; systemctl suspend"
 
 riverctl map normal Super H focus-view left
