@@ -25,7 +25,8 @@ riverctl map normal Super Q close
 riverctl map normal Super+Shift E exit
 
 # lock and sleep
-# riverctl map normal Super+Shift L spawn "swaylock && sleep 1; wlopm  "
+# riverctl map normal Super+Shift X spawn "/home/ejs/repo/SB/ejsdotsh/dotfiles/scripts/locker.sh"
+riverctl map normal Super+Shift X spawn "swaylock"
 riverctl map normal Super+Shift S spawn "swaylock && sleep 1; systemctl suspend"
 
 riverctl map normal Super H focus-view left
@@ -156,9 +157,9 @@ riverctl spawn kanshi
 # notifications
 riverctl spawn mako
 
-# status bar and screen lock
+# status bar
 riverctl spawn waybar
-# exec-once = swayidle -w timeout 300 '$lock' timeout 305 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' before-sleep '$lock'
+bash /home/ejs/repo/SB/ejsdotsh/dotfiles/scripts/locker.sh
 
 # Make all views with an app-id that starts with "float" and title "foo" start floating.
 # riverctl rule-add -app-id 'float*' -title 'foo' float
@@ -171,4 +172,3 @@ riverctl rule-add -title 1Password float
 # River will send the process group of the init executable SIGTERM on exit.
 riverctl default-layout rivertile
 rivertile -view-padding 2 -outer-padding 2 &
-

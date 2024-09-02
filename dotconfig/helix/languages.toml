@@ -104,5 +104,4 @@ formatter = { command = "dprint", args = ["fmt", "--stdin", "json"] }
 
 [[language]]
 name = "jsonnet"
-auto-format = true
-formatter = { command = "jsonnetfmt", args = ["-i", "-"] }
+formatter = { command = "jsonnetfmt", args = ["-i", "*.jsonnet"] }

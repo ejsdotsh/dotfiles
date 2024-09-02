@@ -89,6 +89,7 @@ alias think='tickle +1d'
 ### kubernetes
 alias kc='kubectl'
 alias cic='cilium-cli'
+alias y2j='yaml2jsonnet'
 
 # load ssh keys
 ssh-add -A 2>/dev/null
