@@ -39,19 +39,20 @@ validation = true
 
 [[language]]
 name = "markdown"
-language-servers = ["marksman", "ltex-ls"]
+# language-servers = ["marksman", "ltex-ls"]
+language-servers = ["marksman"]
 formatter = { command = "dprint", args = ["fmt", "--stdin", "md"] }
 
 [language-server.ltex-ls.config]
 ltex.disabledRules = { "en-US" = ["PROFANITY"] }
 ltex.dictionary = { "en-US" = ["builtin"] }
 
-[language-server.sqls]
-command = "sqls"
-
 [[language]]
 name = "sql"
 language-servers = ["sqls"]
+
+[language-server.sqls]
+command = "sqls"
 
 [[language]]
 name = "toml"
@@ -72,9 +73,6 @@ language-id = "terraform-vars"
 [language-server.terraform-ls]
 command = "terraform-ls"
 args = ["serve"]
-
-[language-server.texlab.config.texlab.build]
-onSave = true
 
 [[language]]
 name = "html"
@@ -105,3 +103,35 @@ formatter = { command = "dprint", args = ["fmt", "--stdin", "json"] }
 [[language]]
 name = "jsonnet"
 formatter = { command = "jsonnetfmt", args = ["-i", "*.jsonnet"] }
+
+[[language]]
+name = "latex"
+
+[language-server.texlab.config.texlab]
+auxDirectory = "build"
+
+[language-server.texlab.config.texlab.chktex]
+onOpenAndSave = true
+onEdit = true
+
+[language-server.texlab.config.texlab.forwardSearch]
+executable = "zathura"
+args = [ "--synctex-forward", "%l:%c:%f", "%p" ]
+
+[language-server.texlab.config.texlab.build]
+forwardSearchAfter = true
+onSave = true
+
+executable = "tectonic"
+args = [
+ "-X",
+ "compile",
+ "%f",
+ "--synctex",
+ "--keep-logs",
+ "--keep-intermediates",
+ "--outdir=build",
+ "-Zshell-escape",
+ ]
+
+
