@@ -9,9 +9,6 @@ file structure:
 
 ```txt
 ├── docs
-│   ├── 2023-01-08-xps-debian.md
-│   ├── osx.md
-│   └── win10-11.md
 ├── dotbash
 │   ├── dot.aliases
 │   ├── dot.bash_profile
@@ -24,6 +21,9 @@ file structure:
 │   ├── git
 │   │   ├── config
 │   │   └── ignore
+│   ├── helix
+│   │   ├── config.toml
+│   │   └── languages.toml
 │   ├── kitty
 │   │   └── kitty.conf
 │   ├── mako
@@ -36,23 +36,17 @@ file structure:
 │   │       ├── plugins
 │   │       │   └── packer.lua
 │   │       └── settings.lua
-│   ├── sway
-│   │   └── config
+│   ├── river
+│   │   └── init
 │   └── waybar
 │       ├── config
 │       └── style.css
-├── dotlocal
-│   └── bin
-│       ├── msedge
-│       └── onepass
 ├── LICENSE
 ├── README.md
 └── scripts
-    ├── debian_setup.sh
-    ├── docker_install.sh
+    ├── locker.sh
+    ├── container_functions.sh
     ├── setup_environment.sh
-    ├── setup_go.sh
-    └── sway-run
 ```
 
 ## references
