@@ -41,6 +41,7 @@ dotconfig/helix/runtime/**
 !dotconfig/neofetch/*
 !dotconfig/nvim/init.lua
 !dotconfig/nvim/**
+dotconfig/nvim/lua/plugins/example.lua
 !dotconfig/pypoetry/*
 !dotconfig/qt*/qt*
 !dotconfig/river/init
