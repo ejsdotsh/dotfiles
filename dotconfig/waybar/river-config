@@ -104,7 +104,7 @@
       "spacing": 10
     },
     "clock": {
-      // "timezone": "America/Los_Angeles",
+      "timezone": "America/Los_Angeles",
       "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
       "format": "<b>{:%Y-%m-%d -- %H:%M:%S}</b>",
       //"format-alt": "{:%Y-%m-%d}"

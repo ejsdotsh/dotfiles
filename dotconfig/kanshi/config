@@ -7,8 +7,8 @@ profile docked {
 	output "Dell Inc. DELL U3219Q D3MJ413" mode 3840x2160 position 0,0
 }
 
-profile docked {
+profile dualdocked {
 	output eDP-1 disable 
 	output "Dell Inc. DELL U3219Q D3MJ413" mode 3840x2160 position 0,0
-	output DP-2 position -2160,0 transform 90
+	output DP-2 mode 3840x2160 position -2160,0 transform 90
 }
