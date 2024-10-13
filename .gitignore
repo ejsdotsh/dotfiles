@@ -33,7 +33,7 @@ dotconfig/btop/*.log
 !dotconfig/helix/*.toml
 dotconfig/helix/runtime/**
 
-!dotconfig/hypr/**
+!dotconfig/helm/repositories.yaml
 !dotconfig/kanshi/config
 !dotconfig/kitty/*
 !dotconfig/lazygit/config.yml
