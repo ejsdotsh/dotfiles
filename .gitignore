@@ -20,6 +20,21 @@
 !dotbash/*
 
 !dotconfig/btop/*
+dotconfig/btop/*.log
+
+!dotconfig/git/*
+!dotconfig/gtk-*/settings.ini
+
+# electron...stuff
+!dotconfig/code-flags.conf
+!dotconfig/electron-flags.conf
+
+!dotconfig/fuzzel/fuzzel.ini
+!dotconfig/helix/*.toml
+dotconfig/helix/runtime/**
+
+!dotconfig/helm/repositories.yaml
+!dotconfig/kanshi/config
 !dotconfig/git/*
 !dotconfig/gtk-*/settings.ini
 !dotconfig/hypr/*
@@ -29,9 +44,12 @@
 !dotconfig/neofetch/*
 !dotconfig/nvim/init.lua
 !dotconfig/nvim/**
+dotconfig/nvim/lua/plugins/example.lua
 !dotconfig/pypoetry/*
 !dotconfig/qt*/qt*
-!dotconfig/sway/*
+!dotconfig/river/init
+!dotconfig/pypoetry/*
+!dotconfig/qt*/qt*
 !dotconfig/swaylock/*
 !dotconfig/task/**
 !dotconfig/waybar/*

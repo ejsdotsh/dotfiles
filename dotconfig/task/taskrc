@@ -14,7 +14,7 @@ hooks.location=~/.config/task/hooks
 bulk=0
 confirmation=off
 
-news.version=2.6.0
+news.version=3.1.0
 
 # start the week on monday
 weekstart=monday

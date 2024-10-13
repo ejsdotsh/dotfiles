@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 
 # exit if not an interactive shell
@@ -11,14 +11,15 @@ if [[ -r ".bash_prompt" ]] && [[ -f ".bash_prompt" ]]; then
 	source ".bash_prompt"
 fi
 
-# By default, Mac uses /bin/sh as the shell
+# By default, Mac uses /bin/zsh as the shell
 if [[ $OSTYPE == darwin* ]]; then
 	export SHELL=/bin/bash
 fi
 
 # set editor
-export EDITOR="nvim"
-export VISUAL="nvim"
+
+export EDITOR="helix"
+export VISUAL="helix"
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
 export LANGUAGE="en_US.UTF-8"
@@ -50,7 +51,10 @@ elif [[ $(uname -r) =~ .*fc3.* ]]; then
 else
 	export GOROOT="/usr/lib/go"
 fi
-export PATH="$DTFS/scripts:$HOME/.local/bin:${GOPATH}/bin:${GOROOT}/bin:.cargo/bin:$PATH:/usr/local/protobuf/bin"
+
+## jsonnet path
+export JSONNET_PATH="lib/:vendor/"
+export PATH="$DTFS/scripts:$HOME/.local/bin:${GOPATH}/bin:${GOROOT}/bin:.cargo/bin:$PATH:/usr/local/protobuf/bin:$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin"
 
 # source functions
 for FF in "$DTFS"/scripts/{bash_functions,container_functions}; do
@@ -64,6 +68,11 @@ unset FF
 if type nvim >/dev/null 2>&1; then
 	alias vim='nvim'
 	alias vi='nvim'
+fi
+
+# using helix from `extra` instead of `AUR`
+if type helix >/dev/null 2>&1; then
+  alias hx='helix'
 fi
 
 ## aliases
@@ -81,6 +90,11 @@ alias in='task add +@inbox pro:inbox'
 alias tick=tickle
 alias think='tickle +1d'
 
+### kubernetes
+alias kc='kubectl'
+alias cic='cilium-cli'
+alias y2j='yaml2jsonnet'
+
 # load ssh keys
 ssh-add -A 2>/dev/null
 
@@ -90,5 +104,4 @@ if [ -f '/home/ejs/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/home/ej
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/ejs/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/home/ejs/Downloads/google-cloud-sdk/completion.bash.inc'; fi
 
-# added by travis gem
-[ ! -s /home/ejs/.travis/travis.sh ] || source /home/ejs/.travis/travis.sh
+

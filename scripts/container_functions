@@ -16,6 +16,30 @@ ansible() {
 		ansible "$@"
 }
 
+ansible-config() {
+	podman run -it --rm \
+		--userns keep-id:uid=1000,gid=1000 \
+		--volume "$HOME"/.ssh/asb:/home/annar/.ssh:U \
+		--volume "$ASB":/srv/ansible:U \
+		--volume "$EJSB"/RESOURCES/img:/srv/ansible/img:U \
+		--name ansible_config \
+		"$LCR"/ansible \
+		ansible-config "$@"
+}
+alias ansc='ansible-config'
+
+ansible-lint() {
+	podman run -it --rm \
+		--userns keep-id:uid=1000,gid=1000 \
+		--volume "$HOME"/.ssh/asb:/home/annar/.ssh:U \
+		--volume "$ASB":/srv/ansible:U \
+		--volume "$EJSB"/RESOURCES/img:/srv/ansible/img:U \
+		--name ansible_lint \
+		"$LCR"/ansible \
+		ansible-lint "$@"
+}
+alias ansl='ansible-lint'
+
 ansible-playbook() {
 	podman run -it --rm \
 		--userns keep-id:uid=1000,gid=1000 \

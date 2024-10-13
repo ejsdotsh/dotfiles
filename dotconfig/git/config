@@ -1,6 +1,16 @@
 [user]
 	name = "e.j. (they/them)"
 	email = git@ejs.sh
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKuJeY8f+EhHp99XkW5k8mLom3Lt1Dsd03ZAHJWgHiou
+
+[gpg]
+	format = ssh
+
+[gpg "ssh"]
+	program = "/opt/1Password/op-ssh-sign"
+
+[commit]
+	gpgsign = true
 
 [github]
 	user = ejsdotsh
@@ -35,5 +45,5 @@
 	rebase = false
 
 [push]
-  autoSetupRemote = true
+	autoSetupRemote = true
 
