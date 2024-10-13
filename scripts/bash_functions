@@ -14,7 +14,9 @@ mkdraft() {
 			touch "$DRAFT"
 			# echo "created $DRAFT"
 		fi
+
 		helix "$DRAFT"
+
 	else
 		echo "this function requires one argument"
 		echo "usage: mkdraft name"

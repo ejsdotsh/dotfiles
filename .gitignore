@@ -35,6 +35,9 @@ dotconfig/helix/runtime/**
 
 !dotconfig/helm/repositories.yaml
 !dotconfig/kanshi/config
+!dotconfig/git/*
+!dotconfig/gtk-*/settings.ini
+!dotconfig/hypr/*
 !dotconfig/kitty/*
 !dotconfig/lazygit/config.yml
 !dotconfig/mako/*
@@ -45,7 +48,8 @@ dotconfig/nvim/lua/plugins/example.lua
 !dotconfig/pypoetry/*
 !dotconfig/qt*/qt*
 !dotconfig/river/init
-!dotconfig/sway/*
+!dotconfig/pypoetry/*
+!dotconfig/qt*/qt*
 !dotconfig/swaylock/*
 !dotconfig/task/**
 !dotconfig/waybar/*

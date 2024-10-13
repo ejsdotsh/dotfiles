@@ -218,6 +218,12 @@ label:focus {
   background-color: @overlay0;
 }
 
+#custom-launcher {
+  padding: 0px 25px 0px 20;
+  margin: 7px 0px 10px 20px;
+  background-color: @overlay0;
+}
+
 #custom-media.custom-spotify {
   /* background-color: #66cc99; */
 }
