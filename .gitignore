@@ -54,6 +54,7 @@ dotconfig/nvim/lua/plugins/example.lua
 !dotconfig/task/**
 !dotconfig/waybar/*
 dotconfig/waybar/config
+!dotconfig/way-displays/*
 !dotconfig/xsettingsd/*
 !dotconfig/zathura/*
 
