@@ -16,8 +16,13 @@ if [[ $OSTYPE == darwin* ]]; then
 	export SHELL=/bin/bash
 fi
 
-# set editor
+# set XDG paths
+export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
+export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
+export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
+export XDG_CURRENT_DESKTOP=river
 
+# set editor
 export EDITOR="helix"
 export VISUAL="helix"
 export LC_ALL="en_US.UTF-8"
@@ -103,5 +108,3 @@ if [ -f '/home/ejs/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/home/ej
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/ejs/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/home/ejs/Downloads/google-cloud-sdk/completion.bash.inc'; fi
-
-
