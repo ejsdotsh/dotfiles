@@ -136,9 +136,9 @@ do
 done
 
 # Set background and border color
-riverctl background-color 0x002b36
-riverctl border-color-focused 0x93a1a1
-riverctl border-color-unfocused 0x586e75
+riverctl background-color 0x1e1e2e
+riverctl border-color-focused 0xb4befe
+riverctl border-color-unfocused 0x6c7086
 
 # Set keyboard repeat rate
 riverctl set-repeat 50 300
