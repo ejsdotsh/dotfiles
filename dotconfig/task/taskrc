@@ -14,7 +14,7 @@ hooks.location=$XDG_CONFIG_HOME/task/hooks
 bulk=0
 confirmation=off
 
-# news.version=3.3.0
+news.version=3.4.0
 
 # set the list report to default
 default.command=list
@@ -49,4 +49,3 @@ report.next.sort        = effort-,priority-,urgency-
 
 # don't add urgency for projects
 urgency.project.coefficient = 0
-

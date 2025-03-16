@@ -35,15 +35,15 @@ SCALE:
 # for a possible workaround.
 MODE:
   # Resolution and refresh
-  # - NAME_DESC: eDP-1
-  #   WIDTH: 3840
-  #   HEIGHT: 2160
-  #  HZ: 60
+  - NAME_DESC: eDP-1
+    WIDTH: 3840
+    HEIGHT: 2400
+    HZ: 60
 
   - NAME_DESC: DP-1
     WIDTH: 3840
     HEIGHT: 2160
-  #  HZ: 60
+    # HZ: 60
 
   - NAME_DESC: DP-2
     WIDTH: 3840
@@ -58,7 +58,8 @@ TRANSFORM:
 
 # VRR / adaptive sync is enabled by default. Disable it per display.
 VRR_OFF:
-  # - DP-2
+  # - '.*'
+  - DP-1
   # - '!.*my monitor.*'
 
 # Sets a `/bin/sh` command to be executed when display configurations are successfully changed.
@@ -71,7 +72,7 @@ VRR_OFF:
 #LAPTOP_DISPLAY_PREFIX: 'eDP'
 
 # One of: ERROR, WARNING, INFO (default), DEBUG
-LOG_THRESHOLD: INFO
+LOG_THRESHOLD: DEBUG
 
 # Disable the specified displays.
 DISABLED:
