@@ -152,7 +152,7 @@ riverctl spawn "wl-paste --type text --watch cliphist store"
 riverctl spawn "wl-paste --type images --watch cliphist store"
 
 # output switching
-# riverctl spawn kanshi
+riverctl spawn kanshi
 way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1 &
 
 # notifications

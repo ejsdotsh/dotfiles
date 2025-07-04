@@ -133,3 +133,8 @@ args = [
  "--outdir=build",
  "-Zshell-escape",
  ]
+
+ [[language]]
+ name = "typst"
+ formatter = { command = "typstyle", args = ["-i", "-"] }
+ auto-format = true
