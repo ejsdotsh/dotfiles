@@ -10,7 +10,7 @@
     "spacing": 4, // Gaps between modules (4px)
     // the order of the modules
     "modules-left": [
-      "custom/launcher",
+      // "custom/launcher",
       "river/window"
     ],
     "modules-center": [
@@ -232,24 +232,27 @@
       // "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
       // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     }
-  },
-  {
-    "name": "leftbar",
-    "output": [ "eDP-1", "DP-1" ],
-    "layer": "top",
-    "position": "left",
-    // "height": 35,
-    "width": 64,
-    "modules-left": [ ],
-    "modules-center": [
-      "wlr/taskbar"
-    ],
-    "modules-right": [ ],
-    "wlr/taskbar": {
-      "format": "{icon}",
-      "icon-size": 32,
-      "tooltip": true,
-      "on-click": "activate"
-    }
   }
+  // {
+  //   "name": "leftbar",
+  //   "output": [
+  //     "eDP-1",
+  //     "DP-1"
+  //   ],
+  //   "layer": "top",
+  //   "position": "left",
+  //   // "height": 35,
+  //   "width": 64,
+  //   "modules-left": [],
+  //   "modules-center": [
+  //     "wlr/taskbar"
+  //   ],
+  //   "modules-right": [],
+  //   "wlr/taskbar": {
+  //     "format": "{icon}",
+  //     "icon-size": 32,
+  //     "tooltip": true,
+  //     "on-click": "activate"
+  //   }
+  // }
 ]
