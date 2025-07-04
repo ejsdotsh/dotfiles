@@ -159,7 +159,8 @@ way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1 &
 riverctl spawn mako
 
 # status bar
-riverctl spawn waybar
+# riverctl spawn waybar
+bash /home/ejs/repo/SB/ejsdotsh/dotfiles/scripts/waybar.sh
 bash /home/ejs/repo/SB/ejsdotsh/dotfiles/scripts/locker.sh
 
 # Make all views with an app-id that starts with "float" and title "foo" start floating.
