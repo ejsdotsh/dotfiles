@@ -10,4 +10,5 @@ set statusbar-h-padding		10
 set statusbar-v-padding		10
 set database "sqlite"
 
-include catppuccin-mocha
+# include catppuccin-mocha
+include catppuccin-latte

@@ -25,6 +25,8 @@ fi
 # ln -s "${DTFS}/dotcofig" ~/.config
 mkdir -p ~/.config
 mkdir -p ~/bin
+mkdir -P ~/Documents/books
+mkdir -p ~/Downloads
 mkdir -p ~/Pictures/screenshots
 mkdir -p ~/local/share/applications
 mkdir -p ~/local/share/fonts
