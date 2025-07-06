@@ -30,6 +30,7 @@ dotconfig/btop/*.log
 !dotconfig/code-flags.conf
 !dotconfig/electron-flags.conf
 
+!dotconfig/dprint/dprint.json
 !dotconfig/fuzzel/fuzzel.ini
 !dotconfig/helix/*.toml
 dotconfig/helix/runtime/**

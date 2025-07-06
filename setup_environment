@@ -7,16 +7,15 @@
 #
 # usage:
 #     - ./setup_environment
-# 
+#
 # requirements:
 #     - ensure that `DTFS` is exported/defined
-# 
+#
 # export DTFS="/path/to/this/repository"
 
 set -x
 
-if [ $(id -u) -eq 0 ]
-then
+if [ $(id -u) -eq 0 ]; then
   echo "you must NOT be root"
   exit 1
 fi
@@ -32,7 +31,14 @@ mkdir -p ~/local/share/applications
 mkdir -p ~/local/share/fonts
 mkdir -p ~/logs
 
-# bash
+# dprint
+function dprint() {
+  if [[ ! -e "~/.dprint.json" ]]; then
+    ln -s "${DTFS}/dotconfig/dprint.json" ~/.dprint.json
+  fi
+}
+
+# bash environment
 function dotbash() {
   for dbf in dotbash/*; do
     echo "~/${dbf/*\//.}"
@@ -59,7 +65,7 @@ function dotbash() {
 #       mv ~/.config/"$(basename $dc)" ~/.config/"$(basename $dc)-bak"
 #     fi
 #     echo "ln -s $(pwd)/${dc} ~/.config/$(basename $dc)"
-#     ln -s "$(pwd)"/"${dc}" ~/.config/"$(basename $dc)" 
+#     ln -s "$(pwd)"/"${dc}" ~/.config/"$(basename $dc)"
 #   done
 # }
 
