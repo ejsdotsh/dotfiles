@@ -16,7 +16,7 @@
 !scripts/*
 
 !setup_environment
-!endeavour_packages.txt
+# !endeavour_packages.txt
 
 !dotbash/*
 
