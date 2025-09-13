@@ -59,7 +59,7 @@ fi
 
 ## jsonnet path
 export JSONNET_PATH="lib/:vendor/"
-export PATH="$DTFS/scripts:$HOME/.local/bin:${GOPATH}/bin:${GOROOT}/bin:.cargo/bin:$PATH:/usr/local/protobuf/bin:$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin"
+export PATH="$DTFS/scripts:$HOME/.local/bin:${GOPATH}/bin:${GOROOT}/bin:$HOME/.cargo/bin:$PATH:/usr/local/protobuf/bin:$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin"
 
 # source functions
 for FF in "$DTFS"/scripts/{bash_functions,container_functions}; do

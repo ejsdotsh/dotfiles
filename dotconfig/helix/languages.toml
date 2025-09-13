@@ -1,9 +1,13 @@
-[language-server.pyright.config.python.analysis]
-typeCheckingMode = "basic"
+# [language-server.pyright.config.python.analysis]
+# typeCheckingMode = "basic"
 
-[language-server.ruff]
-command = "ruff"
-args = ["server"]
+[language-server.pyrefly]
+command = "pyrefly"
+args = ["lsp"]
+
+# [language-server.ruff]
+# command = "ruff"
+# args = ["server"]
 
 # [language-server.ruff.config.settings]
 # args = ["--ignore", "E501"]
@@ -66,7 +70,8 @@ name = "env"
 
 [[language]]
 name = "python"
-language-servers = ["ruff", "pyright"]
+# language-servers = ["ruff", "pyright"]
+language-servers = ["pyrefly", "ruff"]
 auto-format = true
 formatter = { command = "dprint", args = ["fmt", "--stdin", "python"] }
 
@@ -148,3 +153,10 @@ auto-format = true
 # name = "yaml"
 # auto-format = true
 # formatter = { command = "dprint", args = ["fmt", "--stdin", "yaml"] }
+
+[[language]]
+name = "nickel"
+language-servers = ["nls"]
+
+[language-server.nls]
+command = "nls"
