@@ -36,7 +36,7 @@ set render-loading-fg		      rgba(205,214,244,1)
 set highlight-color		        rgba(87,82,104,0.5)
 set highlight-fg              rgba(245,194,231,0.5)
 set highlight-active-color	  rgba(245,194,231,0.5)
-=======
+
 set default-fg                "#CDD6F4"
 set default-bg 			          "#1E1E2E"
 

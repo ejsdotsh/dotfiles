@@ -16,6 +16,7 @@
 !scripts/*
 
 !setup_environment
+# !endeavour_packages.txt
 
 !dotbash/*
 
@@ -29,6 +30,7 @@ dotconfig/btop/*.log
 !dotconfig/code-flags.conf
 !dotconfig/electron-flags.conf
 
+!dotconfig/dprint/dprint.json
 !dotconfig/fuzzel/fuzzel.ini
 !dotconfig/helix/*.toml
 dotconfig/helix/runtime/**
@@ -54,6 +56,7 @@ dotconfig/nvim/lua/plugins/example.lua
 !dotconfig/task/**
 !dotconfig/waybar/*
 dotconfig/waybar/config
+!dotconfig/way-displays/*
 !dotconfig/xsettingsd/*
 !dotconfig/zathura/*
 

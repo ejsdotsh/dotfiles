@@ -136,9 +136,9 @@ do
 done
 
 # Set background and border color
-riverctl background-color 0x002b36
-riverctl border-color-focused 0x93a1a1
-riverctl border-color-unfocused 0x586e75
+riverctl background-color 0x1e1e2e
+riverctl border-color-focused 0xb4befe
+riverctl border-color-unfocused 0x6c7086
 
 # Set keyboard repeat rate
 riverctl set-repeat 50 300
@@ -153,17 +153,20 @@ riverctl spawn "wl-paste --type images --watch cliphist store"
 
 # output switching
 riverctl spawn kanshi
+way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1 &
 
 # notifications
 riverctl spawn mako
 
 # status bar
-riverctl spawn waybar
+# riverctl spawn waybar
+bash /home/ejs/repo/SB/ejsdotsh/dotfiles/scripts/waybar.sh
 bash /home/ejs/repo/SB/ejsdotsh/dotfiles/scripts/locker.sh
 
 # Make all views with an app-id that starts with "float" and title "foo" start floating.
 # riverctl rule-add -app-id 'float*' -title 'foo' float
 riverctl rule-add -title 1Password float
+riverctl rule-add -title rpi-imager float
 
 # Make all views with app-id "bar" and any title use client-side decorations
 # riverctl rule-add -app-id "bar" csd
