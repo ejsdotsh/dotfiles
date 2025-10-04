@@ -44,6 +44,7 @@ dotconfig/helix/runtime/**
 !dotconfig/lazygit/config.yml
 !dotconfig/mako/*
 !dotconfig/neofetch/*
+!dotconfig/niri/**
 !dotconfig/nvim/init.lua
 !dotconfig/nvim/**
 dotconfig/nvim/lua/plugins/example.lua

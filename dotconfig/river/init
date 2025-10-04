@@ -5,17 +5,18 @@
 riverctl input pointer-* natural-scroll enabled
 riverctl focus-follows-cursor normal
 riverctl set-cursor-warp on-focus-change
+riverctl map normal Super+Shift F toggle-float
 
 # Super + Left Mouse Button to move views
 riverctl map-pointer normal Super BTN_LEFT move-view
 # Super + Right Mouse Button to resize views
 riverctl map-pointer normal Super BTN_RIGHT resize-view
 # Super + Middle Mouse Button to toggle float
-riverctl map-pointer normal Super BTN_MIDDLE toggle-float
+# riverctl map-pointer normal Super BTN_MIDDLE toggle-float
 
 # keybindings to spawn stuff
 riverctl map normal Super Return spawn kitty
-riverctl map normal Super+Shift F spawn firefox
+# riverctl map normal Super+Shift F spawn firefox
 riverctl map normal Super Space spawn fuzzel
 
 # Super+Q to close the focused view
@@ -152,8 +153,8 @@ riverctl spawn "wl-paste --type text --watch cliphist store"
 riverctl spawn "wl-paste --type images --watch cliphist store"
 
 # output switching
-riverctl spawn kanshi
-way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1 &
+# riverctl spawn kanshi
+riverctl spawn way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1 &
 
 # notifications
 riverctl spawn mako

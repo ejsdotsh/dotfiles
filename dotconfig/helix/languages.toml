@@ -73,7 +73,8 @@ name = "python"
 # language-servers = ["ruff", "pyright"]
 language-servers = ["pyrefly", "ruff"]
 auto-format = true
-formatter = { command = "dprint", args = ["fmt", "--stdin", "python"] }
+# formatter = { command = "dprint", args = ["fmt", "--stdin", "python"] }
+formatter = { command = "ruff", args = ["format", "--stdin-filename", "%{buffer_name}", "-"] }
 
 [[language]]
 name = "go"
