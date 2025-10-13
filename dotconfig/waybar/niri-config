@@ -7,11 +7,11 @@
     "height": 48, // Waybar height (to be removed for auto height)
     "margin": "0 0 0 0",
     // "width": 1280,   // Waybar width
-    "spacing": 4px, // Gaps between modules (4px)
+    "spacing": 4, // Gaps between modules (4px)
     // the order of the modules
     "modules-left": [
       // "custom/launcher",
-      "niri/window"
+      "niri/window",
     ],
     "modules-center": [
       "niri/workspaces"
