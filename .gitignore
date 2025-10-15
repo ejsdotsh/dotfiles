@@ -49,11 +49,10 @@ dotconfig/helix/runtime/**
 !dotconfig/nvim/**
 dotconfig/nvim/lua/plugins/example.lua
 !dotconfig/pypoetry/*
-!dotconfig/qt*/qt*
 !dotconfig/river/init
-!dotconfig/pypoetry/*
 !dotconfig/qt*/qt*
 !dotconfig/swaylock/*
+!dotconfig/systemd/user/swayidle.service
 !dotconfig/task/**
 !dotconfig/waybar/*
 dotconfig/waybar/config
