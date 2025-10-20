@@ -82,6 +82,12 @@ auto-format = true
 formatter = { command = "goimports" }
 
 [[language]]
+name = "rust"
+auto-format = true
+language-servers = ["rust-analyzer"]
+formatter = { command = "rustfmt" }
+
+[[language]]
 name = "markdown"
 language-servers = ["marksman", "ltex-ls"]
 # language-servers = ["marksman"]
