@@ -12,6 +12,7 @@
   "yaml": {
   },
   "excludes": [
+    "**/exp",
     "**/*-lock.json",
     "**/node_modules"
   ],
