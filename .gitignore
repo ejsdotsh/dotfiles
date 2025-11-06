@@ -12,6 +12,8 @@
 !Makefile
 !README.md
 
+!dprint.json
+
 !docs/**
 !scripts/*
 
