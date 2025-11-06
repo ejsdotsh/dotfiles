@@ -69,8 +69,4 @@ dotconfig/waybar/config
 !templates/**
 
 # ignore everything written to .config by applications
-
-dotconfig/nvim/lazy-lock.json
-dotconfig/nvim/lazyvim.json
-dotconfig/Code
-dotconfig/microsoft-edge-*
+dotconfig/**

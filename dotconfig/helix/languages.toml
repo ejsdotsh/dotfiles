@@ -5,12 +5,12 @@
 command = "pyrefly"
 args = ["lsp"]
 
-# [language-server.ruff]
-# command = "ruff"
-# args = ["server"]
+[language-server.ruff]
+command = "ruff"
+args = ["server"]
 
-# [language-server.ruff.config.settings]
-# args = ["--ignore", "E501"]
+[language-server.ruff.config.settings]
+args = ["--ignore", "E501"]
 
 [language-server.ltex-ls.config]
 ltex.disabledRules = { "en-US" = ["PROFANITY"] }
@@ -89,8 +89,7 @@ formatter = { command = "rustfmt" }
 
 [[language]]
 name = "markdown"
-language-servers = ["marksman", "ltex-ls"]
-# language-servers = ["marksman"]
+language-servers = ["marksman", "ltex-ls-plus"]
 auto-format = true
 formatter = { command = "dprint", args = ["fmt", "--stdin", "md"] }
 
@@ -161,9 +160,9 @@ auto-format = true
 # auto-format = true
 # formatter = { command = "dprint", args = ["fmt", "--stdin", "yaml"] }
 
+[language-server.nls]
+command = "nls"
+
 [[language]]
 name = "nickel"
 language-servers = ["nls"]
-
-[language-server.nls]
-command = "nls"
