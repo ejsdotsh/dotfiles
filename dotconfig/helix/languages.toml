@@ -62,6 +62,55 @@ validation = true
 [[language]]
 name = "awk"
 
+[language-server.pyrefly]
+command = "pyrefly"
+args = ["lsp"]
+
+# [language-server.ruff]
+# command = "ruff"
+# args = ["server"]
+
+[[language]]
+name = "python"
+# language-servers = ["ruff", "pyright"]
+language-servers = ["pyrefly", "ruff"]
+auto-format = true
+# formatter = { command = "dprint", args = ["fmt", "--stdin", "python"] }
+formatter = { command = "ruff", args = ["format", "--stdin-filename", "%{buffer_name}", "-"] }
+
+[language-server.texlab.config.texlab.chktex]
+onOpenAndSave = true
+onEdit = true
+
+[language-server.texlab.config.texlab.forwardSearch]
+executable = "zathura"
+args = ["--synctex-forward", "%l:%c:%f", "%p"]
+
+[language-server.texlab.config.texlab.build]
+forwardSearchAfter = true
+onSave = true
+
+executable = "tectonic"
+args = [
+  "-X",
+  "compile",
+  "%f",
+  "--synctex",
+  "--keep-logs",
+  "--keep-intermediates",
+  "--outdir=build",
+  "-Zshell-escape",
+]
+
+[[language]]
+name = "rust"
+auto-format = true
+language-servers = ["rust-analyzer"]
+formatter = { command = "rustfmt" }
+
+[[language]]
+name = "awk"
+
 [[language]]
 name = "bash"
 
@@ -73,19 +122,12 @@ name = "python"
 # language-servers = ["ruff", "pyright"]
 language-servers = ["pyrefly", "ruff"]
 auto-format = true
-# formatter = { command = "dprint", args = ["fmt", "--stdin", "python"] }
-formatter = { command = "ruff", args = ["format", "--stdin-filename", "%{buffer_name}", "-"] }
+formatter = { command = "dprint", args = ["fmt", "--stdin", "python"] }
 
 [[language]]
 name = "go"
 auto-format = true
 formatter = { command = "goimports" }
-
-[[language]]
-name = "rust"
-auto-format = true
-language-servers = ["rust-analyzer"]
-formatter = { command = "rustfmt" }
 
 [[language]]
 name = "markdown"
