@@ -5,12 +5,12 @@
 command = "pyrefly"
 args = ["lsp"]
 
-# [language-server.ruff]
-# command = "ruff"
-# args = ["server"]
+[language-server.ruff]
+command = "ruff"
+args = ["server"]
 
-# [language-server.ruff.config.settings]
-# args = ["--ignore", "E501"]
+[language-server.ruff.config.settings]
+args = ["--ignore", "E501"]
 
 [language-server.ltex-ls.config]
 ltex.disabledRules = { "en-US" = ["PROFANITY"] }
@@ -62,6 +62,55 @@ validation = true
 [[language]]
 name = "awk"
 
+[language-server.pyrefly]
+command = "pyrefly"
+args = ["lsp"]
+
+# [language-server.ruff]
+# command = "ruff"
+# args = ["server"]
+
+[[language]]
+name = "python"
+# language-servers = ["ruff", "pyright"]
+language-servers = ["pyrefly", "ruff"]
+auto-format = true
+# formatter = { command = "dprint", args = ["fmt", "--stdin", "python"] }
+formatter = { command = "ruff", args = ["format", "--stdin-filename", "%{buffer_name}", "-"] }
+
+[language-server.texlab.config.texlab.chktex]
+onOpenAndSave = true
+onEdit = true
+
+[language-server.texlab.config.texlab.forwardSearch]
+executable = "zathura"
+args = ["--synctex-forward", "%l:%c:%f", "%p"]
+
+[language-server.texlab.config.texlab.build]
+forwardSearchAfter = true
+onSave = true
+
+executable = "tectonic"
+args = [
+  "-X",
+  "compile",
+  "%f",
+  "--synctex",
+  "--keep-logs",
+  "--keep-intermediates",
+  "--outdir=build",
+  "-Zshell-escape",
+]
+
+[[language]]
+name = "rust"
+auto-format = true
+language-servers = ["rust-analyzer"]
+formatter = { command = "rustfmt" }
+
+[[language]]
+name = "awk"
+
 [[language]]
 name = "bash"
 
@@ -82,8 +131,7 @@ formatter = { command = "goimports" }
 
 [[language]]
 name = "markdown"
-language-servers = ["marksman", "ltex-ls"]
-# language-servers = ["marksman"]
+language-servers = ["marksman", "ltex-ls-plus"]
 auto-format = true
 formatter = { command = "dprint", args = ["fmt", "--stdin", "md"] }
 
@@ -154,9 +202,9 @@ auto-format = true
 # auto-format = true
 # formatter = { command = "dprint", args = ["fmt", "--stdin", "yaml"] }
 
+[language-server.nls]
+command = "nls"
+
 [[language]]
 name = "nickel"
 language-servers = ["nls"]
-
-[language-server.nls]
-command = "nls"
