@@ -1,5 +1,24 @@
-# [language-server.pyright.config.python.analysis]
-# typeCheckingMode = "basic"
+[language-server.yaml-language-server.config.yaml]
+format = { enable = true }
+validation = true
+
+[language-server.yaml-language-server.config.yaml.schemas]
+"https://json.schemastore.org/github-workflow.json" = ".github/workflows/*.{yml,yaml}"
+"https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-tasks.json" = "roles/{tasks,handlers}/*.{yml,yaml}"
+
+[[language]]
+name = "yaml"
+auto-format = true
+formatter = { command = "dprint", args = ["fmt", "--stdin", "yaml"] }
+
+[[language]]
+name = "awk"
+
+[[language]]
+name = "bash"
+
+[[language]]
+name = "env"
 
 [language-server.pyrefly]
 command = "pyrefly"
@@ -12,65 +31,8 @@ args = ["server"]
 [language-server.ruff.config.settings]
 args = ["--ignore", "E501"]
 
-[language-server.ltex-ls.config]
-ltex.disabledRules = { "en-US" = ["PROFANITY"] }
-ltex.dictionary = { "en-US" = ["builtin"] }
-
-# [language.formatter]
-# command = "black"
-# args = ["--quiet", "-"]
-
-[language-server.terraform-ls]
-command = "terraform-ls"
-args = ["serve"]
-
-[language-server.texlab.config.texlab]
-auxDirectory = "build"
-
-[language-server.texlab.config.texlab.chktex]
-onOpenAndSave = true
-onEdit = true
-
-[language-server.texlab.config.texlab.forwardSearch]
-executable = "zathura"
-args = ["--synctex-forward", "%l:%c:%f", "%p"]
-
-[language-server.texlab.config.texlab.build]
-forwardSearchAfter = true
-onSave = true
-
-executable = "tectonic"
-args = [
-  "-X",
-  "compile",
-  "%f",
-  "--synctex",
-  "--keep-logs",
-  "--keep-intermediates",
-  "--outdir=build",
-  "-Zshell-escape",
-]
-
-[language-server.yaml-language-server.config.yaml]
-format = { enable = true }
-validation = true
-
-[language-server.yaml-language-server.config.yaml.schemas]
-"https://json.schemastore.org/github-workflow.json" = ".github/workflows/*.{yml,yaml}"
-"https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-tasks.json" = "roles/{tasks,handlers}/*.{yml,yaml}"
-
-[[language]]
-name = "awk"
-
-[[language]]
-name = "bash"
-
-[[language]]
-name = "env"
-
 [[language]]
 name = "python"
-# language-servers = ["ruff", "pyright"]
 language-servers = ["pyrefly", "ruff"]
 auto-format = true
 # formatter = { command = "dprint", args = ["fmt", "--stdin", "python"] }
@@ -81,15 +43,26 @@ name = "go"
 auto-format = true
 formatter = { command = "goimports" }
 
+[language-server.gopls]
+command = "gopls"
+args = ["-logfile=/tmp/gopls.log", "serve"]
+[language-server.gopls.config]
+"ui.diagnostic.staticcheck" = true
+gofumpt = "true"
+
 [[language]]
 name = "rust"
 auto-format = true
 language-servers = ["rust-analyzer"]
 formatter = { command = "rustfmt" }
 
+[language-server.ltex-ls.config]
+ltex.disabledRules = { "en-US" = ["PROFANITY"] }
+ltex.dictionary = { "en-US" = ["builtin"] }
+
 [[language]]
 name = "markdown"
-language-servers = ["marksman", "ltex-ls-plus"]
+language-servers = ["marksman", "ltex-ls"]
 auto-format = true
 formatter = { command = "dprint", args = ["fmt", "--stdin", "md"] }
 
@@ -104,6 +77,10 @@ command = "sqls"
 name = "toml"
 auto-format = true
 formatter = { command = "dprint", args = ["fmt", "--stdin", "toml"] }
+
+[language-server.terraform-ls]
+command = "terraform-ls"
+args = ["serve"]
 
 [[language]]
 name = "hcl"
@@ -147,18 +124,44 @@ formatter = { command = "dprint", args = ["fmt", "--stdin", "json"] }
 name = "jsonnet"
 formatter = { command = "jsonnetfmt", args = ["-i", "*.jsonnet"] }
 
+[language-server.texlab.config.texlab]
+auxDirectory = "build"
+
+[language-server.texlab.config.texlab.chktex]
+onOpenAndSave = true
+onEdit = true
+
+[language-server.texlab.config.texlab.forwardSearch]
+executable = "zathura"
+args = ["--synctex-forward", "%l:%c:%f", "%p"]
+
+[language-server.texlab.config.texlab.build]
+forwardSearchAfter = true
+onSave = true
+
+executable = "tectonic"
+args = [
+  "-X",
+  "compile",
+  "%f",
+  "--synctex",
+  "--keep-logs",
+  "--keep-intermediates",
+  "--outdir=build",
+  "-Zshell-escape",
+]
+
 [[language]]
 name = "latex"
 
+[language-server.tinymist]
+command = "tinymist"
+
 [[language]]
 name = "typst"
+language-servers = ["tinymist"]
 formatter = { command = "typstyle", args = ["-i", "-"] }
 auto-format = true
-
-# [[language]]
-# name = "yaml"
-# auto-format = true
-# formatter = { command = "dprint", args = ["fmt", "--stdin", "yaml"] }
 
 [language-server.nls]
 command = "nls"
