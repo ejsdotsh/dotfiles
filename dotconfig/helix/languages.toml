@@ -48,7 +48,7 @@ command = "gopls"
 args = ["-logfile=/tmp/gopls.log", "serve"]
 [language-server.gopls.config]
 "ui.diagnostic.staticcheck" = true
-gofumpt = "true"
+gofumpt = true
 
 [[language]]
 name = "rust"

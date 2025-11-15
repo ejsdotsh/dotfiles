@@ -90,6 +90,9 @@ alias rebash='source ~/.bashrc'
 alias unbrewall='brew uninstall --formula $(brew list)'
 alias terraform='tofu'
 
+### mount the clouds
+alias mntbox='rclone mount box:docs/tech-docs ~/Documents/btd'
+
 ### taskw & gtd
 alias in='task add +@inbox pro:inbox'
 alias ct='clear && task'
@@ -97,7 +100,7 @@ alias tick=tickle
 alias think='tickle +1d'
 
 ### kubernetes
-alias kc='kubectl'
+alias kbc='kubectl'
 alias cic='cilium-cli'
 alias y2j='yaml2jsonnet'
 
