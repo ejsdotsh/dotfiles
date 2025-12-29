@@ -3,7 +3,7 @@
 # Ignore everything
 *
 
-# But not these files...
+# Then unignore...
 # ...even if they are in subdirectories
 !*/
 
@@ -15,15 +15,20 @@
 !dprint.json
 
 !docs/**
-!scripts/*
+!scripts/**
 
 !setup_environment
 # !endeavour_packages.txt
 
 !dotbash/*
 
+
+# ignore everything written to .config by applications
+# dotconfig/
+
+# allowed folders and files
 !dotconfig/btop/*
-dotconfig/btop/*.log
+# dotconfig/btop/*.log
 
 !dotconfig/git/*
 !dotconfig/gtk-*/settings.ini
@@ -42,7 +47,7 @@ dotconfig/helix/runtime/**
 !dotconfig/git/*
 !dotconfig/gtk-*/settings.ini
 !dotconfig/hypr/*
-!dotconfig/kitty/*
+!dotconfig/kitty/**
 !dotconfig/lazygit/config.yml
 !dotconfig/mako/*
 !dotconfig/neofetch/*
@@ -56,17 +61,14 @@ dotconfig/nvim/lua/plugins/example.lua
 !dotconfig/swaylock/*
 !dotconfig/systemd/user/swayidle.service
 !dotconfig/task/**
+!dotconfig/timewarrior/**
 !dotconfig/waybar/*
+# ignore the symlink
 dotconfig/waybar/config
 !dotconfig/way-displays/*
 !dotconfig/xsettingsd/*
+!dotconfig/yazi/*
 !dotconfig/zathura/*
-
-!dotconfig/timewarrior/**
-
-!dotlocal/bin/*
-
-!dotssh/config
 
 !templates/**
 

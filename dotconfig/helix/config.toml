@@ -3,7 +3,8 @@ theme = "catppuccin_mocha"
 [editor]
 auto-save = true
 auto-format = true
-bufferline = "multiple"
+# bufferline = "multiple"
+bufferline = "always"
 color-modes = true
 completion-replace = true
 cursorcolumn = false

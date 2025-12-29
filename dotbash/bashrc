@@ -42,7 +42,11 @@ export LS_COLORS="$(vivid generate catppuccin-mocha)"
 # Don’t clear the screen after quitting a manual page.
 export MANPAGER='less -X'
 
-# Add stuff to `$PATH`
+## ENV exports from 1Password
+# op signin
+# export GROQ_API_KEY=$(op read op://Private/GROQ_API_KEY/credential)
+
+# Add environment variables for commonly used paths
 export GOPATH="${HOME}/go"
 export SB="${HOME}/repo/SB"
 export DTFS="${SB}/ejsdotsh/dotfiles"
@@ -90,13 +94,18 @@ alias rebash='source ~/.bashrc'
 alias unbrewall='brew uninstall --formula $(brew list)'
 alias terraform='tofu'
 
+### mount the clouds
+alias mntbox='rclone mount box:docs/tech-docs ~/Documents/btd --vfs-cache-mode full'
+alias mntodd='rclone mount onedrive:Documents ~/Documents/odd --vfs-cache-mode full'
+
 ### taskw & gtd
 alias in='task add +@inbox pro:inbox'
+alias ct='clear && task'
 alias tick=tickle
 alias think='tickle +1d'
 
 ### kubernetes
-alias kc='kubectl'
+alias kbc='kubectl'
 alias cic='cilium-cli'
 alias y2j='yaml2jsonnet'
 
@@ -108,3 +117,9 @@ if [ -f '/home/ejs/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/home/ej
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/ejs/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/home/ejs/Downloads/google-cloud-sdk/completion.bash.inc'; fi
+
+# shell completions
+eval "$(pixi completion --shell bash)"
+
+# load direnv
+eval "$(direnv hook bash)"

@@ -1,4 +1,0 @@
-#!/bin/bash
-
-/usr/bin/1password --enable-features=UseOzonePlatform --ozone-platform=wayland
-

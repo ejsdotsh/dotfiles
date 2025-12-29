@@ -1,0 +1,12 @@
+[opener]
+edit = [
+  { run = 'helix "$@"', block = true },
+]
+open = [
+  { run = 'glow "$@"', block = true, desc = "Glow" },
+]
+
+[open]
+prepend_rules = [
+  { name = "*.md", use = ["open", "edit"] },
+]

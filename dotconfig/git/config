@@ -1,7 +1,7 @@
 [user]
 	name = "e.j. (they/them)"
 	email = git@ejs.sh
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKuJeY8f+EhHp99XkW5k8mLom3Lt1Dsd03ZAHJWgHiou
+	signingkey = /home/ejs/.ssh/id_ed25519.pub
 
 [gpg]
 	format = ssh
@@ -47,3 +47,5 @@
 [push]
 	autoSetupRemote = true
 
+[tag]
+	gpgsign = true

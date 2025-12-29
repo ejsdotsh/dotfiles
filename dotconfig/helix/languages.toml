@@ -1,5 +1,88 @@
-# [language-server.pyright.config.python.analysis]
-# typeCheckingMode = "basic"
+########################################
+## Configuration for language-servers ##
+########################################
+
+##############################
+## Configuration for lsp-ai ##
+##############################
+
+[language-server.lsp-ai]
+command = "lsp-ai"
+
+[language-server.lsp-ai.config.memory]
+file_store = {}
+
+[language-server.lsp-ai.config.models.model1]
+type = "open_ai"
+chat_endpoint = "https://api.groq.com/openai/v1/chat/completions"
+model = "llama3-70b-8192"
+auth_token_env_var_name = "GROQ_API_KEY"
+
+[language-server.lsp-ai.config.completion]
+model = "model1"
+
+[language-server.lsp-ai.config.completion.parameters]
+max_tokens = 64
+max_context = 1024
+
+## Configure the messages per your needs
+[[language-server.lsp-ai.config.completion.parameters.messages]]
+role = "system"
+content = "Instructions:\n- You are an AI programming assistant.\n- Given a piece of code with the cursor location marked by \"<CURSOR>\", replace \"<CURSOR>\" with the correct code or comment.\n- First, think step-by-step.\n- Describe your plan for what to build in pseudocode, written out in great detail.\n- Then output the code replacing the \"<CURSOR>\"\n- Ensure that your completion fits within the language context of the provided code snippet (e.g., Python, JavaScript, Rust).\n\nRules:\n- Only respond with code or comments.\n- Only replace \"<CURSOR>\"; do not include any previously written code.\n- Never include \"<CURSOR>\" in your response\n- If the cursor is within a comment, complete the comment meaningfully.\n- Handle ambiguous cases by providing the most contextually appropriate completion.\n- Be consistent with your responses."
+
+[[language-server.lsp-ai.config.completion.parameters.messages]]
+role = "user"
+content = "def greet(name):\n    print(f\"Hello, {<CURSOR>}\")"
+
+[[language-server.lsp-ai.config.completion.parameters.messages]]
+role = "assistant"
+content = "name"
+
+[[language-server.lsp-ai.config.completion.parameters.messages]]
+role = "user"
+content = "function sum(a, b) {\n    return a + <CURSOR>;\n}"
+
+[[language-server.lsp-ai.config.completion.parameters.messages]]
+role = "assistant"
+content = "b"
+
+[[language-server.lsp-ai.config.completion.parameters.messages]]
+role = "user"
+content = "fn multiply(a: i32, b: i32) -> i32 {\n    a * <CURSOR>\n}"
+
+[[language-server.lsp-ai.config.completion.parameters.messages]]
+role = "assistant"
+content = "b"
+
+[[language-server.lsp-ai.config.completion.parameters.messages]]
+role = "user"
+content = "# <CURSOR>\ndef add(a, b):\n    return a + b"
+
+[[language-server.lsp-ai.config.completion.parameters.messages]]
+role = "assistant"
+content = "Adds two numbers"
+
+[[language-server.lsp-ai.config.completion.parameters.messages]]
+role = "user"
+content = "# This function checks if a number is even\n<CURSOR>"
+
+[[language-server.lsp-ai.config.completion.parameters.messages]]
+role = "assistant"
+content = "def is_even(n):\n    return n % 2 == 0"
+
+[[language-server.lsp-ai.config.completion.parameters.messages]]
+role = "user"
+content = "{CODE}"
+
+#
+[language-server.ltex-ls.config]
+ltex.disabledRules = { "en-US" = ["PROFANITY"] }
+ltex.dictionary = { "en-US" = ["builtin"] }
+
+
+###############################################
+## Configuration for python language-servers ##
+###############################################
 
 [language-server.pyrefly]
 command = "pyrefly"
@@ -12,20 +95,74 @@ args = ["server"]
 [language-server.ruff.config.settings]
 args = ["--ignore", "E501"]
 
-[language-server.ltex-ls.config]
-ltex.disabledRules = { "en-US" = ["PROFANITY"] }
-ltex.dictionary = { "en-US" = ["builtin"] }
-
-# [language.formatter]
-# command = "black"
-# args = ["--quiet", "-"]
-
-[language-server.terraform-ls]
-command = "terraform-ls"
-args = ["serve"]
+##############################
+## Configuration for texlab ##
+##############################
 
 [language-server.texlab.config.texlab]
 auxDirectory = "build"
+
+[language-server.texlab.config.texlab.chktex]
+onOpenAndSave = true
+onEdit = true
+
+[language-server.texlab.config.texlab.forwardSearch]
+executable = "zathura"
+args = ["--synctex-forward", "%l:%c:%f", "%p"]
+
+[language-server.texlab.config.texlab.build]
+forwardSearchAfter = true
+onSave = true
+executable = "tectonic"
+args = [
+  "-X",
+  "compile",
+  "%f",
+  "--synctex",
+  "--keep-logs",
+  "--keep-intermediates",
+  "--outdir=build",
+  "-Zshell-escape",
+]
+
+################################
+## Configuration for tinymist ##
+################################
+
+[language-server.tinymist]
+command = "tinymist"
+
+############################
+## Configuration for YAML ##
+############################
+
+[language-server.yaml-language-server.config.yaml]
+format = { enable = true }
+validation = true
+
+[language-server.yaml-language-server.config.yaml.schemas]
+"https://json.schemastore.org/github-workflow.json" = ".github/workflows/*.{yml,yaml}"
+"https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-tasks.json" = "roles/{tasks,handlers}/*.{yml,yaml}"
+
+#################################
+## Configuration for languages ##
+#################################
+
+[[language]]
+name = "yaml"
+auto-format = true
+formatter = { command = "dprint", args = ["fmt", "--stdin", "yaml"] }
+
+[[language]]
+name = "awk"
+
+[[language]]
+name = "python"
+# language-servers = ["ruff", "pyright"]
+language-servers = ["pyrefly", "ruff"]
+auto-format = true
+# formatter = { command = "dprint", args = ["fmt", "--stdin", "python"] }
+formatter = { command = "ruff", args = ["format", "--stdin-filename", "%{buffer_name}", "-"] }
 
 [language-server.texlab.config.texlab.chktex]
 onOpenAndSave = true
@@ -51,13 +188,11 @@ args = [
   "-Zshell-escape",
 ]
 
-[language-server.yaml-language-server.config.yaml]
-format = { enable = true }
-validation = true
-
-[language-server.yaml-language-server.config.yaml.schemas]
-"https://json.schemastore.org/github-workflow.json" = ".github/workflows/*.{yml,yaml}"
-"https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-tasks.json" = "roles/{tasks,handlers}/*.{yml,yaml}"
+[[language]]
+name = "rust"
+auto-format = true
+language-servers = ["rust-analyzer"]
+formatter = { command = "rustfmt" }
 
 [[language]]
 name = "awk"
@@ -119,8 +254,7 @@ name = "env"
 
 [[language]]
 name = "python"
-# language-servers = ["ruff", "pyright"]
-language-servers = ["pyrefly", "ruff"]
+language-servers = ["pyrefly", "ruff", "lspai"]
 auto-format = true
 formatter = { command = "dprint", args = ["fmt", "--stdin", "python"] }
 
@@ -128,16 +262,31 @@ formatter = { command = "dprint", args = ["fmt", "--stdin", "python"] }
 name = "go"
 auto-format = true
 formatter = { command = "goimports" }
+language-servers = ["gopls", "lspai"]
+
+[language-server.gopls]
+command = "gopls"
+args = ["-logfile=/tmp/gopls.log", "serve"]
+[language-server.gopls.config]
+"ui.diagnostic.staticcheck" = true
+gofumpt = true
+
+[[language]]
+name = "rust"
+auto-format = true
+language-servers = ["rust-analyzer", "lspai"]
+formatter = { command = "rustfmt" }
 
 [[language]]
 name = "markdown"
-language-servers = ["marksman", "ltex-ls-plus"]
+language-servers = ["marksman", "ltex-ls-plus", "lspai"]
+# language-servers = ["marksman", "ltex-ls-plus"]
 auto-format = true
 formatter = { command = "dprint", args = ["fmt", "--stdin", "md"] }
 
 [[language]]
 name = "sql"
-language-servers = ["sqls"]
+language-servers = ["sqls", "lspai"]
 
 [language-server.sqls]
 command = "sqls"
@@ -147,37 +296,41 @@ name = "toml"
 auto-format = true
 formatter = { command = "dprint", args = ["fmt", "--stdin", "toml"] }
 
+[language-server.terraform-ls]
+command = "terraform-ls"
+args = ["serve"]
+
 [[language]]
 name = "hcl"
-language-servers = ["terraform-ls"]
+language-servers = ["terraform-ls", "lspai"]
 language-id = "terraform"
 
 [[language]]
 name = "tfvars"
-language-servers = ["terraform-ls"]
+language-servers = ["terraform-ls", "lspai"]
 language-id = "terraform-vars"
 
 [[language]]
 name = "html"
-language-servers = ["vscode-html-language-server", "tailwindcss-ls"]
+language-servers = ["vscode-html-language-server", "tailwindcss-ls", "lspai"]
 
 [[language]]
 name = "css"
-language-servers = ["vscode-css-language-server", "tailwindcss-ls"]
+language-servers = ["vscode-css-language-server", "tailwindcss-ls", "lspai"]
 
 [[language]]
 name = "jsx"
-language-servers = ["typescript-language-server", "tailwindcss-ls"]
+language-servers = ["typescript-language-server", "tailwindcss-ls", "lspai"]
 formatter = { command = "dprint", args = ["fmt", "--stdin", "javascript"] }
 
 [[language]]
 name = "tsx"
-language-servers = ["typescript-language-server", "tailwindcss-ls"]
+language-servers = ["typescript-language-server", "tailwindcss-ls", "lspai"]
 formatter = { command = "dprint", args = ["fmt", "--stdin", "typescript"] }
 
 [[language]]
 name = "typescript"
-language-servers = ["typescript-language-server", "tailwindcss-ls"]
+language-servers = ["typescript-language-server", "tailwindcss-ls", "lspai"]
 formatter = { command = "dprint", args = ["fmt", "--stdin", "typescript"] }
 
 [[language]]
@@ -194,17 +347,16 @@ name = "latex"
 
 [[language]]
 name = "typst"
+language-servers = ["tinymist", "lspai"]
 formatter = { command = "typstyle", args = ["-i", "-"] }
 auto-format = true
 
-# [[language]]
-# name = "yaml"
-# auto-format = true
-# formatter = { command = "dprint", args = ["fmt", "--stdin", "yaml"] }
+[language-server.nls]
+command = "nls"
 
 [language-server.nls]
 command = "nls"
 
 [[language]]
 name = "nickel"
-language-servers = ["nls"]
+language-servers = ["nls", "lspai"]

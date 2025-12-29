@@ -1,0 +1,8 @@
+#!/bin/bash
+
+op_env() {
+	local secret
+	secret=$(printf '{{ op://Private/%s/credential }}' "$1" | op inject)
+	export $1=$secret
+}
+
