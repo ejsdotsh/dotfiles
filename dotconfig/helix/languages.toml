@@ -151,6 +151,47 @@ formatter = { command = "dprint", args = ["fmt", "--stdin", "yaml"] }
 name = "awk"
 
 [[language]]
+name = "python"
+# language-servers = ["ruff", "pyright"]
+language-servers = ["pyrefly", "ruff"]
+auto-format = true
+# formatter = { command = "dprint", args = ["fmt", "--stdin", "python"] }
+formatter = { command = "ruff", args = ["format", "--stdin-filename", "%{buffer_name}", "-"] }
+
+[language-server.texlab.config.texlab.chktex]
+onOpenAndSave = true
+onEdit = true
+
+[language-server.texlab.config.texlab.forwardSearch]
+executable = "zathura"
+args = ["--synctex-forward", "%l:%c:%f", "%p"]
+
+[language-server.texlab.config.texlab.build]
+forwardSearchAfter = true
+onSave = true
+
+executable = "tectonic"
+args = [
+  "-X",
+  "compile",
+  "%f",
+  "--synctex",
+  "--keep-logs",
+  "--keep-intermediates",
+  "--outdir=build",
+  "-Zshell-escape",
+]
+
+[[language]]
+name = "rust"
+auto-format = true
+language-servers = ["rust-analyzer"]
+formatter = { command = "rustfmt" }
+
+[[language]]
+name = "awk"
+
+[[language]]
 name = "bash"
 
 [[language]]
@@ -160,8 +201,7 @@ name = "env"
 name = "python"
 language-servers = ["pyrefly", "ruff", "lspai"]
 auto-format = true
-# formatter = { command = "dprint", args = ["fmt", "--stdin", "python"] }
-formatter = { command = "ruff", args = ["format", "--stdin-filename", "%{buffer_name}", "-"] }
+formatter = { command = "dprint", args = ["fmt", "--stdin", "python"] }
 
 [[language]]
 name = "go"
@@ -177,6 +217,7 @@ args = ["-logfile=/tmp/gopls.log", "serve"]
 gofumpt = true
 
 [[language]]
+<<<<<<< HEAD
 name = "rust"
 auto-format = true
 language-servers = ["rust-analyzer", "lspai"]
@@ -187,6 +228,8 @@ ltex.disabledRules = { "en-US" = ["PROFANITY"] }
 ltex.dictionary = { "en-US" = ["builtin"] }
 
 [[language]]
+=======
+>>>>>>> 0625945ff55c89c01bdab4b5ce625627e6066267
 name = "markdown"
 language-servers = ["marksman", "ltex-ls", "lspai"]
 auto-format = true
