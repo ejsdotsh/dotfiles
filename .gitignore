@@ -24,7 +24,7 @@
 
 
 # ignore everything written to .config by applications
-dotconfig/
+# dotconfig/
 
 # allowed folders and files
 !dotconfig/btop/*
@@ -71,3 +71,6 @@ dotconfig/waybar/config
 !dotconfig/zathura/*
 
 !templates/**
+
+# ignore everything written to .config by applications
+dotconfig/**
