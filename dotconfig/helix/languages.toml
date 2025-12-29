@@ -2,6 +2,9 @@
 ## Configuration for language-servers ##
 ########################################
 
+[language-server.nls]
+command = "nls"
+
 ##############################
 ## Configuration for lsp-ai ##
 ##############################
@@ -79,7 +82,6 @@ content = "{CODE}"
 ltex.disabledRules = { "en-US" = ["PROFANITY"] }
 ltex.dictionary = { "en-US" = ["builtin"] }
 
-
 ###############################################
 ## Configuration for python language-servers ##
 ###############################################
@@ -152,96 +154,6 @@ validation = true
 name = "yaml"
 auto-format = true
 formatter = { command = "dprint", args = ["fmt", "--stdin", "yaml"] }
-
-[[language]]
-name = "awk"
-
-[[language]]
-name = "python"
-# language-servers = ["ruff", "pyright"]
-language-servers = ["pyrefly", "ruff"]
-auto-format = true
-# formatter = { command = "dprint", args = ["fmt", "--stdin", "python"] }
-formatter = { command = "ruff", args = ["format", "--stdin-filename", "%{buffer_name}", "-"] }
-
-[language-server.texlab.config.texlab.chktex]
-onOpenAndSave = true
-onEdit = true
-
-[language-server.texlab.config.texlab.forwardSearch]
-executable = "zathura"
-args = ["--synctex-forward", "%l:%c:%f", "%p"]
-
-[language-server.texlab.config.texlab.build]
-forwardSearchAfter = true
-onSave = true
-
-executable = "tectonic"
-args = [
-  "-X",
-  "compile",
-  "%f",
-  "--synctex",
-  "--keep-logs",
-  "--keep-intermediates",
-  "--outdir=build",
-  "-Zshell-escape",
-]
-
-[[language]]
-name = "rust"
-auto-format = true
-language-servers = ["rust-analyzer"]
-formatter = { command = "rustfmt" }
-
-[[language]]
-name = "awk"
-
-[language-server.pyrefly]
-command = "pyrefly"
-args = ["lsp"]
-
-# [language-server.ruff]
-# command = "ruff"
-# args = ["server"]
-
-[[language]]
-name = "python"
-# language-servers = ["ruff", "pyright"]
-language-servers = ["pyrefly", "ruff"]
-auto-format = true
-# formatter = { command = "dprint", args = ["fmt", "--stdin", "python"] }
-formatter = { command = "ruff", args = ["format", "--stdin-filename", "%{buffer_name}", "-"] }
-
-[language-server.texlab.config.texlab.chktex]
-onOpenAndSave = true
-onEdit = true
-
-[language-server.texlab.config.texlab.forwardSearch]
-executable = "zathura"
-args = ["--synctex-forward", "%l:%c:%f", "%p"]
-
-[language-server.texlab.config.texlab.build]
-forwardSearchAfter = true
-onSave = true
-
-executable = "tectonic"
-args = [
-  "-X",
-  "compile",
-  "%f",
-  "--synctex",
-  "--keep-logs",
-  "--keep-intermediates",
-  "--outdir=build",
-  "-Zshell-escape",
-]
-
-[[language]]
-name = "rust"
-auto-format = true
-language-servers = ["rust-analyzer"]
-formatter = { command = "rustfmt" }
 
 [[language]]
 name = "awk"
@@ -350,12 +262,6 @@ name = "typst"
 language-servers = ["tinymist", "lspai"]
 formatter = { command = "typstyle", args = ["-i", "-"] }
 auto-format = true
-
-[language-server.nls]
-command = "nls"
-
-[language-server.nls]
-command = "nls"
 
 [[language]]
 name = "nickel"
