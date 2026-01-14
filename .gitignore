@@ -27,50 +27,75 @@
 dotconfig/**
 
 # allowed folders and files
-!dotconfig/btop/*
-# dotconfig/btop/*.log
+!dotconfig/btop/btop.conf
 
-!dotconfig/git/*
-!dotconfig/gtk-*/settings.ini
-
-# electron...stuff
 !dotconfig/code-flags.conf
+!dotconfig/dprint/dprint.json
 !dotconfig/electron-flags.conf
 
-!dotconfig/dprint/dprint.json
-!dotconfig/fuzzel/fuzzel.ini
-!dotconfig/helix/*.toml
-dotconfig/helix/runtime/**
+!dotconfig/fuzzel/*
 
-!dotconfig/helm/repositories.yaml
-!dotconfig/kanshi/config
 !dotconfig/git/*
+
 !dotconfig/gtk-*/settings.ini
+
+!dotconfig/helm/
+!dotconfig/helm/repositories.yaml
+
+!dotconfig/helix/*.toml
+
+!dotconfig/hypr/
 !dotconfig/hypr/*
-!dotconfig/kitty/**
+
+!dotconfig/kanshi/
+!dotconfig/kanshi/config
+
+!dotconfig/kitty/*.conf
+!dotconfig/kitty/*.py
+
+!dotconfig/lazygit/
 !dotconfig/lazygit/config.yml
+
 !dotconfig/mako/*
+
 !dotconfig/neofetch/*
+
 !dotconfig/niri/**
-!dotconfig/nvim/init.lua
-!dotconfig/nvim/**
-dotconfig/nvim/lua/plugins/example.lua
+
 !dotconfig/pypoetry/*
-!dotconfig/river/init
+
+!dotconfig/qt*/
 !dotconfig/qt*/qt*
+
+!dotconfig/river/
+!dotconfig/river/init
+
+!dotconfig/swaylock/
 !dotconfig/swaylock/*
+
+!dotconfig/systemd/
 !dotconfig/systemd/user/swayidle.service
+
+!dotconfig/task/
 !dotconfig/task/**
+
+!dotconfig/timewarrior/
 !dotconfig/timewarrior/**
-!dotconfig/waybar/*
-# ignore the symlink
-dotconfig/waybar/config
+
+# !dotconfig/waybar/
+# dotconfig/waybar/config.jsonc
+!dotconfig/waybar/*-config
+!dotconfig/waybar/*.css
+
+!dotconfig/way-displays/
 !dotconfig/way-displays/*
+
+!dotconfig/xsettingsd/
 !dotconfig/xsettingsd/*
-!dotconfig/yazi/*
+
+!dotconfig/yazi/*.toml
+
+!dotconfig/zathura/
 !dotconfig/zathura/*
 
 !templates/**
-
-# ignore everything written to .config by applications
-# dotconfig/**
