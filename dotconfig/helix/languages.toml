@@ -16,13 +16,28 @@ command = "lsp-ai"
 file_store = {}
 
 [language-server.lsp-ai.config.models.model1]
+type = "ollama"
+model = "ministral-3:3b"
+# auth_token_env_var_name = "GROQ_API_KEY"
+
+[language-server.lsp-ai.config.models.model2]
 type = "open_ai"
 chat_endpoint = "https://api.groq.com/openai/v1/chat/completions"
-model = "llama3-70b-8192"
+model = "llama-3.3-70b-versatile"
 auth_token_env_var_name = "GROQ_API_KEY"
 
-[language-server.lsp-ai.config.completion]
+[language-server.lsp-ai.config.chat]
+trigger = "!C"
+action_display_name = "Chat"
 model = "model1"
+
+[language-server.lsp-ai.config.chat.parameters]
+max_context = 4096
+max_tokens = 1024
+system = "You are a code assistant chatbot. The user will ask you for assistance coding and you will do your best to answer succinctly and accurately"
+
+[language-server.lsp-ai.config.completion]
+model = "model2"
 
 [language-server.lsp-ai.config.completion.parameters]
 max_tokens = 64
@@ -78,9 +93,9 @@ role = "user"
 content = "{CODE}"
 
 #
-[language-server.ltex-ls.config]
-ltex.disabledRules = { "en-US" = ["PROFANITY"] }
-ltex.dictionary = { "en-US" = ["builtin"] }
+# [language-server.ltex-ls.config]
+# ltex.disabledRules = { "en-US" = ["PROFANITY"] }
+# ltex.dictionary = { "en-US" = ["builtin"] }
 
 ###############################################
 ## Configuration for python language-servers ##
@@ -166,7 +181,7 @@ name = "env"
 
 [[language]]
 name = "python"
-language-servers = ["pyrefly", "ruff", "lspai"]
+language-servers = ["pyrefly", "lsp-ai", "ruff"]
 auto-format = true
 formatter = { command = "dprint", args = ["fmt", "--stdin", "python"] }
 
@@ -174,7 +189,7 @@ formatter = { command = "dprint", args = ["fmt", "--stdin", "python"] }
 name = "go"
 auto-format = true
 formatter = { command = "goimports" }
-language-servers = ["gopls", "lspai"]
+language-servers = ["gopls", "lsp-ai"]
 
 [language-server.gopls]
 command = "gopls"
@@ -186,19 +201,20 @@ gofumpt = true
 [[language]]
 name = "rust"
 auto-format = true
-language-servers = ["rust-analyzer", "lspai"]
+language-servers = ["rust-analyzer", "lsp-ai"]
 formatter = { command = "rustfmt" }
 
 [[language]]
 name = "markdown"
-language-servers = ["marksman", "ltex-ls-plus", "lspai"]
+soft-wrap.enable = true
+language-servers = ["marksman", "ltex-ls-plus", "lsp-ai"]
 # language-servers = ["marksman", "ltex-ls-plus"]
 auto-format = true
 formatter = { command = "dprint", args = ["fmt", "--stdin", "md"] }
 
 [[language]]
 name = "sql"
-language-servers = ["sqls", "lspai"]
+language-servers = ["sqls", "lsp-ai"]
 
 [language-server.sqls]
 command = "sqls"
@@ -214,35 +230,35 @@ args = ["serve"]
 
 [[language]]
 name = "hcl"
-language-servers = ["terraform-ls", "lspai"]
+language-servers = ["terraform-ls", "lsp-ai"]
 language-id = "terraform"
 
 [[language]]
 name = "tfvars"
-language-servers = ["terraform-ls", "lspai"]
+language-servers = ["terraform-ls", "lsp-ai"]
 language-id = "terraform-vars"
 
 [[language]]
 name = "html"
-language-servers = ["vscode-html-language-server", "tailwindcss-ls", "lspai"]
+language-servers = ["vscode-html-language-server", "tailwindcss-ls", "lsp-ai"]
 
 [[language]]
 name = "css"
-language-servers = ["vscode-css-language-server", "tailwindcss-ls", "lspai"]
+language-servers = ["vscode-css-language-server", "tailwindcss-ls", "lsp-ai"]
 
 [[language]]
 name = "jsx"
-language-servers = ["typescript-language-server", "tailwindcss-ls", "lspai"]
+language-servers = ["typescript-language-server", "tailwindcss-ls", "lsp-ai"]
 formatter = { command = "dprint", args = ["fmt", "--stdin", "javascript"] }
 
 [[language]]
 name = "tsx"
-language-servers = ["typescript-language-server", "tailwindcss-ls", "lspai"]
+language-servers = ["typescript-language-server", "tailwindcss-ls", "lsp-ai"]
 formatter = { command = "dprint", args = ["fmt", "--stdin", "typescript"] }
 
 [[language]]
 name = "typescript"
-language-servers = ["typescript-language-server", "tailwindcss-ls", "lspai"]
+language-servers = ["typescript-language-server", "tailwindcss-ls", "lsp-ai"]
 formatter = { command = "dprint", args = ["fmt", "--stdin", "typescript"] }
 
 [[language]]
@@ -259,10 +275,10 @@ name = "latex"
 
 [[language]]
 name = "typst"
-language-servers = ["tinymist", "lspai"]
+language-servers = ["tinymist", "lsp-ai"]
 formatter = { command = "typstyle", args = ["-i", "-"] }
 auto-format = true
 
 [[language]]
 name = "nickel"
-language-servers = ["nls", "lspai"]
+language-servers = ["nls", "lsp-ai"]

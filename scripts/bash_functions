@@ -1,5 +1,19 @@
 #!/bin/bash
 
+# update both Arch and EndeavourOS mirrorlist files
+mirrorup() {
+	rate-mirrors --disable-comments-in-file --entry-country=US --protocol=https arch --max-delay=7200 |
+		sudo tee /etc/pacman.d/mirrorlist
+	
+	rate-mirrors --disable-comments-in-file --entry-country=US --protocol=https endeavouros |
+		sudo tee /etc/pacman.d/endeavouros-mirrorlist
+}
+
+# lists all Ollama models and then tries to refresh (pull) the model
+pullama() {
+	for llm in $(ollama list | awk '{print $1}' | grep -v NAME) ; do ollama pull ${llm} ; done
+}
+
 tickle() {
 	deadline=$1
 	task $2 mod +tickle wait:$deadline

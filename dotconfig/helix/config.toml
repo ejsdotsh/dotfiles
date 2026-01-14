@@ -14,6 +14,10 @@ mouse = true
 rulers = [80, 120]
 true-color = true
 
+[editor.soft-wrap]
+wrap-indicator = ""
+# enable = true
+
 [editor.whitespace.render]
 space = "none"
 nbsp = "none"
@@ -60,3 +64,6 @@ mode.select = "SELECT"
 
 [editor.lsp]
 display-messages = true
+
+[keys.normal]
+C-a = ":open lsp-ai-chat.md"

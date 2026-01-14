@@ -1,9 +1,15 @@
+[mgr]
+show_hidden = true
+
 [opener]
 edit = [
   { run = 'helix "$@"', block = true },
 ]
+# open = [
+#   { run = 'glow "$@"', block = true, desc = "Glow" },
+# ]
 open = [
-  { run = 'glow "$@"', block = true, desc = "Glow" },
+  { run = "xdg-open %s", desc = "Open" },
 ]
 
 [open]

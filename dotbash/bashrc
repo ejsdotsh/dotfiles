@@ -97,6 +97,7 @@ alias terraform='tofu'
 ### mount the clouds
 alias mntbox='rclone mount box:docs/tech-docs ~/Documents/btd --vfs-cache-mode full'
 alias mntodd='rclone mount onedrive:Documents ~/Documents/odd --vfs-cache-mode full'
+alias mntdivorce='rclone mount onedrive:divorce ~/Documents/divorce --vfs-cache-mode full'
 
 ### taskw & gtd
 alias in='task add +@inbox pro:inbox'
