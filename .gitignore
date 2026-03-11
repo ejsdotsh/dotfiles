@@ -17,11 +17,7 @@
 !docs/**
 !scripts/**
 
-!setup_environment
-# !endeavour_packages.txt
-
 !dotbash/*
-
 
 # ignore everything written to .config by applications
 dotconfig/**
@@ -99,3 +95,6 @@ dotconfig/**
 !dotconfig/zathura/*
 
 !templates/**
+
+# ignore all .env
+**/.env

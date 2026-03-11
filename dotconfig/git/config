@@ -17,7 +17,7 @@
 
 [core]
 	autocrlf = input
-	editor = nvim
+	editor = helix
 
 [color]
 	ui = auto

@@ -87,6 +87,7 @@ fi
 ## aliases
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
+alias pssh='ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no'
 
 #### alias mkpy='python3 -m venv .venv && .venv/bin/python3 -m pip install -U pip setuptools wheel black mypy'
 alias mkgomod='go mod init github.com/ejsdotsh/$(basename $(pwd))'
@@ -95,9 +96,10 @@ alias unbrewall='brew uninstall --formula $(brew list)'
 alias terraform='tofu'
 
 ### mount the clouds
-alias mntbox='rclone mount box:docs/tech-docs ~/Documents/btd --vfs-cache-mode full'
-alias mntodd='rclone mount onedrive:Documents ~/Documents/odd --vfs-cache-mode full'
-alias mntdivorce='rclone mount onedrive:divorce ~/Documents/divorce --vfs-cache-mode full'
+alias mntbox='rclone mount box:docs/tech-docs ~/Documents/btd --vfs-cache-mode full --vfs-cache-max-age 6h --vfs-cache-max-size 50G --cache-db-purge'
+alias mntodd='rclone mount onedrive:Documents ~/Documents/odd --vfs-cache-mode full --vfs-cache-max-age 6h --vfs-cache-max-size 50G --cache-db-purge'
+alias mntdivorce='rclone mount onedrive:divorce ~/Documents/divorce --vfs-cache-mode full --vfs-cache-max-age 6h --vfs-cache-max-size 50G --cache-db-purge'
+alias mntsb='rclone mount proton:SB ~/Documents/proton --vfs-cache-mode full --vfs-cache-max-age 6h --vfs-cache-max-size 50G --cache-db-purge'
 
 ### taskw & gtd
 alias in='task add +@inbox pro:inbox'

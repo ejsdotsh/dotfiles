@@ -109,5 +109,5 @@ alias unicorn-control='\
 		-e TZ=Etc/UTC \
 		-v omada-data:/opt/tplink/EAPController/data \
 		-v omada-logs:/opt/tplink/EAPController/logs \
-		mbentley/omada-controller:latest-chromium'
+		docker.io/mbentley/omada-controller:6'
 
