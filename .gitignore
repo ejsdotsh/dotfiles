@@ -98,3 +98,4 @@ dotconfig/**
 
 # ignore all .env
 **/.env
+**/.ear
