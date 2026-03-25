@@ -2,11 +2,16 @@
 
 # adapted from https://mil.ad/blog/2024/airpods-on-arch.html
 set -a
-source .env
+source .ear
 set +a
 device=${EARPODS}
 
 service_running=$(systemctl is-active "bluetooth.service")
+if [ service_running != "active" ]; then
+    echo "bluetooth not active"
+    exit -1
+fi
+
 controller_on=$(bluetoothctl show | grep "Powered: yes")
 device_paired=$(bluetoothctl devices Paired | grep $device)
 device_connected=$(bluetoothctl info $device | grep "Connected: yes")
