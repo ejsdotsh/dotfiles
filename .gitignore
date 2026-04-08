@@ -46,6 +46,7 @@ dotconfig/**
 !dotconfig/kanshi/
 !dotconfig/kanshi/config
 
+!dotconfig/kitty/
 !dotconfig/kitty/*.conf
 !dotconfig/kitty/*.py
 

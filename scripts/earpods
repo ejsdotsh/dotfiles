@@ -9,7 +9,7 @@ device=${EARPODS}
 service_running=$(systemctl is-active "bluetooth.service")
 if [ service_running != "active" ]; then
     echo "bluetooth not active"
-    exit -1
+    # exit -1
 fi
 
 controller_on=$(bluetoothctl show | grep "Powered: yes")
