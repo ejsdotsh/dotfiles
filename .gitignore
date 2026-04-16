@@ -57,7 +57,7 @@ dotconfig/**
 
 !dotconfig/neofetch/*
 
-!dotconfig/niri/**
+!dotconfig/niri/
 
 !dotconfig/pypoetry/*
 
