@@ -95,6 +95,9 @@ dotconfig/**
 !dotconfig/zathura/
 !dotconfig/zathura/*
 
+!dotconfig/zellij/
+!dotconfig/zellij/**.kdl
+
 !templates/**
 
 # ignore all .env

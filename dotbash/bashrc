@@ -66,7 +66,8 @@ export JSONNET_PATH="lib/:vendor/"
 export PATH="$DTFS/scripts:$HOME/.local/bin:${GOPATH}/bin:${GOROOT}/bin:$HOME/.cargo/bin:$PATH:/usr/local/protobuf/bin:$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin"
 
 # source functions
-for FF in "$DTFS"/scripts/{bash_functions,container_functions}; do
+# for FF in "$DTFS"/scripts/{bash_functions,container_functions}; do
+for FF in "$DTFS"/scripts/{bash_functions,}; do
 	if [[ -r "$FF" ]] && [[ -f "$FF" ]]; then
 		source "$FF"
 	fi
@@ -96,10 +97,10 @@ alias unbrewall='brew uninstall --formula $(brew list)'
 alias terraform='tofu'
 
 ### mount the clouds
-alias mntbox='rclone mount box:docs/tech-docs ~/Documents/btd --vfs-cache-mode full --vfs-cache-max-age 6h --vfs-cache-max-size 50G --cache-db-purge'
-alias mntodd='rclone mount onedrive:Documents ~/Documents/odd --vfs-cache-mode full --vfs-cache-max-age 6h --vfs-cache-max-size 50G --cache-db-purge'
-alias mntdivorce='rclone mount onedrive:divorce ~/Documents/divorce --vfs-cache-mode full --vfs-cache-max-age 6h --vfs-cache-max-size 50G --cache-db-purge'
-alias mntsb='rclone mount proton:SB ~/Documents/proton --vfs-cache-mode full --vfs-cache-max-age 6h --vfs-cache-max-size 50G --cache-db-purge'
+alias mntbox='rclone mount box:docs/tech-docs ~/Documents/btd --vfs-cache-mode full --vfs-cache-max-age 6h --vfs-cache-max-size 50G --cache-db-purge --vfs-refresh --vfs-read-chunk-size-limit 250M'
+alias mntodd='rclone mount onedrive:Documents ~/Documents/odd --vfs-cache-mode full --vfs-cache-max-age 6h --vfs-cache-max-size 50G --cache-db-purge --vfs-refresh --vfs-read-chunk-size-limit 250M'
+alias mntdivorce='rclone mount onedrive:divorce ~/Documents/divorce --vfs-cache-mode full --vfs-cache-max-age 6h --vfs-cache-max-size 50G --cache-db-purge --vfs-refresh --vfs-read-chunk-size-limit 250M'
+alias mntsb='rclone mount proton:SB ~/Documents/proton --vfs-cache-mode full --vfs-cache-max-age 6h --vfs-cache-max-size 50G --cache-db-purge --vfs-refresh --vfs-read-chunk-size-limit 250M'
 
 ### taskw & gtd
 alias in='task add +@inbox pro:inbox'

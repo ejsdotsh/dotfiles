@@ -92,7 +92,6 @@ content = "def is_even(n):\n    return n % 2 == 0"
 role = "user"
 content = "{CODE}"
 
-#
 # [language-server.ltex-ls.config]
 # ltex.disabledRules = { "en-US" = ["PROFANITY"] }
 # ltex.dictionary = { "en-US" = ["builtin"] }
