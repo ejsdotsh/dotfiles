@@ -67,6 +67,8 @@ dotconfig/**
 !dotconfig/river/
 !dotconfig/river/init
 
+!dotconfig/starship.toml
+
 !dotconfig/swaylock/
 !dotconfig/swaylock/*
 
