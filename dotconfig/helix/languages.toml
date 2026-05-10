@@ -92,9 +92,10 @@ content = "def is_even(n):\n    return n % 2 == 0"
 role = "user"
 content = "{CODE}"
 
-# [language-server.ltex-ls.config]
-# ltex.disabledRules = { "en-US" = ["PROFANITY"] }
-# ltex.dictionary = { "en-US" = ["builtin"] }
+[language-server.ltex-ls-plus.config]
+ltex.disabledRules = { "en-US" = ["PROFANITY"], "en-GB" = ["PROFANITY"] }
+ltex.dictionary = { "en-US" = ["builtin"], "en-GB" = ["builtin"] }
+ltex.language = "en-US"
 
 ###############################################
 ## Configuration for python language-servers ##
@@ -271,6 +272,7 @@ formatter = { command = "jsonnetfmt", args = ["-i", "*.jsonnet"] }
 
 [[language]]
 name = "latex"
+language-servers = ["ltex-ls-plus"]
 
 [[language]]
 name = "typst"
