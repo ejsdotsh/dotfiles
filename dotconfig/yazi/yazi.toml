@@ -14,5 +14,5 @@ open = [
 
 [open]
 prepend_rules = [
-  { name = "*.md", use = ["open", "edit"] },
+  { url = "*.md", use = ["open", "edit"] },
 ]
