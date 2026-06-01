@@ -1,0 +1,218 @@
+# ~/.zshrc
+# Zettelkasten Terminal Environment
+# Stack: Kitty + Zsh + Yazi + Helix + Ollama + iwe
+
+# 1. Zinit Initialization
+source ~/.local/share/zinit/zinit.git/zinit.zsh
+
+# 2. Core Plugins
+zinit light zdharma-continuum/fast-syntax-highlighting
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-completions
+
+# 3. fzf-tab (Load AFTER zsh-completions, BEFORE compinit)
+# This replaces default tab completion with fzf fuzzy matching
+# zinit ice wait'0' lucid
+# zinit light Aloxaf/fzf-tab
+
+# 4. Completions (Must come AFTER fzf-tab)
+autoload -Uz compinit && compinit
+
+# 5. fzf-tab Configuration
+# Disable sorting for completion groups (keeps relevance order)
+# zstyle ':completion:*' sort false
+
+# Use fzf for completion with preview where possible
+# zstyle ':fzf-tab:complete:*:*' fzf-flags --height=50% --layout=reverse --border
+
+# Preview directory contents when completing cd/ls
+# zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -1 --color=always $realpath'
+# zstyle ':fzf-tab:complete:ls:*' fzf-preview 'ls -1 --color=always $realpath'
+
+# Preview file contents when completing hx/commands
+# zstyle ':fzf-tab:complete:hx:*' fzf-preview 'bat --color=always --style=numbers $realpath 2>/dev/null || cat $realpath'
+# zstyle ':fzf-tab:complete:zknew:*' fzf-preview 'bat --color=always --style=numbers $realpath 2>/dev/null || cat $realpath'
+# zstyle ':fzf-tab:complete:zkconvert:*' fzf-preview 'bat --color=always --style=numbers $realpath 2>/dev/null || cat $realpath'
+
+# Preview environment variables and aliases
+# zstyle ':fzf-tab:complete:(-command-|-parameter-|-export-|-alias-)' fzf-preview 'echo ${(P)word}'
+
+# Switch group with Ctrl+left/right
+# zstyle ':fzf-tab:*' switch-group ',' '.'
+
+# 6. Starship Prompt
+eval "$(starship init zsh)"
+
+# 7. Environment Variables
+
+# set XDG paths
+export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
+export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
+export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
+export XDG_CURRENT_DESKTOP=niri
+
+# set editor and language
+export EDITOR="helix"
+export VISUAL="helix"
+export LC_ALL="en_US.UTF-8"
+export LANG="en_US.UTF-8"
+export LANGUAGE="en_US.UTF-8"
+
+export ZK_ROOT="$HOME/repo/uov"
+export ZK_INBOX="$ZK_ROOT/00-INBOX"
+export ZK_PERM="$ZK_ROOT/10-Permanent-Notes"
+export ZK_PROJ="$ZK_ROOT/20-Project-Notes"
+
+export SB="${HOME}/repo/SB"
+export DTFS="${SB}/ejsdotsh/dotfiles"
+
+# 8. Aliases
+alias hx="helix"
+
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias pssh='ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no'
+
+# alias gs="git status"
+# alias ga="git add"
+# alias gc="git commit"
+# alias gp="git push"
+
+# export OLLAMA_HOST="http://localhost:11434"
+# export OLLAMA_MODEL="llama3.1:8b"
+# export OLLAMA_NUM_GPU=10
+# alias oll="ollama"
+# alias ai="ollama run $OLLAMA_MODEL"
+# alias ai-perturb="echo 'Paste text to perturb:' && read -r TEXT && echo \"$TEXT\" | ollama run $OLLAMA_MODEL 'Act as a legal scholar. Provide 3 non-obvious interpretations and 1 critique.'"
+
+### mount the clouds
+alias mntbox='rclone mount box:docs/tech-docs ~/Documents/btd --vfs-cache-mode full --vfs-cache-max-age 6h --vfs-cache-max-size 50G --cache-db-purge --vfs-refresh --vfs-read-chunk-size-limit 250M'
+alias mntodd='rclone mount onedrive:Documents ~/Documents/odd --vfs-cache-mode full --vfs-cache-max-age 6h --vfs-cache-max-size 50G --cache-db-purge --vfs-refresh --vfs-read-chunk-size-limit 250M'
+alias mntdivorce='rclone mount onedrive:divorce ~/Documents/divorce --vfs-cache-mode full --vfs-cache-max-age 6h --vfs-cache-max-size 50G --cache-db-purge --vfs-refresh --vfs-read-chunk-size-limit 250M'
+alias mntsb='rclone mount proton:SB ~/Documents/proton --vfs-cache-mode full --vfs-cache-max-age 6h --vfs-cache-max-size 50G --cache-db-purge --vfs-refresh --vfs-read-chunk-size-limit 250M'
+
+# shell completions
+# eval "$(pixi completion --shell zsh)"
+
+# load direnv
+# eval "$(direnv hook zsh)"
+
+# 9. Workflow Functions
+
+zknew() {
+    local title="${1:-$(date +%Y-%m-%d-%H%M%S)}"
+    local folder="${2:-inbox}"
+    local dir=""
+    local type=""
+
+    case "$folder" in
+        inbox) dir="$ZK_INBOX"; type="inbox" ;;
+        permanent) dir="$ZK_PERM"; type="permanent" ;;
+        project) dir="$ZK_PROJ"; type="project" ;;
+        *) echo "Invalid folder: $folder. Use inbox, permanent, or project."; return 1 ;;
+    esac
+
+    local filename=$(echo "$title" | tr ' ' '-' | tr '[:upper:]' '[:lower:]').md
+    local filepath="$dir/$filename"
+
+    if [[ -f "$filepath" ]]; then
+        echo "File exists: $filepath"
+        hx "$filepath"
+        return 0
+    fi
+
+    cat > "$filepath" <<EOF
+---
+type: $type
+date: $(date +%Y-%m-%d)
+tags: []
+zotero_key: ""
+links:
+  - support: []
+  - contradiction: []
+---
+
+# $title
+
+## Core Idea
+<!-- One clear, atomic statement. -->
+
+## Elaboration
+<!-- Expand on the idea. -->
+
+## Connections
+### Supports
+- [[ ]]
+
+### Contradicts
+- [[ ]]
+
+## Open Questions
+<!-- Unresolved tensions. -->
+
+EOF
+
+    echo "Created: $filepath"
+    hx "$filepath"
+}
+
+zkconvert() {
+    local file="${1:-$(basename $(ls -t $ZK_INBOX/*.md 2>/dev/null | head -n1))}"
+    local src="$ZK_INBOX/$file"
+    local dst="$ZK_PERM/$file"
+
+    if [[ ! -f "$src" ]]; then
+        echo "File not found in Inbox: $src"
+        return 1
+    fi
+
+    mv "$src" "$dst"
+    sed -i 's/type: inbox/type: permanent/' "$dst"
+    echo "Converted: $file -> Permanent"
+    hx "$dst"
+}
+
+zkbacklinks() {
+    local title="$1"
+    if [[ -z "$title" ]]; then
+        echo "Usage: zkbacklinks \"Note Title\""
+        return 1
+    fi
+    echo "Searching for backlinks to: $title"
+    rg "\[\[$title\]\]" "$ZK_ROOT" --heading --color=always
+}
+
+zkperturb() {
+    echo "$1" | ollama run $OLLAMA_MODEL "Act as a legal scholar. Provide 3 non-obvious interpretations and 1 critique. Keep it concise."
+}
+
+# 10. Completion Definitions for Custom Functions
+# These enable fzf-tab to provide fuzzy completion for zk* commands
+_zknew() {
+    _arguments \
+        '1:note title:' \
+        '2:folder:(inbox permanent project)'
+}
+compdef _zknew zknew
+
+_zkconvert() {
+    _arguments \
+        '1:inbox file:_files -W $ZK_INBOX -g "*.md"'
+}
+compdef _zkconvert zkconvert
+
+_zkbacklinks() {
+    _arguments \
+        '1:note title:_files -W $ZK_ROOT -g "*.md"'
+}
+compdef _zkbacklinks zkbacklinks
+
+# 11. History Settings
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+
+# echo "Zettelkasten environment loaded."
+

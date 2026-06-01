@@ -11,15 +11,15 @@ ORDER:
   - "eDP-1"
   - "DP-2"
   - "DP-1"
-  #- 'monitor description'
-  #- 'HDMI-1'
+  # - 'monitor description'
+  # - 'HDMI-1'
 
 # Enable scaling, overrides AUTO_SCALE and SCALE
-SCALING: TRUE
+SCALING: true
 
 # The default is to scale each display by DPI.
 # This may be disabled and scale 1 will be used, unless a SCALE has been specified.
-AUTO_SCALE: TRUE
+AUTO_SCALE: true
 
 # Set an allowed range for auto scale.
 AUTO_SCALE_MIN: 1.0
@@ -40,9 +40,10 @@ MODE:
     HEIGHT: 2400
     HZ: 60
 
-  - NAME_DESC: DP-1
+  - NAME_DESC: DP-6
     WIDTH: 3840
     HEIGHT: 2160
+    SCALE: 1.0
     # HZ: 60
 
   - NAME_DESC: DP-2
@@ -52,9 +53,9 @@ MODE:
 
 # Rotate or translate the display.
 # 90, 180, 270, FLIPPED, FLIPPED-90, FLIPPED-180, FLIPPED-270
-TRANSFORM:
-  - NAME_DESC: "DP-2"
-    TRANSFORM: 90
+# TRANSFORM:
+#   - NAME_DESC: "DP-2"
+#     TRANSFORM: 90
 
 # VRR / adaptive sync is enabled by default. Disable it per display.
 VRR_OFF:
@@ -76,4 +77,4 @@ LOG_THRESHOLD: DEBUG
 
 # Disable the specified displays.
 DISABLED:
-  #- "eDP-1"
+#- "eDP-1"

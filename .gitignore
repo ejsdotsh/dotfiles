@@ -92,6 +92,7 @@ dotconfig/**
 !dotconfig/xsettingsd/
 !dotconfig/xsettingsd/*
 
+!dotconfig/yazi/
 !dotconfig/yazi/*.toml
 
 !dotconfig/zathura/
@@ -99,6 +100,8 @@ dotconfig/**
 
 !dotconfig/zellij/
 !dotconfig/zellij/**.kdl
+
+!zsh/**
 
 !templates/**
 
