@@ -1,0 +1,73 @@
+#!/usr/bin/bash
+
+# adapted from https://mil.ad/blog/2024/airpods-on-arch.html
+set -a
+source .ear
+set +a
+device=${EARPODS}
+
+service_running=$(systemctl is-active "bluetooth.service")
+if [ service_running != "active" ]; then
+    echo "bluetooth not active"
+    # exit -1
+fi
+
+controller_on=$(bluetoothctl show | grep "Powered: yes")
+device_paired=$(bluetoothctl devices Paired | grep $device)
+device_connected=$(bluetoothctl info $device | grep "Connected: yes")
+device_blocked=$(bluetoothctl info $device | grep "Blocked: yes")
+
+status_str() {
+    if [[ $service_running ]] && [[ $controller_on ]] && [[ $device_paired ]]; then
+        if [[ $device_connected ]]; then
+            echo "running, powered, paired, connected"
+        elif [[ $controller_on ]] && [[ ! $device_blocked ]];then
+            echo "running, powered, not blocked, not connected"
+        else
+            echo "running, powered, blocked, not connected"
+        fi
+    else
+        echo "running, not powered, paired, not connected"
+    fi
+}
+
+toggle_state() {
+    if [[ ! $device_paired ]];then
+      return 1
+    fi
+
+    if [[ $device_connected ]]; then
+        bluetoothctl disconnect $device
+        bluetoothctl block $device
+        bluetoothctl power off
+    elif [[ $controller_on ]] && [[ ! $device_blocked ]];then
+        bluetoothctl disconnect $device
+        bluetoothctl block $device
+        bluetoothctl power off
+    elif [[ $controller_on ]] && [[ $device_blocked ]];then
+        bluetoothctl unblock $device
+        bluetoothctl connect $device
+    else
+        bluetoothctl power on
+        bluetoothctl unblock $device
+        bluetoothctl connect $device
+    fi
+}
+
+maybe_block() {
+    if [[ $controller_on ]] && [[ $device_paired ]] && [[ ! $device_connected ]] && [[ ! $device_blocked ]];then
+        bluetoothctl block $device
+    fi
+}
+
+case "$1" in
+    --toggle) 
+        toggle_state
+        ;;
+    --status)
+        status_str
+        ;;
+    --block-if-not-connected)
+        maybe_block
+        ;;
+esac

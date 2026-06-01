@@ -17,11 +17,7 @@
 !docs/**
 !scripts/**
 
-!setup_environment
-# !endeavour_packages.txt
-
 !dotbash/*
-
 
 # ignore everything written to .config by applications
 dotconfig/**
@@ -50,6 +46,7 @@ dotconfig/**
 !dotconfig/kanshi/
 !dotconfig/kanshi/config
 
+!dotconfig/kitty/
 !dotconfig/kitty/*.conf
 !dotconfig/kitty/*.py
 
@@ -60,6 +57,7 @@ dotconfig/**
 
 !dotconfig/neofetch/*
 
+!dotconfig/niri/
 !dotconfig/niri/**
 
 !dotconfig/pypoetry/*
@@ -69,6 +67,8 @@ dotconfig/**
 
 !dotconfig/river/
 !dotconfig/river/init
+
+!dotconfig/starship.toml
 
 !dotconfig/swaylock/
 !dotconfig/swaylock/*
@@ -93,9 +93,19 @@ dotconfig/**
 !dotconfig/xsettingsd/
 !dotconfig/xsettingsd/*
 
+!dotconfig/yazi/
 !dotconfig/yazi/*.toml
 
 !dotconfig/zathura/
 !dotconfig/zathura/*
 
+!dotconfig/zellij/
+!dotconfig/zellij/**.kdl
+
+!zsh/**
+
 !templates/**
+
+# ignore all .env
+**/.env
+**/.ear
