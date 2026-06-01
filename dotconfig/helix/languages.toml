@@ -283,3 +283,13 @@ auto-format = true
 [[language]]
 name = "nickel"
 language-servers = ["nls", "lsp-ai"]
+
+[[language]]
+name = "zsh"
+scope = "source.bash"
+file-types = ["zsh", ".zshrc", ".zshenv", ".zsh_profile", ".zsh_login", ".zsh_logout"]
+language-servers = ["bash-language-server"]
+
+[language-server.bash-language-server]
+command = "bash-language-server"
+args = ["start"]
